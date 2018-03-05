@@ -67,6 +67,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="atividades.aspx" />
+    <Content Include="cad_atividades.aspx" />
     <Content Include="cad_voluntario.aspx" />
     <Content Include="packages.config" />
     <Content Include="bower.json" />
@@ -707,6 +709,7 @@
     <Content Include="vendor\font-awesome\scss\_stacked.scss" />
     <Content Include="vendor\font-awesome\scss\_variables.scss" />
     <Content Include="Home.aspx" />
+    <Content Include="ger_atividade.aspx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1683,6 +1686,20 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="atividades.aspx.cs">
+      <DependentUpon>atividades.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="atividades.aspx.designer.cs">
+      <DependentUpon>atividades.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cad_atividades.aspx.cs">
+      <DependentUpon>cad_atividades.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cad_atividades.aspx.designer.cs">
+      <DependentUpon>cad_atividades.aspx</DependentUpon>
+    </Compile>
     <Compile Include="cad_voluntario.aspx.cs">
       <DependentUpon>cad_voluntario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1711,6 +1728,13 @@
     </Compile>
     <Compile Include="voluntarios.aspx.designer.cs">
       <DependentUpon>voluntarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ger_atividade.aspx.cs">
+      <DependentUpon>ger_atividade.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ger_atividade.aspx.designer.cs">
+      <DependentUpon>ger_atividade.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
