@@ -1,10 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="voluntarios.aspx.cs" Inherits="WebApplication5.voluntarios" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="eventos.aspx.cs" Inherits="WebApplication5.eventos" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-  <title>SGV - Voluntarios</title>
+  <title>SGV - Eventos</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -57,10 +57,10 @@
               <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
-              <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+              <li><a href="#"><i class="fa fa-user fa-fw"></i>Perfil</a>
               </li>
               <li class="divider"></li>
-              <li><a href="Index.aspx"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+              <li><a href="Index.aspx"><i class="fa fa-sign-out fa-fw"></i>Sair</a>
               </li>
             </ul>
             <!-- /.dropdown-user -->
@@ -73,7 +73,7 @@
           <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
               <li>
-                <a href="voluntarios.aspx"><i class="fa fa-male fa-fw"></i> Voluntarios</a>
+                <a href="voluntarios.aspx"><i class="fa fa-male fa-fw"></i>Voluntários</a>
               </li>
               <li>
                 <a href="atividades.aspx"><i class="fa fa-bar-chart-o fa-fw"></i>Atividades</a>
@@ -91,7 +91,7 @@
                     <a href="#"><i class="fa fa-fw"></i>Parametrização Sistema<span class="fa arrow"></span></a>
                     <ul class="nav nav-third-level">
                       <li>
-                        <a href="Home.aspx">Tipo de Atividade</a>
+                        <a href="tipo_atividade.aspx">Tipo de Atividade</a>
                       </li>
                       <li>
                         <a href="Home.aspx">Tipo de Evento</a>
@@ -134,7 +134,7 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-lg-12">
-              <h1 class="page-header">Voluntários</h1>
+              <h1 class="page-header">Eventos</h1>
             </div>
             <!-- /.col-lg-12 -->
           </div>
@@ -143,122 +143,77 @@
               <div class="col-lg-12">
                   <div class="panel panel-default">
                       <div class="panel-heading">
-                          Voluntários
+                          Eventos
                       </div>
-                      <!-- /.panel-heading -->
                       <!-- Buscar-->
                       <div class="panel-body">
                         <form role="form">
-                          <div class="form-group">
-                            <label>Matricula</label>
-                            <input class="form-control">
-                          </div>
-                          <div class="form-group">
+                          <div class="form-group col-lg-6">
                             <label>Nome</label>
-                            <input class="form-control">
+                            <input class="form-control"/>
                           </div>
-                          <div class="form-group">
-                            <label>Tipo de Voluntário</label>
-                            <select class="form-control" name="sele_tipo_usuario">
+                          <div class="form-group col-lg-6">
+                            <label>Tipo de Evento</label>
+                            <select class="form-control" name="sele_tipo_atividade">
                               <option>Todos</option>
-                              <option>Gestão</option>
-                              <option>Externo</option>
                               <option>Interno</option>
-                              <option>Fim de Semana</option>
+                              <option>Externo</option>
                             </select>
                           </div>
-                            <script type="text/javascript">
-                              function mascaraData( campo, e )
-                              {
-                                var kC = (document.all) ? event.keyCode : e.keyCode;
-                                var data = campo.value;
-
-                                if( kC!=8 && kC!=46 )
-                                {
-                                  if( data.length==2 )
-                                  {
-                                    campo.value = data += '/';
-                                  }
-                                  else if( data.length==5 )
-                                  {
-                                    campo.value = data += '/';
-                                  }
-                                  else
-                                  campo.value = data;
-                                }
-                              }
-                            </script>
-                          <div class="form-group">
-                            <label>Data de Adesão</label>
-                            </br><label>De</label><input type="text" class="form-control" name="outra_data" id="outra_data" maxlength="10" onkeypress="mascaraData( this, event )" />
-                            <label>Até</label><input type="text" class="form-control" name="outra_data" id="outra_data" maxlength="10" onkeypress="mascaraData( this, event )" />
+                          <div class="form-group col-lg-6">
+                            <label>Data Inicio</label>
+                            <input type="date" class="form-control"/>
                           </div>
-                          <div class="form-group">
+                          <div class="form-group col-lg-6">
+                            <label>Data Fim</label>
+                            <input type="date" class="form-control"/>
+                          </div>
+                          <div class="form-group col-lg-12">
+                            <input type="checkbox" /><label>&nbsp Inativo</label>
+                          </div>
+                          <div class="form-group col-lg-12">
                             <button type="button" class="btn btn-outline btn-primary">Buscar</button>
                             <button type="button" class="btn btn-outline btn-primary">Limpar</button>
                           </div>
                         </form>
                       </div>
                       <div class="panel-body">
-                          <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+
+                          <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                               <thead>
                                   <tr>
-                                      <th><input type="checkbox"></th>
-                                      <th>Matricula</th>
+                                      <th><input type="checkbox"/></th>
                                       <th>Nome</th>
                                       <th>Tipo</th>
-                                      <th>Data de Adesão</th>
+                                      <th>Data Inicio</th>
+                                      <th>Data Fim</th>
                                       <th>Estado</th>
                                   </tr>
                               </thead>
                               <tbody>
                                   <tr class="odd gradeX">
                                       <th><input type="checkbox"></th>
-                                      <td>1002</td>
-                                      <td>Carla Silva</td>
-                                      <td>Externo</td>
-                                      <td class="center">10/10/2010</td>
+                                      <td>Entrega de Comida - Prç. da Sé</td>
+                                      <td>Externa</td>
+                                      <td class="center">12/01/2018</td>
+                                      <td class="center">28/01/2018</td>
                                       <td class="center">Ativo</td>
                                   </tr>
                                   <tr class="even gradeC">
                                     <th><input type="checkbox"></th>
-                                    <td>1003</td>
-                                    <td>Juliana Bravo</td>
-                                    <td>Interno</td>
-                                    <td class="center">04/11/2010</td>
-                                    <td class="center">Ativo</td>
+                                      <td>Assembleia Geral </td>
+                                      <td>Interna</td>
+                                      <td class="center">30/01/2018</td>
+                                      <td class="center">30/01/2018</td>
+                                      <td class="center">Ativo</td>
                                   </tr>
                                   <tr class="odd gradeA">
                                       <th><input type="checkbox"></th>
-                                      <td>1004</td>
-                                      <td>Matheus Faria</td>
-                                      <td>Fim de Semana</td>
-                                      <td class="center">04/03/2011</td>
+                                      <td>Entrega de Kits - Athur Alvim</td>
+                                      <td>Externa</td>
+                                      <td class="center">01/02/2018</td>
+                                      <td class="center">01/02/2018</td>
                                       <td class="center">Ativo</td>
-                                  </tr>
-                                  <tr class="even gradeA">
-                                    <th><input type="checkbox"></th>
-                                    <td>1005</td>
-                                    <td>Fabio Cunha</td>
-                                    <td>Externo</td>
-                                    <td class="center">28/06/2011</td>
-                                    <td class="center">Inativo</td>
-                                  </tr>
-                                  <tr class="odd gradeA">
-                                    <th><input type="checkbox"></th>
-                                    <td>1006</td>
-                                    <td>Maria da Mata</td>
-                                    <td>Gestão</td>
-                                    <td class="center">12/12/2011</td>
-                                    <td class="center">Ativo</td>
-                                  </tr>
-                                  <tr class="even gradeA">
-                                    <th><input type="checkbox"></th>
-                                    <td>1007</td>
-                                    <td>Joana Maia</td>
-                                    <td>Externo</td>
-                                    <td class="center">12/12/2011</td>
-                                    <td class="center">Inativo</td>
                                   </tr>
                               </tbody>
                           </table>
@@ -266,6 +221,7 @@
                           <button type="button" class="btn btn-outline btn-primary">Incluir</button>
                           <button type="button" class="btn btn-outline btn-primary">Alterar</button>
                           <button type="button" class="btn btn-outline btn-primary">Desativar</button>
+                          <button type="button" class="btn btn-outline btn-primary">Atribuir Atividades</button>
                       </div>
                       <!-- /.panel-body -->
                   </div>
@@ -296,4 +252,3 @@
   </form>
 </body>
 </html>
-

@@ -79,19 +79,19 @@
                 <a href="atividades.aspx"><i class="fa fa-bar-chart-o fa-fw"></i>Atividades</a>
               </li>
               <li>
-                <a href="tables.html"><i class="fa fa-table fa-fw"></i>Eventos</a>
+                <a href="eventos.aspx"><i class="fa fa-table fa-fw"></i>Eventos</a>
               </li>
               <li>
                 <a href="#"><i class="fa fa-wrench fa-fw"></i>Administração do Sistema<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                   <li>
-                    <a href="panels-wells.html"><i class="fa fa-user"></i>Usuarios</a>
+                    <a href="usuarios.aspx"><i class="fa fa-user"></i>Usuarios</a>
                   </li>
                   <li>
                     <a href="#"><i class="fa fa-fw"></i>Parametrização Sistema<span class="fa arrow"></span></a>
                     <ul class="nav nav-third-level">
                       <li>
-                        <a href="Home.aspx">Tipo de Atividade</a>
+                        <a href="tipo_atividade.aspx">Tipo de Atividade</a>
                       </li>
                       <li>
                         <a href="Home.aspx">Tipo de Evento</a>

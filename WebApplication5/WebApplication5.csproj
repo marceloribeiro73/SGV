@@ -69,11 +69,15 @@
   <ItemGroup>
     <Content Include="atividades.aspx" />
     <Content Include="cad_atividades.aspx" />
+    <Content Include="cad_eventos.aspx" />
+    <Content Include="cad_usuario.aspx" />
     <Content Include="cad_voluntario.aspx" />
+    <Content Include="eventos.aspx" />
     <Content Include="packages.config" />
     <Content Include="bower.json" />
     <Content Include="LICENSE" />
     <Content Include="package.json" />
+    <Content Include="ponto.aspx" />
     <Content Include="README.md" />
     <Content Include="bower_components\bootstrap\dist\css\bootstrap-theme.css.map" />
     <Content Include="bower_components\bootstrap\dist\css\bootstrap-theme.min.css.map" />
@@ -662,6 +666,8 @@
     <Content Include="node_modules\gulp-clean-css\node_modules\gulp-util\node_modules\multipipe\node_modules\duplexer2\node_modules\readable-stream\.npmignore" />
     <Content Include="node_modules\gulp-clean-css\node_modules\gulp-util\node_modules\multipipe\node_modules\duplexer2\node_modules\readable-stream\float.patch" />
     <Content Include="node_modules\gulp-clean-css\node_modules\gulp-util\node_modules\multipipe\node_modules\duplexer2\node_modules\readable-stream\LICENSE" />
+    <Content Include="tipo_atividade.aspx" />
+    <Content Include="usuarios.aspx" />
     <Content Include="vendor\bootstrap-social\bootstrap-social.less" />
     <Content Include="vendor\bootstrap-social\bootstrap-social.scss" />
     <Content Include="vendor\bootstrap\fonts\glyphicons-halflings-regular.eot" />
@@ -1700,12 +1706,33 @@
     <Compile Include="cad_atividades.aspx.designer.cs">
       <DependentUpon>cad_atividades.aspx</DependentUpon>
     </Compile>
+    <Compile Include="cad_eventos.aspx.cs">
+      <DependentUpon>cad_eventos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cad_eventos.aspx.designer.cs">
+      <DependentUpon>cad_eventos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cad_usuario.aspx.cs">
+      <DependentUpon>cad_usuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cad_usuario.aspx.designer.cs">
+      <DependentUpon>cad_usuario.aspx</DependentUpon>
+    </Compile>
     <Compile Include="cad_voluntario.aspx.cs">
       <DependentUpon>cad_voluntario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="cad_voluntario.aspx.designer.cs">
       <DependentUpon>cad_voluntario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="eventos.aspx.cs">
+      <DependentUpon>eventos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="eventos.aspx.designer.cs">
+      <DependentUpon>eventos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
@@ -1714,6 +1741,13 @@
     <Compile Include="Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ponto.aspx.cs">
+      <DependentUpon>ponto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ponto.aspx.designer.cs">
+      <DependentUpon>ponto.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
@@ -1721,6 +1755,20 @@
     </Compile>
     <Compile Include="Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="tipo_atividade.aspx.cs">
+      <DependentUpon>tipo_atividade.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tipo_atividade.aspx.designer.cs">
+      <DependentUpon>tipo_atividade.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="usuarios.aspx.cs">
+      <DependentUpon>usuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usuarios.aspx.designer.cs">
+      <DependentUpon>usuarios.aspx</DependentUpon>
     </Compile>
     <Compile Include="voluntarios.aspx.cs">
       <DependentUpon>voluntarios.aspx</DependentUpon>

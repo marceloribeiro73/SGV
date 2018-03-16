@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,8 +36,8 @@
     <form id="form1" runat="server">
         <div id="wrapper">
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <!-- Navigation -->
+            <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -75,22 +75,22 @@
                             <a href="voluntarios.aspx"><i class="fa fa-male fa-fw"></i> Voluntarios</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Atividades</a>
+                            <a href="atividades.aspx"><i class="fa fa-bar-chart-o fa-fw"></i>Atividades</a>
                         </li>
                         <li>
-                            <a href="tables.html"><i class="fa fa-table fa-fw"></i>Eventos</a>
+                            <a href="eventos.aspx"><i class="fa fa-table fa-fw"></i>Eventos</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i>Administração do Sistema<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="panels-wells.html"><i class="fa fa-user"></i>Usuarios</a>
+                                    <a href="usuarios.aspx"><i class="fa fa-user"></i>Usuarios</a>
                                 </li>
                                 <li>
                                     <a href="#"><i class="fa fa-fw"></i>Parametrização Sistema<span class="fa arrow"></span></a>
                                     <ul class="nav nav-third-level">
                                         <li>
-                                            <a href="Home.aspx">Tipo de Atividade</a>
+                                            <a href="tipo_atividade.aspx">Tipo de Atividade</a>
                                         </li>
                                         <li>
                                             <a href="Home.aspx">Tipo de Evento</a>
@@ -128,25 +128,25 @@
             <!-- /.navbar-static-side -->
         </nav>
 
-        <!-- Page Content -->
-        <div id="page-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">Bem vindo, João Paulo</h1>
+            <!-- Page Content -->
+            <div id="page-wrapper">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1 class="page-header">Bem vindo, João Paulo</h1>
+                        </div>
+                        <!-- /.col-lg-12 -->
                     </div>
-                    <!-- /.col-lg-12 -->
-                </div>
-                <!-- /.row -->
-                <div class="panel panel-default">
+                    <!-- /.row -->
+                    <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-bell fa-fw"></i> Painel de Notificações
+                            <i class="fa fa-bell fa-fw"></i>Painel de Notificações
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="list-group">
                                 <a href="#" class="list-group-item">
-                                    <i class="fa fa-male fa-fw"></i> 4 Voluntarios com pendencias cadastrais
+                                    <i class="fa fa-male fa-fw"></i>4 Voluntarios com pendencias cadastrais
                                 </a>
                                 <a href="#" class="list-group-item">
                                     <i class="fa fa-bar-chart fa-fw"></i>2 Atividades com problemas
@@ -155,35 +155,35 @@
                                     <i class="fa fa-clock-o fa-fw"></i>2 Voluntários com exesso de horas na semana
                                 </a>
                                 <a href="#" class="list-group-item">
-                                    <i class="fa fa-clock-o fa-fw"></i> 1 Voluntário ativo, sem registrar horas nas utimas duas semanas
+                                    <i class="fa fa-clock-o fa-fw"></i>1 Voluntário ativo, sem registrar horas nas utimas duas semanas
                                 </a>
                                 <a href="#" class="list-group-item">
-                                    <i class="fa fa-user fa-fw"></i> 3 Usuarios estão com acesso ao sistema bloqueado
+                                    <i class="fa fa-user fa-fw"></i>3 Usuarios estão com acesso ao sistema bloqueado
                                 </a>
                             </div>
                             <!-- /.list-group -->
                         </div>
                         <!-- /.panel-body -->
                     </div>
+                </div>
+                <!-- /.container-fluid -->
             </div>
-            <!-- /.container-fluid -->
+            <!-- /#page-wrapper -->
+            
         </div>
-        <!-- /#page-wrapper -->
+        <!-- /#wrapper -->
 
-    </div>
-    <!-- /#wrapper -->
+        <!-- jQuery -->
+        <script src="../vendor/jquery/jquery.min.js"></script>
 
-    <!-- jQuery -->
-    <script src="../vendor/jquery/jquery.min.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="../vendor/metisMenu/metisMenu.min.js"></script>
 
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
+        <!-- Custom Theme JavaScript -->
+        <script src="../dist/js/sb-admin-2.js"></script>
     </form>
 </body>
 </html>

@@ -1,17 +1,17 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="cad_voluntario.aspx.cs" Inherits="WebApplication5.cad_voluntario" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="usuarios.aspx.cs" Inherits="WebApplication5.usuarios" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SGV - Cadastro Voluntários</title>
+    <title>SGV - Usuarios</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -72,7 +72,7 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="voluntarios.aspx"><i class="fa fa-male fa-fw"></i> Voluntarios</a>
+                            <a href="voluntarios.aspx"><i class="fa fa-male fa-fw"></i>Voluntarios</a>
                         </li>
                         <li>
                             <a href="atividades.aspx"><i class="fa fa-bar-chart-o fa-fw"></i>Atividades</a>
@@ -90,7 +90,7 @@
                                     <a href="#"><i class="fa fa-fw"></i>Parametrização Sistema<span class="fa arrow"></span></a>
                                     <ul class="nav nav-third-level">
                                         <li>
-                                            <a href="tipo_atividade.aspx">Tipo de Atividade</a>
+                                            <a href="Home.aspx">Tipo de Atividade</a>
                                         </li>
                                         <li>
                                             <a href="Home.aspx">Tipo de Evento</a>
@@ -133,7 +133,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Voluntários</h1>
+                        <h1 class="page-header">Usuarios</h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -142,89 +142,26 @@
                     <div class="col-lg-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                Cadastro
+                                Usuarios
                             </div>
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-lg-12">
-                                            <div class="form-group col-lg-6">
-                                                <label>Nome Completo</label>
-                                                <input type="text" class="form-control"/>
-                                                <label>Data de Nascimento</label>
-                                                <input type="date" class="form-control"/>
-                                                <label>CPF</label>
-                                                <input type="text" class="form-control">
-                                            </div>
-                                            <div class="form-group col-lg-6">
-                                                <label>Documento de Identificação</label>
-                                                <input type="text" class="form-control">
-                                                <label>Data de Emissão</label>
-                                                <input type="date" class="form-control">
-                                            </div>
-                                            <div class="form-group col-lg-6">
-                                                <label>Nacionalidade</label>
-                                                <input type="text" class="form-control">
-                                            </div>
-                                            <div class="form-group col-lg-12">
-                                                <label>CEP</label>
-                                                <input type="text" class="form-control">
-                                            </div>
-                                            <div class="form-group col-lg-12">
-                                                <label>Endereço</label>
-                                                <input type="text" class="form-control">
-                                                <label>Numero</label>
-                                                <input type="text" class="form-control">
-                                                <label>Complemento</label>
-                                                <input type="text" class="form-control">
-                                                <label>Bairro</label>
-                                                <input type="text" class="form-control">
-                                                <label>Cidade</label>
-                                                <input type="text" class="form-control">
-                                                <label>Estado</label>
-                                                <input type="text" class="form-control">
-                                            </div>
-                                            <div class="form-group col-lg-6">
-                                                <label>Telefone Contato</label>
-                                                <input type="number" class="form-control">
-                                                <label>Telefone Contato</label>
-                                                <input type="number" class="form-control">
-                                            </div>
-                                            <div class="form-group col-lg-6">
-                                                <label>Email</label>
-                                                <input type="email" class="form-control">
-                                            </div>
-                                            <div class="form-group col-lg-6">
-                                                <label>Data Adesão</label>
-                                                <input type="date" class="form-control">
-                                            </div>
-                                            <div class="form-group col-lg-6">
-                                                <label>Tipo de Voluntário</label>
-                                                <select class="form-control">
-                                                    <option>Gestão</option>
-                                                    <option>Interno</option>
-                                                    <option>Externo</option>
-                                                    <option>Fim de Semana</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group col-lg-6">
-                                                <label>Foto</label>
-                                                <input type="file">
-                                            </div>
-                                            <div class="form-group col-lg-6">
-                                                <label>Status do Termo</label>
-                                                <div class="radio">
-                                                    <label><input type="radio"/>Assinado</label>
-                                                    <label><input type="radio"/>Não Assinado</label>
-                                                    <button type="button" class="btn btn-default">Gerar Termo</button>
-                                                    <button type="button" class="btn btn-default">Receber Termo</button>
-                                                </div>
-                                            </div>
-                                            <div class="form-group col-lg-12">
-                                                <button type="button" class="btn btn-default">Enviar</button>
-                                                <button type="button" class="btn btn-default">Cancelar</button>
-                                            </div>
+                                      <div class="form-group col-lg-6">
+                                        <label>Usuario</label>
+                                        <input type="text" class="form-control"/>
+                                      </div>
+                                      <div class="col-lg-6">
+                                        <label>Tipo</label>
+                                        <select class="form-control" >
+                                          <option>Adminitrador</option>
+                                          <option>Usuario Padrão</option>
+                                          <option>Somente Leitura</option>
+                                        </select>
+                                      </div>
+                                      
                                     </div>
-                                </div>        
+                                </div>
                             </div>
                         </div>
                     </div>

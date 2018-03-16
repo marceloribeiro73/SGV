@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -72,25 +72,25 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="voluntarios.aspx"><i class="fa fa-male fa-fw"></i> Voluntarios</a>
+                            <a href="voluntarios.aspx"><i class="fa fa-male fa-fw"></i>Voluntarios</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Atividades</a>
+                            <a href="atividades.aspx"><i class="fa fa-bar-chart-o fa-fw"></i>Atividades</a>
                         </li>
                         <li>
-                            <a href="tables.html"><i class="fa fa-table fa-fw"></i>Eventos</a>
+                            <a href="eventos.aspx"><i class="fa fa-table fa-fw"></i>Eventos</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i>Administração do Sistema<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="panels-wells.html"><i class="fa fa-user"></i>Usuarios</a>
+                                    <a href="usuarios.aspx"><i class="fa fa-user"></i>Usuarios</a>
                                 </li>
                                 <li>
                                     <a href="#"><i class="fa fa-fw"></i>Parametrização Sistema<span class="fa arrow"></span></a>
                                     <ul class="nav nav-third-level">
                                         <li>
-                                            <a href="Home.aspx">Tipo de Atividade</a>
+                                            <a href="tipo_atividade.aspx">Tipo de Atividade</a>
                                         </li>
                                         <li>
                                             <a href="Home.aspx">Tipo de Evento</a>
@@ -277,7 +277,7 @@
                                             <button class="btn btn-primary btn-outline">Cancelar</button>
                                        </div>
                                    </div>
-                                </div>        
+                                </div>
                             </div>
                         </div>
                     </div>
