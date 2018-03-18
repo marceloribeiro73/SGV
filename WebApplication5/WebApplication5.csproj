@@ -77,6 +77,7 @@
     <Content Include="eventos.aspx" />
     <Content Include="bower.json" />
     <Content Include="LICENSE" />
+    <Content Include="logs.aspx" />
     <Content Include="package.json" />
     <Content Include="ponto.aspx" />
     <Content Include="bower_components\bootstrap\dist\css\bootstrap-theme.css.map" />
@@ -668,6 +669,7 @@
     <Content Include="node_modules\gulp-clean-css\node_modules\gulp-util\node_modules\multipipe\node_modules\duplexer2\node_modules\readable-stream\LICENSE" />
     <None Include="Properties\PublishProfiles\sgv - Web Deploy.pubxml" />
     <Content Include="relatorio_atividade.aspx" />
+    <Content Include="relatorio_eventos.aspx" />
     <Content Include="relatorio_voluntario.aspx" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />
     <Content Include="tipo_atividade.aspx" />
@@ -1758,6 +1760,13 @@
     <Compile Include="Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
+    <Compile Include="logs.aspx.cs">
+      <DependentUpon>logs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="logs.aspx.designer.cs">
+      <DependentUpon>logs.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ponto.aspx.cs">
       <DependentUpon>ponto.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1784,6 +1793,13 @@
     </Compile>
     <Compile Include="relatorio_atividade.aspx.designer.cs">
       <DependentUpon>relatorio_atividade.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="relatorio_eventos.aspx.cs">
+      <DependentUpon>relatorio_eventos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="relatorio_eventos.aspx.designer.cs">
+      <DependentUpon>relatorio_eventos.aspx</DependentUpon>
     </Compile>
     <Compile Include="relatorio_voluntario.aspx.cs">
       <DependentUpon>relatorio_voluntario.aspx</DependentUpon>

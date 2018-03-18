@@ -161,7 +161,7 @@
                                                     <tbody>
                                                         <tr class="odd gradeX">
                                                             <th><input type="checkbox"></th>
-                                                            <td>~Trabalho Social</td>
+                                                            <td>Trabalho Social</td>
                                                             <td>01/02/2018</td>
                                                             <td class="center">Ativo</td>
                                                             <td class="center">00/00/00</td>

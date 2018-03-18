@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="relatorio_atividade.aspx.cs" Inherits="WebApplication5.relatorio_atividade" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="relatorio_eventos.aspx.cs" Inherits="WebApplication5.relatorio_eventos" %>
 
 <!DOCTYPE html>
 
@@ -11,7 +11,7 @@
   <meta name="description" content=""/> 
   <meta name="author" content=""/>
 
-  <title>SGV - Relatorios - Atividades</title>
+  <title>SGV - Relatorios - Eventos</title>
 
   <!-- Bootstrap Core CSS -->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -143,7 +143,7 @@ chart.draw(data, options);
                     <a href="relatorio_atividade.aspx">Atividades</a>
                   </li>
                   <li>
-                    <a href="#">Eventos por tipo</a>
+                    <a href="relatorio_eventos.aspx">Eventos por tipo</a>
                   </li>
                 </ul>
                 <!-- /.nav-second-level -->
@@ -172,7 +172,7 @@ chart.draw(data, options);
             <div class="col-lg-12">
               <div class="panel panel-default">
                 <div class="panel-heading">
-                  Atividades
+                  Eventos
                 </div>
                 <div class="panel-body">
                   <div class="row">
@@ -181,7 +181,7 @@ chart.draw(data, options);
                       <div class="col-lg-6">
                         <div class="panel panel-default">
                           <div class="panel-heading">
-                            Atividades por tipo
+                            Eventos por tipo
                           </div>
                           <div class="panel-body">
                             <div id="voluntarios_tipo"></div>
@@ -193,7 +193,7 @@ chart.draw(data, options);
                       <div class="col-lg-6">
                         <div class="panel panel-default">
                           <div class="panel-heading">
-                            Media de horas por tipo de tarefa
+                            Media de atividades por tipo de evento
                           </div>
                           <div class="panel-body">
                             <div id="horas_tipo"></div>
@@ -205,7 +205,7 @@ chart.draw(data, options);
                       <div class="col-lg-12">
                         <div class="panel panel-default">
                           <div class="panel-heading">
-                            Numero de tarefas por ano
+                            Numero de eventos por ano
                           </div>
                           <div class="panel-body">
                             <div id="voluntarios_ano"></div>
@@ -244,8 +244,10 @@ chart.draw(data, options);
         element: 'voluntarios_tipo',
 
         data: [
-          { label: "Interna", value: 59 },
-          { label: "Externa", value: 52 }
+          { label: "Trabalho Social", value: 34 },
+          { label: "Reuniões", value: 12 },
+          { label: "Comemorações", value: 3 },
+          { label: "Palestras", value: 6 }
         ]
 
       })
@@ -254,12 +256,14 @@ chart.draw(data, options);
         element: 'horas_tipo',
 
         data: [
-          { y: 'Interna', x: 4 },
-          { y: 'Externa', x: 7 }
+            { y: "Trabalho Social", x: 98 },
+            { y: "Reuniões", x: 12 },
+            { y: "Comemorações", x: 4 },
+            { y: "Palestras", x: 9 }
         ],
         xkey: 'y',
         ykeys: 'x',
-        labels: 'HORAS',
+        labels: 'Atividades',
         stacked: true
       })
             
@@ -267,25 +271,25 @@ chart.draw(data, options);
           element: 'voluntarios_ano',
 
           data: [
-              { y: '2000', x: 10 },
-              { y: '2001', x: 40 },
-              { y: '2002', x: 55 },
-              { y: '2003', x: 50 },
-              { y: '2004', x: 51 },
-              { y: '2005', x: 68 },
-              { y: '2006', x: 66 },
-              { y: '2007', x: 84 },
-              { y: '2008', x: 98 },
-              { y: '2009', x: 125 },
-              { y: '2010', x: 158 },
-              { y: '2011', x: 256 },
-              { y: '2012', x: 200 },
-              { y: '2013', x: 202 },
-              { y: '2014', x: 210 },
-              { y: '2015', x: 201 },
-              { y: '2016', x: 214 },
-              { y: '2017', x: 213 },
-              { y: '2018', x: 144 }
+              { y: '2000', x: 5 },
+              { y: '2001', x: 20 },
+              { y: '2002', x: 27 },
+              { y: '2003', x: 25 },
+              { y: '2004', x: 26 },
+              { y: '2005', x: 34 },
+              { y: '2006', x: 33 },
+              { y: '2007', x: 42 },
+              { y: '2008', x: 49 },
+              { y: '2009', x: 56 },
+              { y: '2010', x: 70 },
+              { y: '2011', x: 40 },
+              { y: '2012', x: 123 },
+              { y: '2013', x: 230 },
+              { y: '2014', x: 145 },
+              { y: '2015', x: 90 },
+              { y: '2016', x: 124 },
+              { y: '2017', x: 233 },
+              { y: '2018', x: 67 }
           ],
           xkey: 'y',
           ykeys: 'x',
