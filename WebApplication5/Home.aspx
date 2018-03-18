@@ -93,7 +93,7 @@
                                             <a href="tipo_atividade.aspx">Tipo de Atividade</a>
                                         </li>
                                         <li>
-                                            <a href="Home.aspx">Tipo de Evento</a>
+                                            <a href="tipo_eventos.aspx">Tipo de Evento</a>
                                         </li>
                                     </ul>
                                 </li>

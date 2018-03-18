@@ -94,7 +94,7 @@
                         <a href="tipo_atividade.aspx">Tipo de Atividade</a>
                       </li>
                       <li>
-                        <a href="Home.aspx">Tipo de Evento</a>
+                        <a href="tipo_eventos.aspx">Tipo de Evento</a>
                       </li>
                     </ul>
                   </li>
@@ -108,7 +108,7 @@
                 <a href="#"><i class="fa fa-dashboard fa-fw"></i>Relatorios<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                   <li>
-                    <a href="#">Voluntarios por tipo</a>
+                    <a href="relatorio_voluntario.aspx">Voluntarios</a>
                   </li>
                   <li>
                     <a href="#">Tarefas por tipo</a>
@@ -120,7 +120,7 @@
                 <!-- /.nav-second-level -->
               </li>
               <li class="active">
-                <a href="#"><i class="fa fa-clock-o fa-fw"></i>Ponto / Declaração de Horas</a>
+                <a href="ponto.aspx"><i class="fa fa-clock-o fa-fw"></i>Ponto / Declaração de Horas</a>
               </li>
             </ul>
           </div>

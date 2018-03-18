@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="declarar_ponto.aspx.cs" Inherits="WebApplication5.declarar_ponto" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="tipo_eventos.aspx.cs" Inherits="WebApplication5.tipo_eventos" %>
 
 <!DOCTYPE html>
 
@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SGV - Declaração de Horas</title>
+    <title>SGV - Tipo de Eventos</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -90,7 +90,7 @@
                                         <a href="#"><i class="fa fa-fw"></i>Parametrização Sistema<span class="fa arrow"></span></a>
                                         <ul class="nav nav-third-level">
                                             <li>
-                                                <a href="Home.aspx">Tipo de Atividade</a>
+                                                <a href="tipo_atividade.aspx">Tipo de Atividade</a>
                                             </li>
                                             <li>
                                                 <a href="Home.aspx">Tipo de Evento</a>
@@ -133,7 +133,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header">Declaração de Horas</h1>
+                            <h1 class="page-header">Tipos de Eventos</h1>
                         </div>
                         <!-- /.col-lg-12 -->
                     </div>
@@ -142,22 +142,70 @@
                         <div class="col-lg-12">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    Declaração de Horas
+                                    Tipo de Eventos
                                 </div>
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-lg-12">
-                                            <div class="form-group col-lg-6">
-                                                <asp:Label ID="lbl_decla_atividade" CssClass="form-group" Font-Bold="true" Text="Atividade" runat="server"></asp:Label>
-                                                <asp:TextBox ID="txt_decla_atividade" CssClass="form-control" Enabled="false" runat="server"></asp:TextBox>
-                                            </div>
-                                            <div class="form-group col-lg-6">
-                                                <asp:Label ID="lbl_decla_horas" CssClass="form-group" Font-Bold="true" Text="Quantidade de Horas" runat="server"></asp:Label>
-                                                <asp:TextBox ID="txt_decla_horas" CssClass="form-control" Enabled="true" TextMode="Time"  runat="server"></asp:TextBox>
+                                            <div class="form-group col-lg-12">
+                                                <table class="table table-striped table-bordered table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th><input type="checkbox" /></th>
+                                                            <th>Tipo de Evento</th>
+                                                            <th>Data Cadastro</th>
+                                                            <th>Estado</th>
+                                                            <th>Data Inativado</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr class="odd gradeX">
+                                                            <th><input type="checkbox"></th>
+                                                            <td>~Trabalho Social</td>
+                                                            <td>01/02/2018</td>
+                                                            <td class="center">Ativo</td>
+                                                            <td class="center">00/00/00</td>
+                                                        </tr>
+                                                        <tr class="odd gradeX">
+                                                            <th><input type="checkbox"></th>
+                                                            <td>Reuniões</td>
+                                                            <td>01/02/2018</td>
+                                                            <td class="center">Ativo</td>
+                                                            <td class="center">00/00/00</td>
+                                                        </tr>
+                                                        <tr class="odd gradeX">
+                                                            <th><input type="checkbox"></th>
+                                                            <td>Comemorações</td>
+                                                            <td>01/02/2018</td>
+                                                            <td class="center">Inativo</td>
+                                                            <td class="center">25/02/2018</td>
+                                                        </tr>
+                                                        <tr class="odd gradeX">
+                                                            <th><input type="checkbox"></th>
+                                                            <td>Palestras</td>
+                                                            <td>01/02/2018</td>
+                                                            <td class="center">Inativo</td>
+                                                            <td class="center">25/02/2018</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
                                             </div>
                                             <div class="form-group col-lg-12">
-                                                <asp:Button ID="btn_decla_salvar" CssClass="btn btn-outline btn-success" Text="Salvar" runat="server" />
-                                                <asp:Button ID="btn_decla_cancelar" CssClass="btn btn-outline btn-danger" Text="Cancelar" runat="server" />
+                                                <asp:Button ID="btn_tp_evento_incluir" CssClass="btn btn-outline btn-primary" Text="Incluir" runat="server"  />
+                                                <asp:Button CssClass="btn btn-outline btn-primary" Text="Alterar" runat="server" />
+                                                <asp:Button CssClass="btn btn-outline btn-primary" Text="Inativar" runat="server" />
+                                            </div>
+                                            <div class="form-group col-lg-6">
+                                                <asp:Label ID="lbn_tp_evento" runat="server" Font-Bold="true" Text="Tipo Evento" Visible="true"></asp:Label>
+                                                <asp:TextBox ID="txt_tp_Atividade" CssClass="form-control" runat="server" Enabled="false"></asp:TextBox>
+                                            </div>
+                                            <div class="form-group col-lg-6">
+                                                <asp:Label ID="lbn_descricao_evento" runat="server" Font-Bold="true" Text="Descrição" Visible="true"></asp:Label>
+                                                <asp:TextBox ID="txt_descricao_atividade" CssClass="form-control" runat="server" Enabled="false"></asp:TextBox>
+                                            </div>
+                                            <div class="form-group col-lg-12">
+                                                <asp:Button ID="btn_salvar_cad_tp_evento" CssClass="btn btn-outline btn-success" Text="Salvar" Enabled="false" runat="server" />
+                                                <asp:Button ID="btn_cancelar_cad_tp_evento" CssClass="btn btn-outline btn-danger"  Text="Cancelar" Enabled="false" runat="server" />
                                             </div>
                                         </div>
                                     </div>
