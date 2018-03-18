@@ -165,21 +165,31 @@
                                                 <label>Nacionalidade</label>
                                                 <input type="text" class="form-control">
                                             </div>
-                                            <div class="form-group col-lg-12">
+                                            <div class="form-group col-lg-4">
                                                 <label>CEP</label>
                                                 <input type="text" class="form-control">
                                             </div>
-                                            <div class="form-group col-lg-12">
+                                            <div class="form-group col-lg-4">
                                                 <label>Endereço</label>
                                                 <input type="text" class="form-control">
+                                            </div>
+                                            <div class="form-group col-lg-2">
                                                 <label>Numero</label>
                                                 <input type="text" class="form-control">
+                                            </div>
+                                            <div class="form-group col-lg-2">
                                                 <label>Complemento</label>
                                                 <input type="text" class="form-control">
+                                            </div>
+                                            <div class="form-group col-lg-4">
                                                 <label>Bairro</label>
                                                 <input type="text" class="form-control">
+                                            </div>
+                                            <div class="form-group col-lg-4">
                                                 <label>Cidade</label>
                                                 <input type="text" class="form-control">
+                                            </div>
+                                            <div class="form-group col-lg-4">
                                                 <label>Estado</label>
                                                 <input type="text" class="form-control">
                                             </div>

@@ -149,7 +149,7 @@
                                    <div class="col-lg-12">
                                        <div class="form-group-lg col-lg-12">
                                            <label>Nome da Atividade</label>
-                                           <input type="text" class="form-control" />
+                                           <input class="form-control" />
                                        </div>
                                        <div class="form-group col-lg-4">
                                            <label>Quatidade Ideal de Voluntários</label>

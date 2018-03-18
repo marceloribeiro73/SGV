@@ -143,7 +143,7 @@ chart.draw(data, options);
                     <a href="relatorio_atividade.aspx">Atividades</a>
                   </li>
                   <li>
-                    <a href="relatorio_eventos.aspx">Eventos por tipo</a>
+                    <a href="relatorio_eventos.aspx">Eventos</a>
                   </li>
                 </ul>
                 <!-- /.nav-second-level -->

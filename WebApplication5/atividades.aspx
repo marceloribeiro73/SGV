@@ -149,11 +149,11 @@
                       <!-- Buscar-->
                       <div class="panel-body">
                         <form role="form">
-                          <div class="form-group">
+                          <div class="form-group col-lg-6">
                             <label>Nome</label>
                             <input class="form-control"/>
                           </div>
-                          <div class="form-group">
+                          <div class="form-group col-lg-6">
                             <label>Tipo de Atividade</label>
                             <select class="form-control" name="sele_tipo_atividade">
                               <option>Todos</option>
@@ -161,10 +161,10 @@
                               <option>Externa</option>
                             </select>
                           </div>
-                          <div class="form-group">
+                          <div class="form-group col-lg-2">
                             <input type="checkbox" /><label>&nbsp Inativo</label>
                           </div>
-                          <div class="form-group">
+                          <div class="form-group col-lg-12">
                             <button type="button" class="btn btn-outline btn-primary">Buscar</button>
                             <button type="button" class="btn btn-outline btn-primary">Limpar</button>
                           </div>

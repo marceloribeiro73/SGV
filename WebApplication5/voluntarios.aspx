@@ -149,15 +149,15 @@
                       <!-- Buscar-->
                       <div class="panel-body">
                         <form role="form">
-                          <div class="form-group">
+                          <div class="form-group col-lg-4">
                             <label>Matricula</label>
                             <input class="form-control">
                           </div>
-                          <div class="form-group">
+                          <div class="form-group col-lg-4">
                             <label>Nome</label>
                             <input class="form-control">
                           </div>
-                          <div class="form-group">
+                          <div class="form-group col-lg-4">
                             <label>Tipo de Voluntário</label>
                             <select class="form-control" name="sele_tipo_usuario">
                               <option>Todos</option>
@@ -167,33 +167,11 @@
                               <option>Fim de Semana</option>
                             </select>
                           </div>
-                            <script type="text/javascript">
-                              function mascaraData( campo, e )
-                              {
-                                var kC = (document.all) ? event.keyCode : e.keyCode;
-                                var data = campo.value;
-
-                                if( kC!=8 && kC!=46 )
-                                {
-                                  if( data.length==2 )
-                                  {
-                                    campo.value = data += '/';
-                                  }
-                                  else if( data.length==5 )
-                                  {
-                                    campo.value = data += '/';
-                                  }
-                                  else
-                                  campo.value = data;
-                                }
-                              }
-                            </script>
-                          <div class="form-group">
+                          <div class="form-group col-lg-4">
                             <label>Data de Adesão</label>
-                            </br><label>De</label><input type="text" class="form-control" name="outra_data" id="outra_data" maxlength="10" onkeypress="mascaraData( this, event )" />
-                            <label>Até</label><input type="text" class="form-control" name="outra_data" id="outra_data" maxlength="10" onkeypress="mascaraData( this, event )" />
-                          </div>
-                          <div class="form-group">
+                                <label>De</label><input type="date" class="form-control" /><label>Até</label><input type="date" class="form-control"/>
+                            </div>
+                          <div class="form-group col-lg-12">
                             <button type="button" class="btn btn-outline btn-primary">Buscar</button>
                             <button type="button" class="btn btn-outline btn-primary">Limpar</button>
                           </div>
