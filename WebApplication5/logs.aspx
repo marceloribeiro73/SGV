@@ -149,7 +149,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header">Adminitração do Sistema</h1>
+                            <h1 class="page-header">Administração do Sistema</h1>
                         </div>
                         <!-- /.col-lg-12 -->
                     </div>
