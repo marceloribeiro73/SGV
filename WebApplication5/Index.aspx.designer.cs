@@ -40,6 +40,15 @@ namespace WebApplication5 {
         protected global::System.Web.UI.WebControls.TextBox txtSenha;
         
         /// <summary>
+        /// Controle lblUserInvalido.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblUserInvalido;
+        
+        /// <summary>
         /// Controle btnLogar.
         /// </summary>
         /// <remarks>

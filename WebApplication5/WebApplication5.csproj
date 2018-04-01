@@ -1739,6 +1739,9 @@
     <Compile Include="cad_voluntario.aspx.designer.cs">
       <DependentUpon>cad_voluntario.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Classes\UsuarioDAO.cs" />
+    <Compile Include="Classes\Usuario.cs" />
+    <Compile Include="classes_servicos\SqlDB.cs" />
     <Compile Include="declarar_ponto.aspx.cs">
       <DependentUpon>declarar_ponto.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

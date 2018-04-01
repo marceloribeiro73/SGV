@@ -52,10 +52,8 @@
                                     <!--input class="form-control" placeholder="Password" name="password" type="password" value=""-->
                                     <asp:TextBox ID="txtSenha" CssClass="form-control" placeholder="Senha" runat="server"></asp:TextBox>
                                 </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <!--input name="remember" type="checkbox" value="Remember Me">Remember Me-->
-                                    </label>
+                                <div class="form-group">
+                                    <asp:Label ID="lblUserInvalido" CssClass="form-group" runat="server" Visible="false" Text="Usuario/Senha Invalido"></asp:Label>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
                                 <!--a href="index.html" class="btn btn-lg btn-success btn-block">Login</!--a-->
