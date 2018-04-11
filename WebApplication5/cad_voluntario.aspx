@@ -147,65 +147,84 @@
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-lg-12">
-                                            <div class="form-group col-lg-6">
-                                                <label>Nome Completo</label>
-                                                <input type="text" class="form-control"/>
-                                                <label>Data de Nascimento</label>
-                                                <input type="date" class="form-control"/>
+                                            <div class="form-group col-lg-3">
                                                 <label>CPF</label>
-                                                <input type="text" class="form-control">
+                                                <asp:TextBox id="txtCpf" runat="server"></asp:TextBox>
                                             </div>
-                                            <div class="form-group col-lg-6">
+                                            <div class="form-group col-lg-3">
+                                                <label>Primeiro Nome</label>
+                                                <asp:TextBox id="txtPrimeiroNome" runat="server"></asp:TextBox>
+                                            </div>
+                                            <div class="form-group col-lg-3">
+                                                <label>Ultimo Nome</label>
+                                                <asp:TextBox id="txtUltimoNome" runat="server"></asp:TextBox>
+                                            </div>
+                                            <div class="form-group col-lg-3">
+                                                <label>Data de Nascimento</label>
+                                                <asp:TextBox id="txtDataNasc" CssClass="form-control"></asp:TextBox>
+                                            </div>
+                                            <div class="form-group col-lg-3">
                                                 <label>Documento de Identificação</label>
-                                                <input type="text" class="form-control">
+                                                <asp:TextBox id="txtDocId" CssClass="form-control"></asp:TextBox>
+                                            </div>
+                                            <div class="form-group col-lg-3">
                                                 <label>Data de Emissão</label>
-                                                <input type="date" class="form-control">
+                                                <asp:TextBox id="txtDataEmmisaoDoc" CssClass="form-control"></asp:TextBox>                                            </div>
+                                            <div>
+                                                <label>Tipo de Documento de Indentificação</label>
+                                                <select class="form-group">
+                                                    <option>RG</option>
+                                                    <option>RNE</option>
+                                                    <option>Passaporte</option>
+                                                </select>
                                             </div>
-                                            <div class="form-group col-lg-6">
+                                            <div class="form-group col-lg-3">
                                                 <label>Nacionalidade</label>
-                                                <input type="text" class="form-control">
+                                                <asp:TextBox id="txtNacionalidade" CssClass="form-control"></asp:TextBox>
                                             </div>
-                                            <div class="form-group col-lg-4">
+                                            <div class="form-group col-lg-3">
                                                 <label>CEP</label>
-                                                <input type="text" class="form-control">
+                                                <asp:TextBox id="txtCep" CssClass="form-control"></asp:TextBox>
                                             </div>
-                                            <div class="form-group col-lg-4">
+                                            <div class="form-group col-lg-3">
                                                 <label>Endereço</label>
-                                                <input type="text" class="form-control">
+                                                <asp:TextBox id="txtLogradouro" CssClass="form-control"></asp:TextBox>
                                             </div>
                                             <div class="form-group col-lg-2">
                                                 <label>Numero</label>
-                                                <input type="text" class="form-control">
+                                                <asp:TextBox id="txtNumero" CssClass="form-control"></asp:TextBox>
                                             </div>
                                             <div class="form-group col-lg-2">
                                                 <label>Complemento</label>
-                                                <input type="text" class="form-control">
+                                                <asp:TextBox id="txtComplemento" CssClass="form-control"></asp:TextBox>
                                             </div>
-                                            <div class="form-group col-lg-4">
+                                            <div class="form-group col-lg-3">
                                                 <label>Bairro</label>
-                                                <input type="text" class="form-control">
+                                                <asp:TextBox id="txtBairro" CssClass="form-control"></asp:TextBox>
                                             </div>
-                                            <div class="form-group col-lg-4">
+                                            <div class="form-group col-lg-3">
                                                 <label>Cidade</label>
-                                                <input type="text" class="form-control">
+                                                <asp:TextBox id="txtCidade" CssClass="form-control"></asp:TextBox>
                                             </div>
                                             <div class="form-group col-lg-4">
                                                 <label>Estado</label>
-                                                <input type="text" class="form-control">
+                                                <apx:TextBox id="txtEstadoProvincia"></apx:TextBox>
                                             </div>
-                                            <div class="form-group col-lg-6">
+                                            <div class="form-group col-lg-3">
                                                 <label>Telefone Contato</label>
-                                                <input type="number" class="form-control">
+                                                <asp:TextBox id="txtTel1" CssClass="form-control"></asp:TextBox>
+                                            </div>
+                                            <div class="form-group col-lg-3">
                                                 <label>Telefone Contato</label>
-                                                <input type="number" class="form-control">
+                                                <asp:TextBox id="txtTel2" CssClass="form-control"></asp:TextBox>
                                             </div>
                                             <div class="form-group col-lg-6">
                                                 <label>Email</label>
-                                                <input type="email" class="form-control">
+                                                <asp:TextBox id="txtEmail" CssClass="form-control"></asp:TextBox>
                                             </div>
                                             <div class="form-group col-lg-6">
                                                 <label>Data Adesão</label>
-                                                <input type="date" class="form-control">
+                                                <asp:TextBox id="txtDataAdesao" CssClass="form-control"></asp:TextBox>
                                             </div>
                                             <div class="form-group col-lg-6">
                                                 <label>Tipo de Voluntário</label>

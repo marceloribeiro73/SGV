@@ -7,10 +7,10 @@ namespace WebApplication5.Classes
 {
     public class Usuario
     {
-        public int Cod_usuario { get; set; }
-        public string Login_name { get; set; }
-        public string Passwd { get; set; }
-        public char Status { get; set; }
-        public string Tipo_usuario { get; set; }
+        public int iCodUsuario { get; set; }
+        public string sLoginName { get; set; }
+        public string sPasswd { get; set; }
+        public char cStatus { get; set; }
+        public string sTipoUsuario { get; set; }
     }
 }
