@@ -146,33 +146,35 @@
                             </div>
                             <div class="panel-body">
                                 <div class="row">
-                                   <div class="col-lg-12">
-                                       <div class="form-group-lg col-lg-12">
-                                           <label>Nome do Evento</label>
-                                           <input type="text" class="form-control" />
+                                   <div class="col-lg-12">  
+                                       <div class="form-group col-lg-12">
+                                           <label for="txtNomeEvento" class="control-label">Nome do Evento *</label>
+                                           <asp:TextBox ID="txtNomeEvento" CssClass="form-control " runat="server" ></asp:TextBox>
                                        </div>
                                        <div class="form-group col-lg-4">
-                                           <label>Data Inicio</label>
-                                           <input type="date" class="form-control" />
+                                           <label for="txtDataInicio" class="control-label">Data Inicio * </label>
+                                           <asp:TextBox ID="txtDataInicio" CssClass="form-control" runat="server" TextMode="Date"></asp:TextBox>
                                        </div>
                                        <div class="form-group col-lg-4">
-                                           <label>Data Fim</label>
-                                           <input type="date" class="form-control" />
+                                           <label for="txtDataFim" class="control-label">Data Fim *</label>
+                                           <asp:TextBox ID="txtDataFim" CssClass="form-control" runat="server" TextMode="Date"></asp:TextBox>
                                        </div>
                                        <div class="form-group col-lg-4">
-                                           <label>Tipo do Evento</label>
-                                           <select class="form-control">
-                                               <option>Interno</option>
-                                               <option>Externo</option>
-                                           </select>
+                                           <label>Tipo do Evento *</label>
+                                           <asp:DropDownList ID="ddlTipoEvento" CssClass="form-control" runat="server" DataSourceID="dsDrpEventos" DataTextField="NOME_TIPO_EVENTO" DataValueField="COD_TIPO_EVENTO"></asp:DropDownList>
+                                           <asp:SqlDataSource ID="dsDrpEventos" runat="server" ConnectionString="<%$ ConnectionStrings:SGV_DEVConnectionString %>" SelectCommand="SELECT [COD_TIPO_EVENTO], [NOME_TIPO_EVENTO] FROM [TIPO_EVENTO]"></asp:SqlDataSource>
                                        </div>
                                        <div class="form-group col-lg-6">
                                           <label>Endereço</label>
-                                          <input type="text" class="form-control">
+                                          <asp:TextBox ID="txtEndereco" CssClass="form-control" runat="server"></asp:TextBox>
                                        </div>
                                        <div class="form-group col-lg-12">
-                                            <button class="btn btn-primary btn-outline">Salvar</button>
-                                            <button class="btn btn-primary btn-outline">Cancelar</button>
+                                            <asp:Button ID="btnSalvar" CssClass="btn btn-success btn-outline"  Text="Salvar"  runat="server" OnClick="btnSalvar_Click" />
+                                            <asp:Button ID="btnCancelar" CssClass="btn btn-danger btn-outline"  Text="Cancelar"  runat="server" OnClick="btnCancelar_Click" />
+                                       </div>
+                                       <div class="col-lg-12">
+                                           <label>Campos com * são obrigatorios</label><br />
+                                           <asp:Label ID="lblAlerta" CssClass="form-group" Text="" runat="server" Visible="false"></asp:Label>
                                        </div>
                                    </div>
                                 </div>
