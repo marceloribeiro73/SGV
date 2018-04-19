@@ -10,13 +10,41 @@ namespace WebApplication.Classes
 {
     public class EventoDAO
     {
-        /*public Evento buscarEvento (string pNome, int pTipoEvento, bool pInativo)
+        public Evento buscarEvento (string pNome, int pTipoEvento, bool pInativo)
         {
-            if (pNome.Equals(null))
-            {
-                if
+            Evento oEved = null;
+            string strCmd = null;
+            if(pInativo == false){
+                if(pNome == null){
+                    strCmd = string.Format("SELECT E.COD_EVENTO, E.NOME_EVENTO,E.DATA_INICIO, E.DATA_FIM, E.ENDERECO, E.STATUS, E.DATA_CRIACÃO, E.DATA_INATIVACAO, T.NOME_TIPO_EVENTO FROM  EVENTO E, TIPO_EVENTO T WHERE E.TIPO_EVENTO = T.COD_TIPO_EVENTO AND E.TIPO_EVENTO = {0} AND E.STATUS <> 'I'", pTipoEvento);
+                }
+                else
+                {
+                    strCmd = string.Format("SELECT E.COD_EVENTO, E.NOME_EVENTO,E.DATA_INICIO, E.DATA_FIM, E.ENDERECO, E.STATUS, E.DATA_CRIACÃO, E.DATA_INATIVACAO, T.NOME_TIPO_EVENTO FROM  EVENTO E, TIPO_EVENTO T WHERE E.TIPO_EVENTO = T.COD_TIPO_EVENTO AND E.TIPO_EVENTO = {0} AND E.NOME_EVENTO ={1} AND E.STATUS <> 'I'", pTipoEvento, pNome); 
+                }
             }
-        }*/
+            else
+            {
+                if(pNome == null){
+                    strCmd = string.Format("SELECT E.COD_EVENTO, E.NOME_EVENTO,E.DATA_INICIO, E.DATA_FIM, E.ENDERECO, E.STATUS, E.DATA_CRIACÃO, E.DATA_INATIVACAO, T.NOME_TIPO_EVENTO FROM  EVENTO E, TIPO_EVENTO T WHERE E.TIPO_EVENTO = T.COD_TIPO_EVENTO AND E.TIPO_EVENTO = {0}, pTipoEvento", pTipoEvento);
+                }
+                else
+                {
+                    strCmd = string.Format("SELECT E.COD_EVENTO, E.NOME_EVENTO,E.DATA_INICIO, E.DATA_FIM, E.ENDERECO, E.STATUS, E.DATA_CRIACÃO, E.DATA_INATIVACAO, T.NOME_TIPO_EVENTO FROM  EVENTO E, TIPO_EVENTO T WHERE E.TIPO_EVENTO = T.COD_TIPO_EVENTO AND E.TIPO_EVENTO = {0} AND E.NOME_EVENTO ={1}", pTipoEvento, pNome); 
+                }
+            }
+            if (strCmd != null)
+            {
+                SqlDataReader dr = SqlDB.Instancia.FazerSelect(strCmd);
+
+                return oEved;
+            }
+            else
+            {
+                return oEved;
+            }
+        }
+        
 
         public bool inserirEvento(string pNome, string pDataInicio, string pDataFim, int pTipo, string pEndereco)
         {

@@ -12,7 +12,7 @@ namespace WebApplication5
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            grwEventos.DataBind();
+            //grwEventos.DataBind();
         }
 
         protected void btnIncluirEvento_Click(object sender, EventArgs e)
@@ -22,9 +22,11 @@ namespace WebApplication5
 
         protected void btnInativar_Click(object sender, EventArgs e)
         {
-            for(int cont = grwEventos.Rows.Count; cont == 0 ; cont--)
+            Response.Write("<script>alert('Mama mia fora ." + grwEventos.Rows.Count + " ');</script>");
+            int aux = grwEventos.Rows.Count;
+            for (int cont = 0; cont <  aux; cont++)
             {
-                Response.Write("<script>alert('Mama mia');</script>");
+                Response.Write("<script>alert('Mama mia ."+ grwEventos.Rows.Count+" ');</script>");
                 string strCmd = null;
                 CheckBox check = (CheckBox)grwEventos.Rows[cont].FindControl("CheckBox1");
                 Label lbCod = (Label)grwEventos.Rows[cont].FindControl("Label1");

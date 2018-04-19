@@ -168,7 +168,7 @@
                                         <button type="button" class="btn btn-outline btn-primary">Limpar</button>
                                     </div>
                                 </div>
-                                <asp:GridView ID="grwEventos" runat="server" AutoGenerateColumns="False" DataKeyNames="COD_EVENTO" DataSourceID="evento" CssClass="table table-bordered table-responsive">
+                                <asp:GridView ID="grwEventos" runat="server" AutoGenerateColumns="False" DataKeyNames="COD_EVENTO" DataSourceID="evento" CssClass="table table-bordered table-responsive" AllowPaging="True" AllowSorting="True">
                                     <Columns>
                                         <asp:TemplateField>
                                             <ItemTemplate>
