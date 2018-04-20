@@ -1743,6 +1743,8 @@
     <Compile Include="Classes\EventoDAO.cs" />
     <Compile Include="Classes\UsuarioDAO.cs" />
     <Compile Include="Classes\Usuario.cs" />
+    <Compile Include="Classes\Volunt.cs" />
+    <Compile Include="Classes\VoluntDAO.cs" />
     <Compile Include="classes_servicos\SqlDB.cs" />
     <Compile Include="declarar_ponto.aspx.cs">
       <DependentUpon>declarar_ponto.aspx</DependentUpon>
@@ -1870,7 +1872,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>24354</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

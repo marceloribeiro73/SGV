@@ -52,7 +52,7 @@ namespace WebApplication5.classes_servicos
                     DataSource = "localhost",
                     InitialCatalog = "SGV_DEV",
                     UserID = "sa",
-                    Password = "123456"
+                    Password = "DBA4352"
                 };
 
                 return scb.ToString();
@@ -85,24 +85,16 @@ namespace WebApplication5.classes_servicos
             return dataReaderAtual;
         }
 
-        public bool FazerUpdate(string sUpdate)
+        public int FazerUpdate(string sUpdate)
         {
-            if(dataReaderAtual != null)
+            if (dataReaderAtual != null)
             {
                 CloseDataReader();
             }
             SqlCommand cmd = CriarComando(sUpdate);
-            int aux = cmd.ExecuteNonQuery();
-            if(aux > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return cmd.ExecuteNonQuery();
         }
 
-        
+
     }
 }
