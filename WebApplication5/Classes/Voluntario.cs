@@ -5,9 +5,9 @@ using System.Web;
 
 namespace WebApplication.Classes
 {
-    public class Volunt
+    public class Voluntario
     {
-        public int iCpf { get; set; }
+        public string iCpf { get; set; }
         public string sPrimeiroNome { get; set; }
         public string sUltimoNome { get; set; }
         public string sDataNasc { get; set; }
@@ -15,8 +15,8 @@ namespace WebApplication.Classes
         public string sTipoDocIdentificacao { get; set; }
         public string sDataEmissao { get; set; }
         public string sNacionalidade { get; set; }
-        public int iTelefoneContato { get; set; }
-        public int iTelefoneContato2 { get; set; }
+        public string iTelefoneContato { get; set; }
+        public string iTelefoneContato2 { get; set; }
         public string sEmail { get; set; }
         public string sDataAdesao { get; set; }
         public string sPathFoto { get; set; }
@@ -28,6 +28,7 @@ namespace WebApplication.Classes
         public string sLogradouro { get; set; }
         public string sNumero { get; set; }
         public string sComplemento { get; set; }
+        public string sBairro { get; set; }
         public string sCidade { get; set; }
         public string sEstadoProvincia { get; set; }
         public string sPais { get; set; }

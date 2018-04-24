@@ -52,7 +52,7 @@ namespace WebApplication5.classes_servicos
                     DataSource = "localhost",
                     InitialCatalog = "SGV_DEV",
                     UserID = "sa",
-                    Password = "DBA4352"
+                    Password = "123456"
                 };
 
                 return scb.ToString();

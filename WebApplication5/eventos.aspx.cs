@@ -12,7 +12,7 @@ namespace WebApplication5
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //grwEventos.DataBind();
+            Session["evento"] = null;   
         }
 
         protected void btnIncluirEvento_Click(object sender, EventArgs e)
@@ -22,11 +22,11 @@ namespace WebApplication5
 
         protected void btnInativar_Click(object sender, EventArgs e)
         {
-            Response.Write("<script>alert('Mama mia fora ." + grwEventos.Rows.Count + " ');</script>");
+            //Response.Write("<script>alert('Mama mia fora ." + grwEventos.Rows.Count + " ');</script>");
             int aux = grwEventos.Rows.Count;
             for (int cont = 0; cont <  aux; cont++)
             {
-                Response.Write("<script>alert('Mama mia ."+ grwEventos.Rows.Count+" ');</script>");
+                //Response.Write("<script>alert('Mama mia ."+ grwEventos.Rows.Count+" ');</script>");
                 string strCmd = null;
                 CheckBox check = (CheckBox)grwEventos.Rows[cont].FindControl("CheckBox1");
                 Label lbCod = (Label)grwEventos.Rows[cont].FindControl("Label1");
@@ -48,6 +48,7 @@ namespace WebApplication5
                     {
                         SqlDB.Instancia.FazerUpdate(strCmd);
                         Response.Write("<script>alert('Status Alterado');</script>");
+                        Response.Redirect(Request.RawUrl);
                     }
                     else
                     {
@@ -56,6 +57,58 @@ namespace WebApplication5
                 }
             }
            
+        }
+
+        protected void btnBuscarEvento_Click(object sender, EventArgs e)
+        {
+            if (chkInativos.Checked)
+            {
+                if(txtNome.Text == "")
+                {
+                    evento.SelectCommand = string.Format("SELECT E.COD_EVENTO, E.NOME_EVENTO ,E.DATA_INICIO , E.DATA_FIM , E.STATUS, E.DATA_CRIACAO, E.DATA_INATIVACAO, T.NOME_TIPO_EVENTO FROM  EVENTO E, TIPO_EVENTO T WHERE  E.TIPO_EVENTO = {0} AND E.TIPO_EVENTO = T.COD_TIPO_EVENTO",ddlTipoEvento.Text);
+                }
+                else
+                {
+                    evento.SelectCommand = string.Format("SELECT E.COD_EVENTO, E.NOME_EVENTO,E.DATA_INICIO, E.DATA_FIM, E.STATUS, E.DATA_CRIACAO, E.DATA_INATIVACAO, T.NOME_TIPO_EVENTO FROM  EVENTO E, TIPO_EVENTO T WHERE  E.TIPO_EVENTO = {0} AND E.NOME_EVENTO LIKE '%{1}%' AND E.TIPO_EVENTO = T.COD_TIPO_EVENTO", ddlTipoEvento.Text,txtNome.Text);
+                }
+            }
+            else
+            {
+                if (txtNome.Text == "")
+                {
+                    evento.SelectCommand = string.Format("SELECT E.COD_EVENTO, E.NOME_EVENTO,E.DATA_INICIO, E.DATA_FIM, E.STATUS, E.DATA_CRIACAO, E.DATA_INATIVACAO, T.NOME_TIPO_EVENTO FROM  EVENTO E, TIPO_EVENTO T WHERE  E.TIPO_EVENTO = {0} AND E.STATUS <> 'I' AND E.TIPO_EVENTO = T.COD_TIPO_EVENTO", ddlTipoEvento.Text);
+                }
+                else
+                {
+                    evento.SelectCommand = string.Format("SELECT E.COD_EVENTO, E.NOME_EVENTO,E.DATA_INICIO, E.DATA_FIM, E.STATUS, E.DATA_CRIACAO, E.DATA_INATIVACAO, T.NOME_TIPO_EVENTO FROM  EVENTO E, TIPO_EVENTO T WHERE  E.TIPO_EVENTO = {0} AND E.NOME_EVENTO LIKE '%{1}%' AND E.STATUS <> 'I' AND E.TIPO_EVENTO = T.COD_TIPO_EVENTO", ddlTipoEvento.Text, txtNome.Text);
+                }
+            }
+            
+        }
+
+        protected void btnAlterar_Click(object sender, EventArgs e)
+        {
+            int aux = grwEventos.Rows.Count;
+            for(int cont =0; cont < aux; cont++)
+            {
+                CheckBox check = (CheckBox)grwEventos.Rows[cont].FindControl("CheckBox1");
+                Label lbCod = (Label)grwEventos.Rows[cont].FindControl("Label1");
+                if (check.Checked)
+                {
+                    Session["evento"] = lbCod.Text;
+                    Response.Redirect("cad_eventos.aspx");
+                }
+                else
+                {
+                    Response.Write("<script>alert('Não houve selecão para alteracão.');</script>");
+                }
+            }
+        }
+
+        protected void btnLimpar_Click(object sender, EventArgs e)
+        {
+            txtNome.Text = "";
+            evento.SelectCommand = "SELECT E.COD_EVENTO, E.NOME_EVENTO, E.DATA_INICIO,E.DATA_FIM, E.STATUS, E.DATA_CRIACAO, E.DATA_INATIVACAO, T.NOME_TIPO_EVENTO FROM EVENTO E, TIPO_EVENTO T WHERE E.TIPO_EVENTO = T.COD_TIPO_EVENTO";
         }
     }
 }

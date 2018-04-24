@@ -143,108 +143,73 @@
               <div class="col-lg-12">
                   <div class="panel panel-default">
                       <div class="panel-heading">
-                          Voluntários
+                          Buscar Voluntários
                       </div>
                       <!-- /.panel-heading -->
                       <!-- Buscar-->
+                      
                       <div class="panel-body">
-                        <form role="form">
-                          <div class="form-group col-lg-4">
-                            <label>Matricula</label>
-                            <input class="form-control">
-                          </div>
-                          <div class="form-group col-lg-4">
-                            <label>Nome</label>
-                            <input class="form-control">
-                          </div>
-                          <div class="form-group col-lg-4">
-                            <label>Tipo de Voluntário</label>
-                            <select class="form-control" name="sele_tipo_usuario">
-                              <option>Todos</option>
-                              <option>Gestão</option>
-                              <option>Externo</option>
-                              <option>Interno</option>
-                              <option>Fim de Semana</option>
-                            </select>
-                          </div>
-                          <div class="form-group col-lg-4">
-                            <label>Data de Adesão</label>
-                                <label>De</label><input type="date" class="form-control" /><label>Até</label><input type="date" class="form-control"/>
-                            </div>
                           <div class="form-group col-lg-12">
-                            <button type="button" class="btn btn-outline btn-primary">Buscar</button>
-                            <button type="button" class="btn btn-outline btn-primary">Limpar</button>
+                              <asp:Button ID="btnIncluir" CssClass="btn btn-primary btn-outline" Text="Incluir Novo Voluntário" runat="server" OnClick="btnIncluir_Click" />
                           </div>
-                        </form>
+                          <div class="form-group col-lg-4">
+                            <label>CPF</label>
+                            <asp:TextBox ID="txtCPF" CssClass="form-control" runat="server"></asp:TextBox>
+                          </div>
+                          <div class="form-group col-lg-4">
+                            <label>Primeiro Nome</label>
+                            <asp:TextBox ID="txt1Nome" CssClass="form-control" runat="server"></asp:TextBox>
+                          </div>
+                          <div class="form-group col-lg-4">
+                            <label>Ultimo Nome</label>
+                            <asp:TextBox ID="txt2Nome" CssClass="form-control" runat="server"></asp:TextBox>
+                          </div>
+                          <div class="form-group col-lg-12">
+                            <asp:Button ID="btnBuscar" CssClass="btn btn-primary btn-outline" Text="Buscar" runat="server" OnClick="btnBuscar_Click" />
+                            <asp:Button ID="btnLimpar" CssClass="btn btn-primary btn-outline" Text="Limpar" runat="server" OnClick="btnLimpar_Click" />
+                          </div>
+                          <div class="form-group col-lg-12">
+                              <asp:GridView ID="grwVoluntarios" CssClass="table table-bordered table-hover" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="SqlDataSource1" AutoGenerateColumns="False" DataKeyNames="CPF">
+                                  <Columns>
+                                      <asp:TemplateField>
+                                          <ItemTemplate>
+                                              <asp:CheckBox ID="CheckBox1" runat="server" />
+                                          </ItemTemplate>
+                                      </asp:TemplateField>
+                                      <asp:TemplateField HeaderText="CPF" SortExpression="CPF">
+                                          <EditItemTemplate>
+                                              <asp:Label ID="Label1" runat="server" Text='<%# Eval("CPF") %>'></asp:Label>
+                                          </EditItemTemplate>
+                                          <ItemTemplate>
+                                              <asp:Label ID="Label1" runat="server" Text='<%# Bind("CPF") %>'></asp:Label>
+                                          </ItemTemplate>
+                                      </asp:TemplateField>
+                                      <asp:BoundField DataField="PRIMEIRO NOME" HeaderText="PRIMEIRO NOME" SortExpression="PRIMEIRO NOME" />
+                                      <asp:BoundField DataField="ULTIMO NOME" HeaderText="ULTIMO NOME" SortExpression="ULTIMO NOME" />
+                                      <asp:BoundField DataField="DATA DE NASCIMENTO" HeaderText="DATA DE NASCIMENTO" SortExpression="DATA DE NASCIMENTO" />
+                                      <asp:BoundField DataField="DATA DE ADESÃO" HeaderText="DATA DE ADESÃO" SortExpression="DATA DE ADESÃO" />
+                                      <asp:BoundField DataField="TIPO VOLUNTARIO" HeaderText="TIPO VOLUNTARIO" SortExpression="TIPO VOLUNTARIO" />
+                                      <asp:TemplateField HeaderText="STATUS" SortExpression="STATUS">
+                                          <EditItemTemplate>
+                                              <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("STATUS") %>'></asp:TextBox>
+                                          </EditItemTemplate>
+                                          <ItemTemplate>
+                                              <asp:Label ID="Label2" runat="server" Text='<%# Bind("STATUS") %>'></asp:Label>
+                                          </ItemTemplate>
+                                      </asp:TemplateField>
+                                  </Columns>
+
+                              </asp:GridView>
+                              <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:SGV_DEVConnectionString %>" SelectCommand="SELECT V.CPF AS 'CPF', V.PRIMEIRO_NOME AS 'PRIMEIRO NOME',V.UTIMO_NOME AS 'ULTIMO NOME', V.DATA_NASC AS 'DATA DE NASCIMENTO',
+V.DATA_ADESAO AS 'DATA DE ADESÃO', T.NOME_TIPO_VOLUNTARIO AS 'TIPO VOLUNTARIO', V.STATUS AS 'STATUS' 
+FROM VOLUNTARIO V, TIPO_VOLUNTARIO T WHERE V.TIPO_VOLUNTARIO = T.COD_TIPO_VOLUNTARIO"></asp:SqlDataSource>
+                          </div>
+                          <div class="form-group col-lg-12">
+                          <asp:Button ID="btnAlterar" CssClass="btn btn-primary btn-outline" Text="Alterar" runat="server" OnClick="btnAlterar_Click" />
+                          <asp:Button ID="btnInativarAtivar" CssClass="btn btn-primary btn-outline" Text="Ativar/Inativar" runat="server" OnClick="btnInativarAtivar_Click" />
                       </div>
-                      <div class="panel-body">
-                          <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-                              <thead>
-                                  <tr>
-                                      <th><input type="checkbox"></th>
-                                      <th>Matricula</th>
-                                      <th>Nome</th>
-                                      <th>Tipo</th>
-                                      <th>Data de Adesão</th>
-                                      <th>Estado</th>
-                                  </tr>
-                              </thead>
-                              <tbody>
-                                  <tr class="odd gradeX">
-                                      <th><input type="checkbox"></th>
-                                      <td>1002</td>
-                                      <td>Carla Silva</td>
-                                      <td>Externo</td>
-                                      <td class="center">10/10/2010</td>
-                                      <td class="center">Ativo</td>
-                                  </tr>
-                                  <tr class="even gradeC">
-                                    <th><input type="checkbox"></th>
-                                    <td>1003</td>
-                                    <td>Juliana Bravo</td>
-                                    <td>Interno</td>
-                                    <td class="center">04/11/2010</td>
-                                    <td class="center">Ativo</td>
-                                  </tr>
-                                  <tr class="odd gradeA">
-                                      <th><input type="checkbox"></th>
-                                      <td>1004</td>
-                                      <td>Matheus Faria</td>
-                                      <td>Fim de Semana</td>
-                                      <td class="center">04/03/2011</td>
-                                      <td class="center">Ativo</td>
-                                  </tr>
-                                  <tr class="even gradeA">
-                                    <th><input type="checkbox"></th>
-                                    <td>1005</td>
-                                    <td>Fabio Cunha</td>
-                                    <td>Externo</td>
-                                    <td class="center">28/06/2011</td>
-                                    <td class="center">Inativo</td>
-                                  </tr>
-                                  <tr class="odd gradeA">
-                                    <th><input type="checkbox"></th>
-                                    <td>1006</td>
-                                    <td>Maria da Mata</td>
-                                    <td>Gestão</td>
-                                    <td class="center">12/12/2011</td>
-                                    <td class="center">Ativo</td>
-                                  </tr>
-                                  <tr class="even gradeA">
-                                    <th><input type="checkbox"></th>
-                                    <td>1007</td>
-                                    <td>Joana Maia</td>
-                                    <td>Externo</td>
-                                    <td class="center">12/12/2011</td>
-                                    <td class="center">Inativo</td>
-                                  </tr>
-                              </tbody>
-                          </table>
-                          <!-- /.table-responsive -->
-                          <button type="button" class="btn btn-outline btn-primary">Incluir</button>
-                          <button type="button" class="btn btn-outline btn-primary">Alterar</button>
-                          <button type="button" class="btn btn-outline btn-primary">Desativar</button>
                       </div>
+                      
                       <!-- /.panel-body -->
                   </div>
                   <!-- /.panel -->

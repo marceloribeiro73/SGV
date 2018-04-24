@@ -1739,12 +1739,14 @@
     <Compile Include="cad_voluntario.aspx.designer.cs">
       <DependentUpon>cad_voluntario.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Classes\Atividade.cs" />
+    <Compile Include="Classes\AtividadeDAOcs.cs" />
     <Compile Include="Classes\Evento.cs" />
     <Compile Include="Classes\EventoDAO.cs" />
     <Compile Include="Classes\UsuarioDAO.cs" />
     <Compile Include="Classes\Usuario.cs" />
-    <Compile Include="Classes\Volunt.cs" />
-    <Compile Include="Classes\VoluntDAO.cs" />
+    <Compile Include="Classes\Voluntario.cs" />
+    <Compile Include="Classes\VoluntarioDAO.cs" />
     <Compile Include="classes_servicos\SqlDB.cs" />
     <Compile Include="declarar_ponto.aspx.cs">
       <DependentUpon>declarar_ponto.aspx</DependentUpon>
@@ -1852,6 +1854,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Fotos\" />
     <Folder Include="node_modules\browser-sync\node_modules\browser-sync-ui\node_modules\socket.io-client\node_modules\engine.io-client\node_modules\component-inherit\" />
     <Folder Include="node_modules\gulp-clean-css\node_modules\gulp-util\node_modules\multipipe\node_modules\duplexer2\node_modules\readable-stream\node_modules\core-util-is\" />
     <Folder Include="node_modules\gulp-clean-css\node_modules\gulp-util\node_modules\multipipe\node_modules\duplexer2\node_modules\readable-stream\node_modules\inherits\" />

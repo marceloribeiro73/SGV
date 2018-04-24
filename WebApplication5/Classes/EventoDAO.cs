@@ -16,27 +16,36 @@ namespace WebApplication.Classes
             string strCmd = null;
             if(pInativo == false){
                 if(pNome == null){
-                    strCmd = string.Format("SELECT E.COD_EVENTO, E.NOME_EVENTO,E.DATA_INICIO, E.DATA_FIM, E.ENDERECO, E.STATUS, E.DATA_CRIACÃO, E.DATA_INATIVACAO, T.NOME_TIPO_EVENTO FROM  EVENTO E, TIPO_EVENTO T WHERE E.TIPO_EVENTO = T.COD_TIPO_EVENTO AND E.TIPO_EVENTO = {0} AND E.STATUS <> 'I'", pTipoEvento);
+                    strCmd = string.Format("SELECT E.COD_EVENTO, E.NOME_EVENTO,E.DATA_INICIO, E.DATA_FIM, E.ENDERECO, E.STATUS, E.DATA_CRIACAO, E.DATA_INATIVACAO, E.TIPO_EVENTO FROM  EVENTO E WHERE  E.TIPO_EVENTO = {0} AND E.STATUS <> 'I'", pTipoEvento);
                 }
                 else
                 {
-                    strCmd = string.Format("SELECT E.COD_EVENTO, E.NOME_EVENTO,E.DATA_INICIO, E.DATA_FIM, E.ENDERECO, E.STATUS, E.DATA_CRIACÃO, E.DATA_INATIVACAO, T.NOME_TIPO_EVENTO FROM  EVENTO E, TIPO_EVENTO T WHERE E.TIPO_EVENTO = T.COD_TIPO_EVENTO AND E.TIPO_EVENTO = {0} AND E.NOME_EVENTO ={1} AND E.STATUS <> 'I'", pTipoEvento, pNome); 
+                    strCmd = string.Format("SELECT E.COD_EVENTO, E.NOME_EVENTO,E.DATA_INICIO, E.DATA_FIM, E.ENDERECO, E.STATUS, E.DATA_CRIACAO, E.DATA_INATIVACAO, E.TIPO_EVENTO FROM  EVENTO E WHERE  E.TIPO_EVENTO = {0} AND E.NOME_EVENTO ={1} AND E.STATUS <> 'I'", pTipoEvento, pNome); 
                 }
             }
             else
             {
                 if(pNome == null){
-                    strCmd = string.Format("SELECT E.COD_EVENTO, E.NOME_EVENTO,E.DATA_INICIO, E.DATA_FIM, E.ENDERECO, E.STATUS, E.DATA_CRIACÃO, E.DATA_INATIVACAO, T.NOME_TIPO_EVENTO FROM  EVENTO E, TIPO_EVENTO T WHERE E.TIPO_EVENTO = T.COD_TIPO_EVENTO AND E.TIPO_EVENTO = {0}, pTipoEvento", pTipoEvento);
+                    strCmd = string.Format("SELECT E.COD_EVENTO, E.NOME_EVENTO,E.DATA_INICIO, E.DATA_FIM, E.ENDERECO, E.STATUS, E.DATA_CRIACAO, E.DATA_INATIVACAO, E.TIPO_EVENTO FROM  EVENTO E WHERE E.TIPO_EVENTO = {0}, pTipoEvento", pTipoEvento);
                 }
                 else
                 {
-                    strCmd = string.Format("SELECT E.COD_EVENTO, E.NOME_EVENTO,E.DATA_INICIO, E.DATA_FIM, E.ENDERECO, E.STATUS, E.DATA_CRIACÃO, E.DATA_INATIVACAO, T.NOME_TIPO_EVENTO FROM  EVENTO E, TIPO_EVENTO T WHERE E.TIPO_EVENTO = T.COD_TIPO_EVENTO AND E.TIPO_EVENTO = {0} AND E.NOME_EVENTO ={1}", pTipoEvento, pNome); 
+                    strCmd = string.Format("SELECT E.COD_EVENTO, E.NOME_EVENTO,E.DATA_INICIO, E.DATA_FIM, E.ENDERECO, E.STATUS, E.DATA_CRIACAO, E.DATA_INATIVACAO, E.TIPO_EVENTO FROM  EVENTO E WHERE  E.TIPO_EVENTO = {0} AND E.NOME_EVENTO ={1}", pTipoEvento, pNome); 
                 }
             }
             if (strCmd != null)
             {
                 SqlDataReader dr = SqlDB.Instancia.FazerSelect(strCmd);
-
+                if (dr.Read())
+                {
+                    oEved.iCodEvento = Convert.ToInt32(dr["E.COD_EVENTO"]);
+                    oEved.sNomeEvento = Convert.ToString(dr["E.NOME_EVENTO"]);
+                    oEved.sDataInicio = Convert.ToString(dr["E.DATA_INICIO"]);
+                    oEved.sDataFim = Convert.ToString(dr["E.DATA_FIM"]);
+                    oEved.sEndereco = Convert.ToString(dr["E.ENDERECO"]);
+                    oEved.sStatus = Convert.ToString(dr["E.STATUS"]);
+                    oEved.iTipoEvento = Convert.ToInt32(dr["E.TIPO_EVENTO"]);
+                }
                 return oEved;
             }
             else

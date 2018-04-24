@@ -155,39 +155,40 @@
                                                     <div class="row">
                                                         <div class="col-lg-12">
                                                             <div class="form-group col-lg-3">
-                                                                <label>CPF</label>
+                                                                <label>CPF *</label>
                                                                 <asp:TextBox ID="txtCpf" CssClass="form-control" runat="server"></asp:TextBox>
                                                             </div>
                                                             <div class="form-group col-lg-3">
-                                                                <label>Primeiro Nome</label>
+                                                                <label>Primeiro Nome *</label>
                                                                 <asp:TextBox ID="txtPrimeiroNome" CssClass="form-control" runat="server"></asp:TextBox>
                                                             </div>
                                                             <div class="form-group col-lg-3">
-                                                                <label>Ultimo Nome</label>
+                                                                <label>Ultimo Nome *</label>
                                                                 <asp:TextBox ID="txtUltimoNome" CssClass="form-control" runat="server"></asp:TextBox>
                                                             </div>
                                                             <div class="form-group col-lg-3">
-                                                                <label>Data de Nascimento</label>
+                                                                <label>Data de Nascimento *</label>
                                                                 <asp:TextBox ID="txtDataNasc" CssClass="form-control" runat="server" TextMode="Date"></asp:TextBox>
                                                             </div>
                                                             <div class="form-group col-lg-3">
-                                                                <label>Documento de Identificação</label>
+                                                                <label>Documento de Identificação *</label>
                                                                 <asp:TextBox ID="txtDocId" CssClass="form-control" runat="server"></asp:TextBox>
                                                             </div>
                                                             <div class="form-group col-lg-3">
-                                                                <label>Data de Emissão</label>
+                                                                <label>Data de Emissão *</label>
                                                                 <asp:TextBox ID="txtDataEmmisaoDoc" CssClass="form-control" runat="server" TextMode="Date"></asp:TextBox>
                                                             </div>
                                                             <div class="form-group col-lg-3">
-                                                                <label>Tipo de Documento de Indentificação</label>
-                                                                <select class="form-control">
-                                                                    <option>RG</option>
-                                                                    <option>RNE</option>
-                                                                    <option>Passaporte</option>
-                                                                </select>
+                                                                <label>Tipo de Documento de Indentificação *</label>
+                                                                <asp:DropDownList ID="ddwTipoDocID" CssClass="form-control" runat="server">
+                                                                    <asp:ListItem Value="R">RG</asp:ListItem>
+                                                                    <asp:ListItem Value="P">PASSAPORTE</asp:ListItem>
+                                                                    <asp:ListItem Value="E">RNE</asp:ListItem>
+
+                                                                </asp:DropDownList>
                                                             </div>
                                                             <div class="form-group col-lg-3">
-                                                                <label>Nacionalidade</label>
+                                                                <label>Nacionalidade *</label>
                                                                 <asp:TextBox ID="txtNacionalidade" CssClass="form-control" runat="server"></asp:TextBox>
                                                             </div>
                                                         </div>
@@ -202,15 +203,15 @@
                                                     <div class="row">
                                                         <div class="col-lg-12">
                                                             <div class="form-group col-lg-2">
-                                                                <label>CEP</label>
+                                                                <label>CEP *</label>
                                                                 <asp:TextBox ID="txtCep" CssClass="form-control" runat="server"></asp:TextBox>
                                                             </div>
                                                             <div class="form-group col-lg-4">
-                                                                <label>Endereço</label>
+                                                                <label>Logradouro *</label>
                                                                 <asp:TextBox ID="txtLogradouro" CssClass="form-control" runat="server"></asp:TextBox>
                                                             </div>
                                                             <div class="form-group col-lg-1">
-                                                                <label>Numero</label>
+                                                                <label>Numero *</label>
                                                                 <asp:TextBox ID="txtNumero" CssClass="form-control" runat="server"></asp:TextBox>
                                                             </div>
                                                             <div class="form-group col-lg-2">
@@ -218,19 +219,19 @@
                                                                 <asp:TextBox ID="txtComplemento" CssClass="form-control" runat="server"></asp:TextBox>
                                                             </div>
                                                             <div class="form-group col-lg-3">
-                                                                <label>Bairro</label>
+                                                                <label>Bairro *</label>
                                                                 <asp:TextBox ID="txtBairro" CssClass="form-control" runat="server"></asp:TextBox>
                                                             </div>
                                                             <div class="form-group col-lg-3">
-                                                                <label>Cidade</label>
+                                                                <label>Cidade *</label>
                                                                 <asp:TextBox ID="txtCidade" CssClass="form-control" runat="server"></asp:TextBox>
                                                             </div>
                                                             <div class="form-group col-lg-4">
-                                                                <label>Estado</label>
+                                                                <label>Estado *</label>
                                                                 <asp:TextBox ID="txtEstadoProvincia" CssClass="form-control" runat="server"></asp:TextBox>
                                                             </div>
                                                             <div class="form-group col-lg-3">
-                                                                <label>Pais</label>
+                                                                <label>Pais *</label>
                                                                 <asp:TextBox ID="txtPais" CssClass="form-control" runat="server"></asp:TextBox>
                                                             </div>
                                                         </div>
@@ -238,7 +239,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group col-lg-3">
-                                                <label>Telefone Contato</label>
+                                                <label>Telefone Contato *</label>
                                                 <asp:TextBox ID="txtTel1" CssClass="form-control" runat="server"></asp:TextBox>
                                             </div>
                                             <div class="form-group col-lg-3">
@@ -246,42 +247,41 @@
                                                 <asp:TextBox ID="txtTel2" CssClass="form-control" runat="server"></asp:TextBox>
                                             </div>
                                             <div class="form-group col-lg-6">
-                                                <label>Email</label>
+                                                <label>Email *</label>
                                                 <asp:TextBox ID="txtEmail" CssClass="form-control" runat="server"></asp:TextBox>
                                             </div>
                                             <div class="form-group col-lg-3">
-                                                <label>Data Adesão</label>
+                                                <label>Data Adesão *</label>
                                                 <asp:TextBox ID="txtDataAdesao" CssClass="form-control" runat="server" TextMode="Date"></asp:TextBox>
                                             </div>
                                             <div class="form-group col-lg-3">
-                                                <label>Tipo de Voluntário</label>
-                                                <select class="form-control">
-                                                    <option>Gestão</option>
-                                                    <option>Interno</option>
-                                                    <option>Externo</option>
-                                                    <option>Fim de Semana</option>
-                                                </select>
+                                                <label>Tipo de Voluntário *</label>
+                                                <asp:DropDownList ID="ddwTipoVoluntario" CssClass="form-control" runat="server" DataSourceID="SqlDataSource1" DataTextField="NOME_TIPO_VOLUNTARIO" DataValueField="COD_TIPO_VOLUNTARIO">
+
+                                                </asp:DropDownList>
+                                                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:SGV_DEVConnectionString %>" SelectCommand="SELECT [COD_TIPO_VOLUNTARIO], [NOME_TIPO_VOLUNTARIO] FROM [TIPO_VOLUNTARIO]"></asp:SqlDataSource>
                                             </div>
 
 
-                                            <div class="form-group col-lg-3">
+                                            <div class="form-group col-lg-4">
                                                 <label>Foto</label>
-                                                <input type="file" runat="server"/>
+                                                <asp:Image ID="img1"  runat="server" />
+                                                <asp:FileUpload ID="upFoto" CssClass="form-control" runat="server" />
                                             </div>
                                             <div class="form-group col-lg-6">
-                                                <label>Status do Termo</label>
+                                                <%--<label>Status do Termo</label>
                                                 <div class="radio">
                                                     <label>
                                                         <input type="radio" />Assinado</label>
                                                     <label>
                                                         <input type="radio" />Não Assinado</label>
-                                                    <asp:Button ID="btnGerarTermo" Text="Gerar Termo" CssClass="btn btn-default" runat="server" />
-                                                    <asp:Button ID="btnReceberTermo" Text="Receber Termo" CssClass="btn btn-default" runat="server" />
+                                                    <%--<asp:Button ID="btnGerarTermo" Text="Gerar Termo" CssClass="btn btn-default" runat="server" />--%>
+                                                    <%--<asp:Button ID="btnReceberTermo" Text="Receber Termo" CssClass="btn btn-default" runat="server" />--%>
                                                 </div>
                                             </div>
                                             <div class="form-group col-lg-12">
-                                                <asp:Button ID="btnSalvar" Text="Salvar" CssClass="btn btn-success" runat="server" />
-                                                <asp:Button ID="btnCancelar" Text="Cancelar" CssClass="btn btn-danger" runat="server" />
+                                                <asp:Button ID="btnSalvar" Text="Salvar" CssClass="btn btn-success" runat="server" OnClick="btnSalvar_Click" />
+                                                <asp:Button ID="btnCancelar" Text="Cancelar" CssClass="btn btn-danger" runat="server" OnClick="btnCancelar_Click" />
                                             </div>
                                         </div>
                                     </div>

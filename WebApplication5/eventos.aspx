@@ -152,7 +152,7 @@
                                     </div>
                                     <div class="form-group col-lg-6">
                                         <label>Nome</label>
-                                        <input class="form-control" />
+                                        <asp:TextBox ID="txtNome" CssClass="form-control" runat="server"></asp:TextBox>
                                     </div>
                                     <div class="form-group col-lg-6">
                                         <label>Tipo de Evento</label>
@@ -161,11 +161,11 @@
                                         <asp:SqlDataSource ID="tipoevento" runat="server" ConnectionString="<%$ ConnectionStrings:SGV_DEVConnectionString %>" SelectCommand="SELECT [NOME_TIPO_EVENTO], [COD_TIPO_EVENTO] FROM [TIPO_EVENTO]"></asp:SqlDataSource>
                                     </div>
                                     <div class="form-group col-lg-12">
-                                        <input type="checkbox" /><label>&nbsp Inativo</label>
+                                        <asp:CheckBox ID="chkInativos" Text="Buscar somente ativos" CssClass="form-group" runat="server" />
                                     </div>
                                     <div class="form-group col-lg-12">
-                                        <button type="button" class="btn btn-outline btn-primary">Buscar</button>
-                                        <button type="button" class="btn btn-outline btn-primary">Limpar</button>
+                                        <asp:Button ID="btnBuscar" cssClass="btn btn-outline btn-primary" Text="Buscar" runat="server" OnClick="btnBuscarEvento_Click"></asp:Button>
+                                        <asp:Button ID="btnLimpar" cssClass="btn btn-outline btn-primary" Text="Limpar" runat="server" OnClick="btnLimpar_Click"></asp:Button>
                                     </div>
                                 </div>
                                 <asp:GridView ID="grwEventos" runat="server" AutoGenerateColumns="False" DataKeyNames="COD_EVENTO" DataSourceID="evento" CssClass="table table-bordered table-responsive" AllowPaging="True" AllowSorting="True">
@@ -199,14 +199,14 @@
                                         <asp:BoundField DataField="NOME_TIPO_EVENTO" HeaderText="NOME_TIPO_EVENTO" SortExpression="NOME_TIPO_EVENTO" />
                                     </Columns>
                                 </asp:GridView>
-
+                                
                                 <asp:SqlDataSource ID="evento" runat="server" ConnectionString="<%$ ConnectionStrings:SGV_DEVConnectionString %>" SelectCommand="SELECT E.COD_EVENTO, E.NOME_EVENTO, E.DATA_INICIO, 
 		E.DATA_FIM, E.STATUS, E.DATA_CRIACAO, E.DATA_INATIVACAO, T.NOME_TIPO_EVENTO 
 		FROM EVENTO E , TIPO_EVENTO T WHERE E.TIPO_EVENTO = T.COD_TIPO_EVENTO"></asp:SqlDataSource>
 
-                                <asp:Button ID="btnAlterar" CssClass="btn btn-outline btn-primary" Text="Alterar" runat="server" />
+                                <asp:Button ID="btnAlterar" CssClass="btn btn-outline btn-primary" Text="Alterar" runat="server" OnClick="btnAlterar_Click"/>
                                 <asp:Button ID="btnInativar" CssClass="btn btn-outline btn-primary" Text="Inativar/Ativar" runat="server" OnClick="btnInativar_Click" />
-                                <asp:Button ID="btnAtribuir" CssClass="btn btn-outline btn-primary" Text="Atribuir Atividades" runat="server" />
+                                <%--<asp:Button ID="btnAtribuir" CssClass="btn btn-outline btn-primary" Text="Atribuir Atividades" runat="server" />--%>
                             </div>
                             <!-- /.panel-body -->
                         </div>

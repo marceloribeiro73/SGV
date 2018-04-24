@@ -147,28 +147,26 @@
                             <div class="panel-body">
                                 <div class="row">
                                    <div class="col-lg-12">
-                                       <div class="form-group-lg col-lg-12">
+                                       <div class="form-group col-lg-12">
                                            <label>Nome da Atividade</label>
-                                           <input class="form-control" />
+                                           <asp:TextBox ID="txtNome" CssClass="form-control" runat="server"></asp:TextBox>
                                        </div>
                                        <div class="form-group col-lg-4">
                                            <label>Quatidade Ideal de Voluntários</label>
-                                           <input type="number" class="form-control" />
+                                           <asp:TextBox ID="txtQtd" TextMode="Number" CssClass="form-control" runat="server"></asp:TextBox>
                                        </div>
                                        <div class="form-group col-lg-4">
                                            <label>Duração Media em Minutos</label>
-                                           <input type="number" min="1" class="form-control" />
+                                           <asp:TextBox ID="txtMin" TextMode="Number" CssClass="form-control" runat="server"></asp:TextBox>
                                        </div>
                                        <div class="form-group col-lg-4">
                                            <label>Tipo de Atividade</label>
-                                           <select class="form-control">
-                                               <option>Interna</option>
-                                               <option>Externa</option>
-                                           </select>
+                                           <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control" DataSourceID="SqlDataSource1" DataTextField="NOME_TIPO_ATIVIDADE" DataValueField="COD_TIPO_ATIVIDADE"></asp:DropDownList>
+                                           <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:SGV_DEVConnectionString %>' SelectCommand="SELECT [COD_TIPO_ATIVIDADE], [NOME_TIPO_ATIVIDADE] FROM [TIPO_ATIVIDADE]"></asp:SqlDataSource>
                                        </div>
                                        <div class="form-group col-lg-12">
-                                            <button class="btn btn-primary btn-outline">Salvar</button>
-                                            <button class="btn btn-primary btn-outline">Cancelar</button>
+                                            <asp:Button ID="btnSalvar" CssClass="btn btn-success btn-outline" Text="Salvar" runat="server" OnClick="btnSalvar_Click" />
+                                            <asp:Button ID="btnCancelar" CssClass="btn btn-danger btn-outline" Text="Salvar" runat="server" OnClick="btnCancelar_Click" />>
                                        </div>
                                    </div>
                                 </div>        

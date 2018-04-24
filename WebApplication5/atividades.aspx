@@ -148,90 +148,57 @@
                       <!-- /.panel-heading -->
                       <!-- Buscar-->
                       <div class="panel-body">
-                        <form role="form">
+                          <div class="form-group col-lg-12">
+                              <asp:Button ID="btnIncluir" CssClass="btn btn-outline btn-primary" Text="Incluir Nova Atividade" runat="server" OnClick="btnIncluir_Click"/>
+                          </div>
                           <div class="form-group col-lg-6">
                             <label>Nome</label>
-                            <input class="form-control"/>
+                            <asp:TextBox ID="txtNome"  CssClass="form-control" runat="server"></asp:TextBox>
                           </div>
                           <div class="form-group col-lg-6">
                             <label>Tipo de Atividade</label>
-                            <select class="form-control" name="sele_tipo_atividade">
-                              <option>Todos</option>
-                              <option>Interna</option>
-                              <option>Externa</option>
-                            </select>
-                          </div>
-                          <div class="form-group col-lg-2">
-                            <input type="checkbox" /><label>&nbsp Inativo</label>
+                              <asp:DropDownList ID="ddtipoAtividade" CssClass="form-control" runat="server" DataSourceID="SqlDataSource1" DataTextField="NOME_TIPO_ATIVIDADE" DataValueField="COD_TIPO_ATIVIDADE"></asp:DropDownList>
+                              <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:SGV_DEVConnectionString %>' SelectCommand="SELECT [COD_TIPO_ATIVIDADE], [NOME_TIPO_ATIVIDADE] FROM [TIPO_ATIVIDADE]"></asp:SqlDataSource>
                           </div>
                           <div class="form-group col-lg-12">
-                            <button type="button" class="btn btn-outline btn-primary">Buscar</button>
-                            <button type="button" class="btn btn-outline btn-primary">Limpar</button>
+                            <asp:Button ID="btnBuscar" CssClass="btn btn-outline btn-primary" Text="Buscar" runat="server" OnClick="btnBuscar_Click" />
+                            <asp:Button ID="btnLimpar" CssClass="btn btn-outline btn-primary" Text="Limpar" runat="server" OnClick="btnLimpar_Click" />
                           </div>
-                        </form>
                       </div>
                       <div class="panel-body">
-
-                          <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                              <thead>
-                                  <tr>
-                                      <th><input type="checkbox"/></th>
-                                      <th>Nome</th>
-                                      <th>Tipo</th>
-                                      <th>Quantidade Voluntários</th>
-                                      <th>Estado</th>
-                                  </tr>
-                              </thead>
-                              <tbody>
-                                  <tr class="odd gradeX">
-                                      <th><input type="checkbox"></th>
-                                      <td>Preparo de Refeições Pequena</td>
-                                      <td>Interna</td>
-                                      <td class="center">7</td>
-                                      <td class="center">Ativo</td>
-                                  </tr>
-                                  <tr class="even gradeC">
-                                    <th><input type="checkbox"></th>
-                                      <td>Preparo de Refeições Media</td>
-                                      <td>Interna</td>
-                                      <td class="center">12</td>
-                                      <td class="center">Ativo</td>
-                                  </tr>
-                                  <tr class="odd gradeA">
-                                      <th><input type="checkbox"></th>
-                                      <td>Preparo de Refeições Grande</td>
-                                      <td>Interna</td>
-                                      <td class="center">18</td>
-                                      <td class="center">Ativo</td>
-                                  </tr>
-                                  <tr class="even gradeA">
-                                      <th><input type="checkbox"></th>
-                                      <td>Entrega de Refeições Pequena</td>
-                                      <td>Externa</td>
-                                      <td class="center">12</td>
-                                      <td class="center">Ativo</td>
-                                  </tr>
-                                  <tr class="odd gradeA">
-                                      <th><input type="checkbox"></th>
-                                      <td>Entrega de Refeições Media</td>
-                                      <td>Externa</td>
-                                      <td class="center">20</td>
-                                      <td class="center">Ativo</td>
-                                  </tr>
-                                  <tr class="even gradeA">
-                                      <th><input type="checkbox"></th>
-                                      <td>Entrega de Refeições Grande</td>
-                                      <td>Externa</td>
-                                      <td class="center">26</td>
-                                      <td class="center">Ativo</td>
-                                  </tr>
-                              </tbody>
-                          </table>
-                          <!-- /.table-responsive -->
-                          <button type="button" class="btn btn-outline btn-primary">Incluir</button>
-                          <button type="button" class="btn btn-outline btn-primary">Alterar</button>
-                          <button type="button" class="btn btn-outline btn-primary">Desativar</button>
-                          <button type="button" class="btn btn-outline btn-primary">Atribuir Voluntários</button>
+                              <asp:GridView ID="grwAtividades" CssClass="table table-striped table-bordered table-hover" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource2" AllowPaging="True" AllowSorting="True">
+                                  <Columns>
+                                      <asp:TemplateField>
+                                          <ItemTemplate>
+                                              <asp:CheckBox ID="CheckBox1" runat="server" />
+                                          </ItemTemplate>
+                                      </asp:TemplateField>
+                                      <asp:TemplateField HeaderText="NOME DA ATIVIDADE" SortExpression="NOME DA ATIVIDADE">
+                                          <EditItemTemplate>
+                                              <asp:TextBox runat="server" Text='<%# Bind("[NOME DA ATIVIDADE]") %>' ID="TextBox1"></asp:TextBox>
+                                          </EditItemTemplate>
+                                          <ItemTemplate>
+                                              <asp:Label runat="server" Text='<%# Bind("[NOME DA ATIVIDADE]") %>' ID="Label1"></asp:Label>
+                                          </ItemTemplate>
+                                      </asp:TemplateField>
+                                      <asp:BoundField DataField="QUANTIDADE IDEAL DE VOLUNTARIOS" HeaderText="QUANTIDADE IDEAL DE VOLUNTARIOS" SortExpression="QUANTIDADE IDEAL DE VOLUNTARIOS"></asp:BoundField>
+                                      <asp:BoundField DataField="DURA&#199;&#195;O MEDIA EM MINUTOS" HeaderText="DURA&#199;&#195;O MEDIA EM MINUTOS" SortExpression="DURA&#199;&#195;O MEDIA EM MINUTOS"></asp:BoundField>
+                                      <asp:TemplateField HeaderText="STATUS" SortExpression="STATUS">
+                                          <EditItemTemplate>
+                                              <asp:TextBox runat="server" Text='<%# Bind("STATUS") %>' ID="TextBox2"></asp:TextBox>
+                                          </EditItemTemplate>
+                                          <ItemTemplate>
+                                              <asp:Label runat="server" Text='<%# Bind("STATUS") %>' ID="Label2"></asp:Label>
+                                          </ItemTemplate>
+                                      </asp:TemplateField>
+                                      <asp:BoundField DataField="DATA DE CRIA&#199;&#195;O" HeaderText="DATA DE CRIA&#199;&#195;O" SortExpression="DATA DE CRIA&#199;&#195;O"></asp:BoundField>
+                                      <asp:BoundField DataField="TIPO DE ATIVIDADE" HeaderText="TIPO DE ATIVIDADE" SortExpression="TIPO DE ATIVIDADE"></asp:BoundField>
+                                  </Columns>
+                              </asp:GridView>
+                              <asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString='<%$ ConnectionStrings:SGV_DEVConnectionString %>' SelectCommand="SELECT A.NOME_ATIVIDADE AS 'NOME DA ATIVIDADE',A.QTD_VOLUNTARIOS AS 'QUANTIDADE IDEAL DE VOLUNTARIOS',A.DURACAO_MEDIA_MINUTOS AS 'dURAÇÃO MEDIA EM MINUTOS',A.STATUS AS 'STATUS',A.DATA_CRIACAO AS 'DATA DE CRIAÇÃO',T.NOME_TIPO_ATIVIDADE AS 'TIPO DE ATIVIDADE' FROM ATIVIDADE A, TIPO_ATIVIDADE T WHERE T.COD_TIPO_ATIVIDADE = A.TIPO_ATIVIDADE"></asp:SqlDataSource>
+                          <asp:Button ID="btnAlterar" CssClass="btn btn-outline btn-primary" Text="Alterar" runat="server" OnClick="btnAlterar_Click" />
+                          <asp:Button ID="btnAtivar" CssClass="btn btn-outline btn-primary" Text="Desativar/Ativar" runat="server" OnClick="btnAtivar_Click" />
+                          <%--<button type="button" class="btn btn-outline btn-primary">Atribuir Voluntários</button>--%>
                       </div>
                       <!-- /.panel-body -->
                   </div>

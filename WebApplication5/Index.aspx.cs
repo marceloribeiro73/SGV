@@ -12,8 +12,10 @@ namespace WebApplication5
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Usuario oUser = new Usuario();
+            Session["usuario"] = oUser;
         }
+
 
         protected void btnLogar_click(object sender, EventArgs e)
         {
@@ -21,6 +23,8 @@ namespace WebApplication5
             bool aux = ud.AutenticarUsuario(txtUsuario.Text, txtSenha.Text);
             if (aux)
             {
+
+
                 Response.Redirect("home.aspx");
 
             }
