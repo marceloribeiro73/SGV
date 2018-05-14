@@ -159,10 +159,11 @@
                                            <label>Duração Media em Minutos</label>
                                            <asp:TextBox ID="txtMin" TextMode="Number" CssClass="form-control" runat="server"></asp:TextBox>
                                        </div>
-                                       <div class="form-group col-lg-4">
+                                       <div class="form-group col-lg-6">
                                            <label>Tipo de Atividade</label>
-                                           <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control" DataSourceID="SqlDataSource1" DataTextField="NOME_TIPO_ATIVIDADE" DataValueField="COD_TIPO_ATIVIDADE"></asp:DropDownList>
-                                           <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:SGV_DEVConnectionString %>' SelectCommand="SELECT [COD_TIPO_ATIVIDADE], [NOME_TIPO_ATIVIDADE] FROM [TIPO_ATIVIDADE]"></asp:SqlDataSource>
+                                           <asp:GridView ID="grwTipoVoluntarios" CssClass="table table-striped table-bordered table-hover" runat="server">
+                                               
+                                           </asp:GridView>                                           
                                        </div>
                                        <div class="form-group col-lg-12">
                                             <asp:Button ID="btnSalvar" CssClass="btn btn-success btn-outline" Text="Salvar" runat="server" OnClick="btnSalvar_Click" />

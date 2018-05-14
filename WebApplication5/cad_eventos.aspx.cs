@@ -31,10 +31,14 @@ namespace WebApplication5
                 }
                 if(oEvento != null)
                 {
+                    DateTime dInicio = new DateTime();
+                    DateTime dFim = new DateTime();
+                    DateTime.TryParse(oEvento.sDataInicio, out dInicio);
+                    DateTime.TryParse(oEvento.sDataFim, out dFim);
                     txtNomeEvento.Text = oEvento.sNomeEvento;
                     txtNomeEvento.Enabled = false;
-                    txtDataInicio.Text = oEvento.sDataInicio;
-                    txtDataFim.Text = oEvento.sDataFim;
+                    txtDataInicio.Text = dInicio.ToString("yyyy-MM-dd");
+                    txtDataFim.Text = dFim.ToString("yyyy-MM-dd");
                     txtEndereco.Text = oEvento.sEndereco;
                     ddlTipoEvento.Text = Convert.ToString(oEvento.iTipoEvento);
                     ddlTipoEvento.Enabled = false;
@@ -45,7 +49,7 @@ namespace WebApplication5
 
         private bool validaObrigatorio()
         {
-           if((txtNomeEvento.Text != string.Empty && txtNomeEvento.Text.Length >0) || (txtDataInicio.Text != string.Empty && txtDataInicio.Text.All(char.IsDigit)) || (txtDataFim.Text != string.Empty && txtDataFim.Text.All(char.IsDigit)))
+           if((txtNomeEvento.Text != string.Empty || txtNomeEvento.Text.Length >0) || (txtDataInicio.Text != string.Empty || txtDataInicio.Text.All(char.IsDigit)) || (txtDataFim.Text != string.Empty || txtDataFim.Text.All(char.IsDigit)))
            {
                 return true;
            }
@@ -55,6 +59,53 @@ namespace WebApplication5
            }
         }
 
+        protected bool validaSeExiste()
+        {
+            string sEvent = txtNomeEvento.Text;
+            string strCmd = string.Format("SELECT NOME_EVENTO FROM EVENTO WHERE NOME_EVENTO = '{0}'", sEvent);
+            SqlDataReader dr = SqlDB.Instancia.FazerSelect(strCmd);
+            if(dr.Read())
+            {
+                dr.Close();
+                return true;
+            }
+            else
+            {
+                dr.Close();
+                return false;
+            }
+        }
+
+        protected bool validaConsisData()
+        {
+            DateTime dInicio = new DateTime();
+            DateTime dFim = new DateTime();
+            if(DateTime.TryParse(txtDataInicio.Text, out dInicio))
+            {
+                if(DateTime.TryParse(txtDataFim.Text, out dFim))
+                {
+                    if(dFim.Date >= dInicio.Date)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+
+            
+        }
+
         protected void btnSalvar_Click(object sender, EventArgs e)
         {
             if (operacao ==1)
@@ -62,23 +113,34 @@ namespace WebApplication5
                 bool bObrPreenchidos = validaObrigatorio();
                 if (bObrPreenchidos != true)
                 {
-                    lblAlerta.Text = "Campos obrigatorios não foram preenchidos, para continuar, preencha todos os campos obrigatorios!";
+                    lblAlerta.Text = "Campos obrigatorios não foram preenchidos, para continuar, preencha todos os campos obrigatorios.";
                     lblAlerta.Visible = true;
                 }
                 else
                 {
-                    EventoDAO oEvd = new EventoDAO();
-                    bool auxRet = oEvd.inserirEvento(txtNomeEvento.Text, txtDataInicio.Text, txtDataFim.Text, Convert.ToInt32(ddlTipoEvento.Text), txtEndereco.Text);
-                    if (auxRet == true)
+                    bool bExisteEvento = validaSeExiste();
+                    if(bExisteEvento != true)
                     {
-                        Response.Write("<script>alert('Cadastro Efetuado');</script>");
-                        Response.Redirect("eventos.apsx");
+                        bool bDataConsistente = validaConsisData();
+                        if(bDataConsistente == true)
+                        {
+                            EventoDAO oEvd = new EventoDAO();
+                            bool auxRet = oEvd.inserirEvento(txtNomeEvento.Text, txtDataInicio.Text, txtDataFim.Text, Convert.ToInt32(ddlTipoEvento.Text), txtEndereco.Text);
+                            if (auxRet == true)
+                            {
+                                Response.Write("<script>alert('Cadastro Efetuado, voce será redirecionado para a tela de eventos.');</script>");
+                                Response.Redirect("eventos.apsx");
+                            }
+                        }
+                        else
+                        {
+                            Response.Write("<script>alert('Cadastro não efetuado, data de fim menor que a data de inicio.');</script>");
+                        }
                     }
                     else
                     {
-                        Response.Write("<script>alert('Cadastro não Efetuado');</script>");
+                            Response.Write("<script>alert('Cadastro não efetuado, já existe um evento com o mesmo nome.');</script>");
                     }
-
                 }
             }
             else
@@ -87,12 +149,12 @@ namespace WebApplication5
                 int ret =SqlDB.Instancia.FazerUpdate(strCmd);
                 if(ret > 0)
                 {
-                    Response.Write("<script>alert('Alteração Concluida');</script>");
+                    Response.Write("<script>alert('Alteração Concluida.');</script>");
                     Response.Redirect("eventos.apsx");
                 }
                 else
                 {
-                    Response.Write("<script>alert('Alteração não Efetuada');</script>");
+                    Response.Write("<script>alert('Alteração não Efetuada.');</script>");
                 }
             }
         }
