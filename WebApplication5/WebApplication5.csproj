@@ -722,7 +722,7 @@
     <Content Include="vendor\font-awesome\scss\_stacked.scss" />
     <Content Include="vendor\font-awesome\scss\_variables.scss" />
     <Content Include="Home.aspx" />
-    <Content Include="ger_atividade.aspx" />
+    <Content Include="atribuicao_volun.aspx" />
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.12.4.min.map" />
     <None Include="Properties\Settings.settings">
@@ -1845,12 +1845,12 @@
     <Compile Include="voluntarios.aspx.designer.cs">
       <DependentUpon>voluntarios.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ger_atividade.aspx.cs">
-      <DependentUpon>ger_atividade.aspx</DependentUpon>
+    <Compile Include="atribuicao_volun.aspx.cs">
+      <DependentUpon>atribuicao_volun.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ger_atividade.aspx.designer.cs">
-      <DependentUpon>ger_atividade.aspx</DependentUpon>
+    <Compile Include="atribuicao_volun.aspx.designer.cs">
+      <DependentUpon>atribuicao_volun.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

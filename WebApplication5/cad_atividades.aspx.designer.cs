@@ -49,13 +49,13 @@ namespace WebApplication5 {
         protected global::System.Web.UI.WebControls.TextBox txtMin;
         
         /// <summary>
-        /// Controle DropDownList1.
+        /// Controle grwTipoVoluntarios.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.GridView grwTipoVoluntarios;
         
         /// <summary>
         /// Controle SqlDataSource1.

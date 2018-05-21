@@ -155,11 +155,6 @@
                             <label>Nome</label>
                             <asp:TextBox ID="txtNome"  CssClass="form-control" runat="server"></asp:TextBox>
                           </div>
-                          <div class="form-group col-lg-6">
-                            <label>Tipo de Atividade</label>
-                              <asp:DropDownList ID="ddtipoAtividade" CssClass="form-control" runat="server" DataSourceID="SqlDataSource1" DataTextField="NOME_TIPO_ATIVIDADE" DataValueField="COD_TIPO_ATIVIDADE"></asp:DropDownList>
-                              <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:SGV_DEVConnectionString %>' SelectCommand="SELECT [COD_TIPO_ATIVIDADE], [NOME_TIPO_ATIVIDADE] FROM [TIPO_ATIVIDADE]"></asp:SqlDataSource>
-                          </div>
                           <div class="form-group col-lg-12">
                             <asp:Button ID="btnBuscar" CssClass="btn btn-outline btn-primary" Text="Buscar" runat="server" OnClick="btnBuscar_Click" />
                             <asp:Button ID="btnLimpar" CssClass="btn btn-outline btn-primary" Text="Limpar" runat="server" OnClick="btnLimpar_Click" />
@@ -191,11 +186,9 @@
                                               <asp:Label runat="server" Text='<%# Bind("STATUS") %>' ID="Label2"></asp:Label>
                                           </ItemTemplate>
                                       </asp:TemplateField>
-                                      <asp:BoundField DataField="DATA DE CRIA&#199;&#195;O" HeaderText="DATA DE CRIA&#199;&#195;O" SortExpression="DATA DE CRIA&#199;&#195;O"></asp:BoundField>
-                                      <asp:BoundField DataField="TIPO DE ATIVIDADE" HeaderText="TIPO DE ATIVIDADE" SortExpression="TIPO DE ATIVIDADE"></asp:BoundField>
                                   </Columns>
                               </asp:GridView>
-                              <asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString='<%$ ConnectionStrings:SGV_DEVConnectionString %>' SelectCommand="SELECT A.NOME_ATIVIDADE AS 'NOME DA ATIVIDADE',A.QTD_VOLUNTARIOS AS 'QUANTIDADE IDEAL DE VOLUNTARIOS',A.DURACAO_MEDIA_MINUTOS AS 'dURAÇÃO MEDIA EM MINUTOS',A.STATUS AS 'STATUS',A.DATA_CRIACAO AS 'DATA DE CRIAÇÃO',T.NOME_TIPO_ATIVIDADE AS 'TIPO DE ATIVIDADE' FROM ATIVIDADE A, TIPO_ATIVIDADE T WHERE T.COD_TIPO_ATIVIDADE = A.TIPO_ATIVIDADE"></asp:SqlDataSource>
+                              <asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString='<%$ ConnectionStrings:SGV_DEVConnectionString %>' SelectCommand="SELECT A.NOME_ATIVIDADE AS 'NOME DA ATIVIDADE',A.QTD_VOLUNTARIOS AS 'QUANTIDADE IDEAL DE VOLUNTARIOS',A.QTD_MINUTOS AS 'DURAÇÃO MEDIA EM MINUTOS',A.STATUS AS 'STATUS',A.DATA_CRIACAO AS 'DATA DE CRIAÇÃO'FROM ATIVIDADE A WHERE A.STATUS <> 'I'"></asp:SqlDataSource>
                           <asp:Button ID="btnAlterar" CssClass="btn btn-outline btn-primary" Text="Alterar" runat="server" OnClick="btnAlterar_Click" />
                           <asp:Button ID="btnAtivar" CssClass="btn btn-outline btn-primary" Text="Desativar/Ativar" runat="server" OnClick="btnAtivar_Click" />
                           <%--<button type="button" class="btn btn-outline btn-primary">Atribuir Voluntários</button>--%>

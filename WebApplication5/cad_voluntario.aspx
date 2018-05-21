@@ -170,11 +170,15 @@
                                                                 <label>Data de Nascimento *</label>
                                                                 <asp:TextBox ID="txtDataNasc" CssClass="form-control" runat="server" TextMode="Date"></asp:TextBox>
                                                             </div>
-                                                            <div class="form-group col-lg-3">
+                                                            <div class="form-group col-lg-2">
                                                                 <label>Documento de Identificação *</label>
                                                                 <asp:TextBox ID="txtDocId" CssClass="form-control" runat="server"></asp:TextBox>
                                                             </div>
-                                                            <div class="form-group col-lg-3">
+                                                            <div class="form-group col-lg-2">
+                                                                <label>Orgão Emissor *</label>
+                                                                <asp:TextBox ID="txtOrgEmissor" CssClass="form-control" runat="server"></asp:TextBox>
+                                                            </div>
+                                                            <div class="form-group col-lg-2">
                                                                 <label>Data de Emissão *</label>
                                                                 <asp:TextBox ID="txtDataEmmisaoDoc" CssClass="form-control" runat="server" TextMode="Date"></asp:TextBox>
                                                             </div>
@@ -261,22 +265,35 @@
                                                 </asp:DropDownList>
                                                 <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:SGV_DEVConnectionString %>" SelectCommand="SELECT [COD_TIPO_VOLUNTARIO], [NOME_TIPO_VOLUNTARIO] FROM [TIPO_VOLUNTARIO]"></asp:SqlDataSource>
                                             </div>
-
-
+                                            <div class="form-group col-lg-3">
+                                                <label>Dias possiveis de Trabalho</label><br />
+                                                <asp:Checkbox ID="chkDiaDomingo" CssClasss="form-control" Text="D" TextAlign="Left" runat="server" />
+                                                <asp:Checkbox ID="chkDiaSegunda" CssClasss="form-control" Text="S" TextAlign="Left" runat="server" />
+                                                <asp:Checkbox ID="chkDiaTerca" CssClasss="form-control" Text="T" TextAlign="Left" runat="server" />
+                                                <asp:Checkbox ID="chkDiaQuarta" CssClasss="form-control" Text="Q" TextAlign="Left" runat="server" />
+                                                <asp:Checkbox ID="chkDiaQuinta" CssClasss="form-control" Text="Q" TextAlign="Left" runat="server" />
+                                                <asp:Checkbox ID="chkDiaSexta" CssClasss="form-control" Text="S" TextAlign="Left" runat="server" />
+                                                <asp:Checkbox ID="chkDiaSabado" CssClasss="form-control" Text="S" TextAlign="Left" runat="server" />
+                                            </div>
+                                            <div class="form-group col-lg-2">
+                                                <label>Maximo de Horas trabalhadas por semana *</label>
+                                                <asp:TextBox ID="txtMaxHorasTrab" CssClass="form-control" TextMode="Number" Text="1" runat="server"></asp:TextBox>
+                                                <asp:Label ID="lblErroHorasMax" CssClass="form-group" Text='Por gentileza, insira valores ente 1 e 8.' runat="server"></asp:Label>
+                                            </div>
                                             <div class="form-group col-lg-4">
                                                 <label>Foto</label>
                                                 <asp:Image ID="img1"  runat="server" />
                                                 <asp:FileUpload ID="upFoto" CssClass="form-control" runat="server" />
                                             </div>
                                             <div class="form-group col-lg-6">
-                                                <%--<label>Status do Termo</label>
+                                                <!--<label>Status do Termo</label>
                                                 <div class="radio">
                                                     <label>
                                                         <input type="radio" />Assinado</label>
                                                     <label>
                                                         <input type="radio" />Não Assinado</label>
-                                                    <%--<asp:Button ID="btnGerarTermo" Text="Gerar Termo" CssClass="btn btn-default" runat="server" />--%>
-                                                    <%--<asp:Button ID="btnReceberTermo" Text="Receber Termo" CssClass="btn btn-default" runat="server" />--%>
+                                                    <!--<asp:Button ID="btnGerarTermo" Text="Gerar Termo" CssClass="btn btn-default" runat="server" />-->
+                                                    <!--<asp:Button ID="btnReceberTermo" Text="Receber Termo" CssClass="btn btn-default" runat="server" />-->
                                                 </div>
                                             </div>
                                             <div class="form-group col-lg-12">

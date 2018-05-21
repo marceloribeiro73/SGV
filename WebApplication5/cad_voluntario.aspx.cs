@@ -32,11 +32,11 @@ namespace WebApplication5
                     oVoluntario.sTipoDocIdentificacao = Convert.ToString(dr["TIPO_DOC_IDENTFICACAO"]);
                     oVoluntario.sDataEmissao = Convert.ToString(dr["DATA_EMISSAO"]);
                     oVoluntario.sNacionalidade = Convert.ToString(dr["NACIONALIDADE"]);
-                    oVoluntario.iTelefoneContato = Convert.ToString(dr["TELEFONE_CONTATO"]);
-                    oVoluntario.iTelefoneContato2 = Convert.ToString(dr["TELEFONE_CONTATO2"]);
+                    oVoluntario.sTelefoneContato = Convert.ToString(dr["TELEFONE_CONTATO"]);
+                    oVoluntario.sTelefoneContato2 = Convert.ToString(dr["TELEFONE_CONTATO2"]);
                     oVoluntario.sEmail = Convert.ToString(dr["EMAIL"]);
                     oVoluntario.sDataAdesao = Convert.ToString(dr["DATA_ADESAO"]);
-                    oVoluntario.sTipoVoluntario = Convert.ToString(dr["TIPO_VOLUNTARIO"]);
+                    oVoluntario.iTipoVoluntario = Convert.ToInt32(dr["TIPO_VOLUNTARIO"]);
                     oVoluntario.sCodPostal = Convert.ToString(dr["COD_POSTAL"]);
                     oVoluntario.sLogradouro = Convert.ToString(dr["LOGRADOURO"]);
                     oVoluntario.sLogradouro = Convert.ToString(dr["NUMERO"]);
@@ -71,12 +71,12 @@ namespace WebApplication5
                     txtCidade.Text = oVoluntario.sCidade;
                     txtEstadoProvincia.Text = oVoluntario.sEstadoProvincia;
                     txtPais.Text = oVoluntario.sPais;
-                    txtTel1.Text = Convert.ToString(oVoluntario.iTelefoneContato);
-                    txtTel2.Text = Convert.ToString(oVoluntario.iTelefoneContato2);
+                    txtTel1.Text = Convert.ToString(oVoluntario.sTelefoneContato);
+                    txtTel2.Text = Convert.ToString(oVoluntario.sTelefoneContato2);
                     txtEmail.Text = oVoluntario.sEmail;
                     txtDataAdesao.Text = oVoluntario.sDataAdesao;
                     txtDataAdesao.Enabled = false;
-                    ddwTipoVoluntario.Text = oVoluntario.sTipoVoluntario;
+                    ddwTipoVoluntario.Text =Convert.ToString(oVoluntario.iTipoVoluntario);
                     upFoto.Enabled = false;
                     operacao = 2;
                 }
@@ -138,23 +138,87 @@ namespace WebApplication5
                 return "null";
             }
         }
+
+        protected bool validaSeExiste()
+        {
+            string sCpf = txtCpf.Text;
+            string strCmd = string.Format("SELECT CPF FROM VOLUNTARIO WHERE CPF = '{0}'", sCpf);
+            SqlDataReader dr = SqlDB.Instancia.FazerSelect(strCmd);
+            if(dr.Read())
+            {
+                dr.Close();
+                return true;
+            }
+            else
+            {
+                dr.Close();
+                return false;
+            }
+        }
         
+        protected bool validaConsisData()
+        {
+            DateTime dNasc = new DateTime();
+            DateTime dEmissaDoc = new DateTime(); //Há a necessidade de validar a data de Emissao?
+            DateTime dAdsao = new DateTime();
+            if(DateTime.TryParse(txtDataNasc.Text, out dNasc))
+            {
+                if(DateTime.TryParse(txtDataAdesao.Text, out dAdsao))
+                {
+                   if(DateTime.TryParse(txtDataEmmisaoDoc.Text, out dAdsao))
+                   {
+                       if((dNasc.Year - DateTime.Now.Year) > 18){
+                           if(dNasc.Date < dEmissaDoc.Date)
+                           {
+                               return true;
+                           }
+                           else
+                           {
+                               return false;
+                           }
+                       }
+                       else
+                       {
+                           return false;
+                       }
+                   }
+                   else
+                   {
+                       return false;
+                   }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        protected bool validaObrigatorios()
+        {
+            if(txtCep.Text.Equals(null) || txtPrimeiroNome.Text.Equals(null) || txtUltimoNome.Text.Equals(null) || txtDataNasc.Text.Equals(null) || txtDocId.Text.Equals(null) || txtOrgEmissor.Text.Equals(null) ||)
+        }
+
         protected void btnSalvar_Click(object sender, EventArgs e)
         {
             if (operacao == 1)
             {
                 string foto = upLoadFoto();
-                VoluntarioDAO oVld = new VoluntarioDAO();
-                bool auxRet = oVld.inserirVoluntario(txtCpf.Text, txtPrimeiroNome.Text, txtUltimoNome.Text, txtDataNasc.Text, txtDocId.Text, ddwTipoDocID.Text, txtDataEmmisaoDoc.Text, txtNacionalidade.Text, txtTel1.Text, txtTel2.Text, txtEmail.Text, txtDataAdesao.Text, ddwTipoVoluntario.Text, txtCep.Text, txtLogradouro.Text, txtNumero.Text, txtComplemento.Text, txtBairro.Text, txtCidade.Text, txtEstadoProvincia.Text, txtPais.Text, foto.ToString());
-                if (auxRet == true)
+                if(!foto.Equals("null"))
                 {
-                    Mensagem("Cadastro efetuado com sucesso!");
-                    Response.Redirect("voluntarios.aspx");
+                    if(validaConsisData())
+                    {
+                        if(validaSeExiste())
+                        {
+                            if()
+                        }
+                    }               
                 }
-                else
-                {
-                    Mensagem("Cadastro não foi efetuado.");
-                }
+               
             } else if (operacao == 2)
             {
                 string strCmd = string.Format("UPDATE VOLUNTARIO SET TELEFONE_CONTATO = '{0}', TELEFONE_CONTATO2 ='{1}',EMAIL='{2}', TIPO_VOLUNTARIO = {3} WHERE CPF = '{4}'", txtTel1.Text, txtTel2.Text, txtEmail.Text, ddwTipoVoluntario.Text, txtCpf);

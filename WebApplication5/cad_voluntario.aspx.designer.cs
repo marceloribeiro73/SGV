@@ -67,6 +67,15 @@ namespace WebApplication5 {
         protected global::System.Web.UI.WebControls.TextBox txtDocId;
         
         /// <summary>
+        /// Controle txtOrgEmissor.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtOrgEmissor;
+        
+        /// <summary>
         /// Controle txtDataEmmisaoDoc.
         /// </summary>
         /// <remarks>
@@ -220,6 +229,87 @@ namespace WebApplication5 {
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
         
         /// <summary>
+        /// Controle chkDiaDomingo.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkDiaDomingo;
+        
+        /// <summary>
+        /// Controle chkDiaSegunda.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkDiaSegunda;
+        
+        /// <summary>
+        /// Controle chkDiaTerca.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkDiaTerca;
+        
+        /// <summary>
+        /// Controle chkDiaQuarta.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkDiaQuarta;
+        
+        /// <summary>
+        /// Controle chkDiaQuinta.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkDiaQuinta;
+        
+        /// <summary>
+        /// Controle chkDiaSexta.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkDiaSexta;
+        
+        /// <summary>
+        /// Controle chkDiaSabado.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkDiaSabado;
+        
+        /// <summary>
+        /// Controle txtMaxHorasTrab.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMaxHorasTrab;
+        
+        /// <summary>
+        /// Controle lblErroHorasMax.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErroHorasMax;
+        
+        /// <summary>
         /// Controle img1.
         /// </summary>
         /// <remarks>
@@ -236,6 +326,24 @@ namespace WebApplication5 {
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload upFoto;
+        
+        /// <summary>
+        /// Controle btnGerarTermo.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGerarTermo;
+        
+        /// <summary>
+        /// Controle btnReceberTermo.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnReceberTermo;
         
         /// <summary>
         /// Controle btnSalvar.

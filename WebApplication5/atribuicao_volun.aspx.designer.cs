@@ -10,7 +10,7 @@
 namespace WebApplication5 {
     
     
-    public partial class atividades {
+    public partial class WebForm2 {
         
         /// <summary>
         /// Controle form1.
@@ -22,75 +22,48 @@ namespace WebApplication5 {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// Controle btnIncluir.
+        /// Controle txtNomeEvento.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnIncluir;
+        protected global::System.Web.UI.WebControls.TextBox txtNomeEvento;
         
         /// <summary>
-        /// Controle txtNome.
+        /// Controle txtqtdVol.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNome;
+        protected global::System.Web.UI.WebControls.TextBox txtqtdVol;
         
         /// <summary>
-        /// Controle btnBuscar.
+        /// Controle txtHoras.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBuscar;
+        protected global::System.Web.UI.WebControls.TextBox txtHoras;
         
         /// <summary>
-        /// Controle btnLimpar.
+        /// Controle grwVolDispo.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLimpar;
+        protected global::System.Web.UI.WebControls.GridView grwVolDispo;
         
         /// <summary>
-        /// Controle grwAtividades.
+        /// Controle voldisponiveis.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grwAtividades;
-        
-        /// <summary>
-        /// Controle SqlDataSource2.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource2;
-        
-        /// <summary>
-        /// Controle btnAlterar.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAlterar;
-        
-        /// <summary>
-        /// Controle btnAtivar.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAtivar;
+        protected global::System.Web.UI.WebControls.SqlDataSource voldisponiveis;
     }
 }

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ger_atividade.aspx.cs" Inherits="WebApplication5.WebForm2" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="atribuicao_volun.aspx.cs" Inherits="WebApplication5.WebForm2" %>
 
 <!DOCTYPE html>
 
@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SGV - Atribuição de Voluntários a Atividades</title>
+    <title>SGV - Atribuição de Voluntários a Eventos</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
@@ -133,7 +133,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Atividades</h1>
+                        <h1 class="page-header">Eventos</h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -142,29 +142,22 @@
                     <div class="col-lg-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                Atribuição de Voluntários a Atividades
+                                Atribuição de Voluntários a Eventos
                             </div>
                             <div class="panel-body">
                                 <div class="row">
                                    <div class="col-lg-12">
                                        <div class="form-group-lg col-lg-12">
-                                           <label>Nome da Atividade</label>
-                                           <input type="text" class="form-control" disabled/>
+                                           <label>Nome do Evento</label>
+                                           <asp:TextBox ID="txtNomeEvento" CssClass="form-control" Enabled="false" runat="server"></asp:TextBox>
                                        </div>
                                        <div class="form-group col-lg-4">
                                            <label>Quatidade Ideal de Voluntários</label>
-                                           <input type="number" class="form-control" disabled/>
+                                           <asp:TextBox ID="txtqtdVol" CssClass="form-control" TextMode="Number" Enabled="false" runat="server"></asp:TextBox>
                                        </div>
                                        <div class="form-group col-lg-4">
-                                           <label>Duração Media em Minutos</label>
-                                           <input type="number" min="1" class="form-control" disabled/>
-                                       </div>
-                                       <div class="form-group col-lg-4">
-                                           <label>Tipo de Atividade</label>
-                                           <select class="form-control" disabled>
-                                               <option>Interna</option>
-                                               <option>Externa</option>
-                                           </select>
+                                           <label>Duração Media em Horas</label>
+                                           <asp:TextBox ID="txtHoras" CssClass="form-control" Enabled="false" TextMode="Number" runat="server"></asp:TextBox>
                                        </div>
                                        <div class="row">
                                            <div class="col-lg-12">
@@ -174,42 +167,10 @@
                                                    </div>
                                                    <div class="panel-body">
                                                        <div class="table-responsive">
-                                                           <table class="table table-striped table-bordered table-hover">
-                                                               <thead>
-                                                                   <tr>
-                                                                       <th><input type="checkbox" class="form-control" /></th>
-                                                                       <th>Nome</th>
-                                                                       <th>Horas Disponiveis</th>
-                                                                   </tr>
-                                                               </thead>
-                                                               <tbody>
-                                                                   <tr>
-                                                                       <th><input type="checkbox" class="form-control" /></th>
-                                                                       <th>Lucas Matos</th>
-                                                                       <th>6</th>
-                                                                    </tr>
-                                                                   <tr>
-                                                                       <th><input type="checkbox" class="form-control" /></th>
-                                                                       <th>Lucas Matos</th>
-                                                                       <th>6</th>
-                                                                    </tr>
-                                                                   <tr>
-                                                                       <th><input type="checkbox" class="form-control" /></th>
-                                                                       <th>Maria dos Santos</th>
-                                                                       <th>3</th>
-                                                                    </tr>
-                                                                   <tr>
-                                                                       <th><input type="checkbox" class="form-control" /></th>
-                                                                       <th>Marcelo Ribeiro</th>
-                                                                       <th>3</th>
-                                                                    </tr>
-                                                                   <tr>
-                                                                       <th><input type="checkbox" class="form-control" /></th>
-                                                                       <th>Pedro Ferreira</th>
-                                                                       <th>4</th>
-                                                                    </tr>
-                                                               </tbody>
-                                                           </table>
+                                                           <asp:GridView ID="grwVolDispo" CssClass="table table-condensed" runat="server" DataSourceID="voldisponiveis">
+
+                                                           </asp:GridView>
+                                                           <asp:SqlDataSource ID="voldisponiveis" runat="server"></asp:SqlDataSource>
                                                        </div>
                                                    </div>
                                                </div>
