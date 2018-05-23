@@ -18,13 +18,13 @@ namespace WebApplication5
             if(Session["voluntario"] != null)
             {
                 string aux = (string)Session["voluntario"];
-                string strCmd = string.Format("SELECT V.CPF, V.PRIMEIRO_NOME, V.UTIMO_NOME,V.DATA_NASC, V.DOC_IDENTIFICACAO,V.TIPO_DOC_IDENTFICACAO, V.DATA_EMISSAO,V.NACIONALIDADE,V.TELEFONE_CONTATO,V.TELEFONE_CONTATO2, V.EMAIL, V.DATA_ADESAO, V.TIPO_VOLUNTARIO, E.COD_POSTAL,E.LOGRADOURO,E.NUMERO,E.COMPLEMENTO,E.BAIRO, E.CIDADE, E.ESTADO_PROVINCIA, E.PAIS FROM VOLUNTARIO V, ENDERECO e WHERE V.CPF = '{0}' AND V.CPF = E.CPF", aux);
+                string strCmd = string.Format("SELECT V.CPF, V.PRIMEIRO_NOME, V.UTIMO_NOME,V.DATA_NASC, V.DOC_IDENTIFICACAO,V.TIPO_DOC_IDENTFICACAO,V.ORGAO_EMISSOR ,V.DATA_EMISSAO,V.NACIONALIDADE,V.TELEFONE_CONTATO,V.TELEFONE_CONTATO2, V.EMAIL, V.DATA_ADESAO,V.MAX_HORAS_SEMANAIS ,V.TIPO_VOLUNTARIO, E.COD_POSTAL,E.LOGRADOURO,E.NUMERO,E.COMPLEMENTO,E.BAIRO, E.CIDADE, E.ESTADO_PROVINCIA, E.PAIS FROM VOLUNTARIO V, ENDERECO E WHERE V.CPF = '{0}' AND V.CPF = E.CPF", aux);
                 SqlDataReader dr = SqlDB.Instancia.FazerSelect(strCmd);
                 Voluntario oVoluntario = null;
                 if (dr.Read())
                 {
                     oVoluntario = new Voluntario();
-                    oVoluntario.iCpf = Convert.ToString(dr["CPF"]);
+                    oVoluntario.sCpf = Convert.ToString(dr["CPF"]);
                     oVoluntario.sPrimeiroNome = Convert.ToString(dr["PRIMEIRO_NOME"]);
                     oVoluntario.sUltimoNome = Convert.ToString(dr["UTIMO_NOME"]);
                     oVoluntario.sDataNasc = Convert.ToString(dr["DATA_NASC"]);
@@ -45,10 +45,20 @@ namespace WebApplication5
                     oVoluntario.sCidade = Convert.ToString(dr["CIDADE"]);
                     oVoluntario.sEstadoProvincia = Convert.ToString(dr["ESTADO_PROVINCIA"]);
                     oVoluntario.sPais = Convert.ToString(dr["PAIS"]);
+                    dr.Close();
+                    string strCmd2 = string.Format("SELECT FS.DIA_SEMANA FROM DIAS_SEMANA_VOLUNTARIO FS, VOLUNTARIO V WHERE FS.VOLUNTARIO = V.CPF");
+                    oVoluntario.oDiasSemana = new List<int>();
+                    SqlDataReader dr1 = SqlDB.Instancia.FazerSelect(strCmd2);
+                    while(dr1.Read())
+                    {
+                        int aux1 = Convert.ToInt32(dr1["FS.DIA_SEMANA"]);
+                        oVoluntario.oDiasSemana.Add(aux1);
+                    }
+                    
                 }
                 if(oVoluntario != null)
                 {
-                    txtCpf.Text = Convert.ToString(oVoluntario.iCpf);
+                    txtCpf.Text = Convert.ToString(oVoluntario.sCpf);
                     txtCpf.Enabled = false;
                     txtPrimeiroNome.Text = oVoluntario.sPrimeiroNome;
                     txtPrimeiroNome.Enabled = false;
@@ -78,6 +88,38 @@ namespace WebApplication5
                     txtDataAdesao.Enabled = false;
                     ddwTipoVoluntario.Text =Convert.ToString(oVoluntario.iTipoVoluntario);
                     upFoto.Enabled = false;
+                    txtMaxHorasTrab.Text = Convert.ToString(oVoluntario.iMaxHoras);
+                    foreach(int i in oVoluntario.oDiasSemana)
+                    {
+                        if(i == 1)
+                        {
+                            chkDiaDomingo.Checked = true;
+                        }
+                        else if(i ==2)
+                        {
+                            chkDiaSegunda.Checked = true;
+                        }
+                        else if(i== 3)
+                        {
+                            chkDiaTerca.Checked = true;
+                        }
+                        else if(i==4)
+                        {
+                            chkDiaQuarta.Checked = true;
+                        } 
+                        else if(i==5)
+                        {
+                            chkDiaQuinta.Checked = true;
+                        }
+                        else if(i==6)
+                        {
+                            chkDiaSexta.Checked = true;
+                        }
+                        else if(i==7)
+                        {
+                            chkDiaSabado.Checked = true;
+                        }
+                    }
                     operacao = 2;
                 }
             }
@@ -200,7 +242,82 @@ namespace WebApplication5
 
         protected bool validaObrigatorios()
         {
-            if(txtCep.Text.Equals(null) || txtPrimeiroNome.Text.Equals(null) || txtUltimoNome.Text.Equals(null) || txtDataNasc.Text.Equals(null) || txtDocId.Text.Equals(null) || txtOrgEmissor.Text.Equals(null) ||)
+            if(txtCep.Text.Equals(null) || txtPrimeiroNome.Text.Equals(null) || txtUltimoNome.Text.Equals(null) || txtDataNasc.Text.Equals(null) || txtDocId.Text.Equals(null) || txtOrgEmissor.Text.Equals(null) ||txtDataEmmisaoDoc.Text.Equals(null) || txtNacionalidade.Text.Equals(null) || txtCep.Text.Equals(null) || txtLogradouro.Text.Equals(null) ||txtNumero.Text.Equals(null) || txtBairro.Text.Equals(null) || txtCidade.Text.Equals(null) || txtEstadoProvincia.Text.Equals(null) || txtPais.Text.Equals(null) || txtTel1.Text.Equals(null) || txtEmail.Text.Equals(null) || txtDataAdesao.Text.Equals(null) || txtMaxHorasTrab.Text.Equals(null) )
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        protected Voluntario carregaObjVoluntario(string pFoto)
+        {
+            Voluntario oVoluntario2 = null;
+            if(!txtCpf.Text.Equals(null))
+            {
+                oVoluntario2 = new Voluntario();
+                oVoluntario2.sCpf = txtCpf.Text;
+                oVoluntario2.sPrimeiroNome = txtPrimeiroNome.Text;
+                oVoluntario2.sUltimoNome = txtUltimoNome.Text;
+                oVoluntario2.sDataNasc = txtDataNasc.Text;
+                oVoluntario2.sDocIdentificacao = txtDocId.Text;
+                oVoluntario2.iTipoVoluntario = Convert.ToInt32(ddwTipoDocID.Text);
+                oVoluntario2.sDataEmissao = txtDataEmmisaoDoc.Text;
+                oVoluntario2.sOrgaoEmissor = txtOrgEmissor.Text;
+                oVoluntario2.sNacionalidade = txtNacionalidade.Text;
+                oVoluntario2.sTelefoneContato = txtTel1.Text;
+                oVoluntario2.sTelefoneContato2 = txtTel2.Text;
+                oVoluntario2.sEmail = txtEmail.Text;
+                oVoluntario2.sDataAdesao = txtDataAdesao.Text;
+                oVoluntario2.sPathFoto = pFoto;
+                oVoluntario2.iMaxHoras = 60 * Convert.ToInt32(txtMaxHorasTrab.Text);
+                oVoluntario2.iTipoVoluntario = Convert.ToInt32(ddwTipoVoluntario.Text);
+                oVoluntario2.sCodPostal = txtCep.Text;
+                oVoluntario2.sLogradouro = txtLogradouro.Text;
+                oVoluntario2.sNumero = txtNumero.Text;
+                oVoluntario2.sComplemento = txtComplemento.Text;
+                oVoluntario2.sBairro = txtBairro.Text;
+                oVoluntario2.sCidade = txtCidade.Text;
+                oVoluntario2.sEstadoProvincia = txtEstadoProvincia.Text;
+                oVoluntario2.sPais =txtPais.Text;
+                oVoluntario2.oDiasSemana = new List<int>();
+                if(chkDiaDomingo.Checked)
+                {
+                    oVoluntario2.oDiasSemana.Add(1);
+                }
+                if(chkDiaSegunda.Checked)
+                {
+                    oVoluntario2.oDiasSemana.Add(2);
+                }
+                if(chkDiaTerca.Checked)
+                {
+                    oVoluntario2.oDiasSemana.Add(3);
+                }
+                if(chkDiaQuarta.Checked)
+                {
+                    oVoluntario2.oDiasSemana.Add(4);
+                }
+                if(chkDiaQuinta.Checked)
+                {
+                    oVoluntario2.oDiasSemana.Add(5);
+                }
+                if(chkDiaSexta.Checked)
+                {
+                    oVoluntario2.oDiasSemana.Add(6);
+                }
+                if(chkDiaSabado.Checked)
+                {
+                    oVoluntario2.oDiasSemana.Add(7);
+                }
+                
+                return oVoluntario2;
+            }
+            else
+            {
+                return oVoluntario2;   
+            }
         }
 
         protected void btnSalvar_Click(object sender, EventArgs e)
@@ -210,30 +327,83 @@ namespace WebApplication5
                 string foto = upLoadFoto();
                 if(!foto.Equals("null"))
                 {
-                    if(validaConsisData())
+                    if(validaObrigatorios())
                     {
                         if(validaSeExiste())
                         {
-                            if()
+                            if(validaConsisData())
+                            {
+                                Voluntario oVl = new Voluntario();
+                                oVl = carregaObjVoluntario(foto);
+                                if(oVl != null)
+                                {
+                                    VoluntarioDAO oVld = new VoluntarioDAO();
+                                    string varRet =oVld.inserirVoluntario(oVl);
+                                    if(varRet.Equals("Cadastro eferuado com Sucesso."))
+                                    {
+                                        Mensagem("Cadastro eferuado com Sucesso.");
+                                        Response.Redirect("voluntarios.apsx");
+                                    }
+                                    else
+                                    {
+                                        Mensagem("Cadastro não realizado, por gentileza, verifique os campos preechidos e tente novamente.");
+                                    }
+                                }
+                                else
+                                {
+                                    Mensagem("Cadastro não realizado, por gentileza, verifique os campos preechidos e tente novamente.");
+                                }
+                            }
+                            else
+                            {
+                                Mensagem("Cadastro não realizado devido a inconsistencias entre as data de Adesão e Nacimento, por gentileza verificar.");
+                            }
                         }
-                    }               
-                }
-               
-            } else if (operacao == 2)
-            {
-                string strCmd = string.Format("UPDATE VOLUNTARIO SET TELEFONE_CONTATO = '{0}', TELEFONE_CONTATO2 ='{1}',EMAIL='{2}', TIPO_VOLUNTARIO = {3} WHERE CPF = '{4}'", txtTel1.Text, txtTel2.Text, txtEmail.Text, ddwTipoVoluntario.Text, txtCpf);
-                string strCmd2 = string.Format("UPDATE ENDERECO SET COD_POSTAL = '{0}', LOGRADOURO='{1}',NUMERO='{2}',COMPLEMENTO='{3}',BAIRO='{4}',CIDADE='{5}',ESTADO_PROVINCIA='{6}',PAIS='{7}' WHERE CPF = '{8}'", txtCep.Text, txtLogradouro.Text, txtNumero.Text, txtComplemento.Text, txtBairro.Text, txtCidade.Text, txtEstadoProvincia.Text, txtPais.Text, txtCpf.Text);
-                int ret, ret2;
-                ret = SqlDB.Instancia.FazerUpdate(strCmd);
-                ret2 = SqlDB.Instancia.FazerUpdate(strCmd2);
-                if(ret > 0 && ret2 > 0)
-                {
-                    Response.Write("<script>alert('Alteração Concluida');</script>");
-                    Response.Redirect("voluntarios.apsx");
+                        else
+                        {
+                            Mensagem("Cadastro não realizado devido a já existir um voluntário com o mesmo cpf cadastrado no sistema.");
+                        }
+                    }
+                    else
+                    {
+                        Mensagem("Cadastro não realizado, todos os campos obrigatorios não foram preenchidos.");
+                    }              
                 }
                 else
                 {
-                    Response.Write("<script>alert('Alteração não Efetuada');</script>");
+                    Mensagem("Cadastro não realizado, devido a ausencia da foto.");
+                }
+               
+            } 
+            else if (operacao == 2)
+            {
+                if(validaObrigatorios())
+                {
+                    Voluntario oVl = new Voluntario();
+                    oVl = carregaObjVoluntario(null);
+                    if(oVl != null)
+                    {
+                        VoluntarioDAO oVld = new VoluntarioDAO();
+                        string vRet = oVld.alterarVoluntario(oVl);
+                        if(vRet.Equals("Alteração realizada com sucesso."))
+                        {
+                            Mensagem(vRet);
+                            Response.Redirect("voluntarios.aspx");
+                        }
+                        else
+                        {
+                            Mensagem("Alteração não pode ser realizada, verifique os campos e tente novamente.");
+                        }
+                    }
+                    else
+                    {
+                        Mensagem("Alteração não pode ser realizada, verifique os campos e tente novamente.");
+                    }
+
+                }
+                else
+                {
+                    Mensagem("Alteração não pode ser realizada, verifique os campos e tente novamente.");
                 }
             }
         }

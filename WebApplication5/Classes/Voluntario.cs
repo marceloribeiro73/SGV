@@ -36,7 +36,8 @@ namespace WebApplication.Classes
 
         public int iMaxHoras {get;set;}
 
-        List<char> oDiasSemana {get; set;}
+        public List<int> oDiasSemana {get; set;}
+
 
     }
 }
