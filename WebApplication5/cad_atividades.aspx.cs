@@ -24,9 +24,9 @@ namespace WebApplication5
                     txtNome.Text = Convert.ToString(dr["NOME_ATIVIDADE"]);
                     txtQtd.Text = Convert.ToString(dr["QTD_VOLUNTARIOS"]);
                     txtMin.Text = Convert.ToString(dr["DURACAO_MEDIA_MINUTOS"]);
-                    DropDownList1.Text = Convert.ToString(dr["TIPO_ATIVIDADE"]);
+                    //DropDownList1.Text = Convert.ToString(dr["TIPO_ATIVIDADE"]);
                     txtNome.Enabled = false;
-                    DropDownList1.Enabled = false;
+                    //DropDownList1.Enabled = false;
                     operacao = 2;
                 }
             }
@@ -41,7 +41,7 @@ namespace WebApplication5
                 comando.Parameters.Add(new SqlParameter("@nome", SqlDbType.VarChar)).Value = txtNome.Text;
                 comando.Parameters.Add(new SqlParameter("@qtd", SqlDbType.Int)).Value = txtQtd.Text;
                 comando.Parameters.Add(new SqlParameter("@duraca", SqlDbType.Int)).Value = txtMin.Text;
-                comando.Parameters.Add(new SqlParameter("@tipo", SqlDbType.Int)).Value = DropDownList1.Text;
+                //comando.Parameters.Add(new SqlParameter("@tipo", SqlDbType.Int)).Value = DropDownList1.Text;
                 int ret = comando.ExecuteNonQuery();
                 if(ret > 0)
                 {
