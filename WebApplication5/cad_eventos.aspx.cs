@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Web.UI.WebControls;
 using WebApplication.Classes;
 using WebApplication5.classes_servicos;
 
@@ -42,6 +43,16 @@ namespace WebApplication5
                     txtEndereco.Text = oEvento.sEndereco;
                     ddlTipoEvento.Text = Convert.ToString(oEvento.iTipoEvento);
                     ddlTipoEvento.Enabled = false;
+                    string strCmd3 = string.Format("SELECT ATIVIDADE FROM ATIVIDADE_x_EVENTO WHERE EVENTO = {0} ", oEvento.iCodEvento);
+                    SqlDataReader dr2 = SqlDB.Instancia.FazerSelect(strCmd);
+                    while(dr2.Read())
+                    {
+                        int aux1 = grvAtividade.Rows.Count;
+                        for(int i = 0; i < aux1; i++)
+                        {
+
+                        }
+                    }
                     operacao = 2;
                 }
             }
@@ -128,8 +139,27 @@ namespace WebApplication5
                             bool auxRet = oEvd.inserirEvento(txtNomeEvento.Text, txtDataInicio.Text, txtDataFim.Text, Convert.ToInt32(ddlTipoEvento.Text), txtEndereco.Text);
                             if (auxRet == true)
                             {
+                                string strCmdCod = string.Format("SELECT COD_EVENTO FROM EVENTO WHERE NOME_EVENTO = '{0}'", txtNomeEvento.Text);
+                                SqlDataReader dr1 = SqlDB.Instancia.FazerSelect(strCmdCod);
+                                int iCodEvento = 0;
+                                if (dr1.Read())
+                                {
+                                    iCodEvento = Convert.ToInt32(dr1["COD_EVENTO"]);
+                                }
+                                dr1.Close();
+                                int aux = grvAtividade.Rows.Count;
+                                for(int cont = 0; cont < aux; cont++)
+                                {
+                                    CheckBox checkAtivi = (CheckBox)grvAtividade.Rows[cont].FindControl("CheckBox1");
+                                    Label lblAtivi = (Label)grvAtividade.Rows[cont].FindControl("label2");
+                                    if(checkAtivi.Checked == true)
+                                    {
+                                        string strCmd = string.Format("INSERT INTO ATIVIDADE_x_EVENTO VALUES ({0},{1})", lblAtivi.Text, iCodEvento);
+                                        int inu = SqlDB.Instancia.FazerUpdate(strCmd);
+                                    }
+                                }
                                 Response.Write("<script>alert('Cadastro Efetuado, voce será redirecionado para a tela de eventos.');</script>");
-                                Response.Redirect("eventos.apsx");
+                                Response.Redirect("~/eventos.apsx");
                             }
                         }
                         else
@@ -150,7 +180,7 @@ namespace WebApplication5
                 if(ret > 0)
                 {
                     Response.Write("<script>alert('Alteração Concluida.');</script>");
-                    Response.Redirect("eventos.apsx");
+                    Response.Redirect("~/eventos.apsx");
                 }
                 else
                 {
@@ -161,7 +191,7 @@ namespace WebApplication5
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("eventos.aspx");
+            Response.Redirect("~/eventos.apsx");
         }
     }
 }

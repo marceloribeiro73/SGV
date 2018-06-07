@@ -7,6 +7,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using WebApplication5.classes_servicos;
+using WebApplication.Classes;
+using WebApplication5.Classes;
 
 namespace WebApplication5
 {
@@ -24,11 +26,28 @@ namespace WebApplication5
                     txtNome.Text = Convert.ToString(dr["NOME_ATIVIDADE"]);
                     txtQtd.Text = Convert.ToString(dr["QTD_VOLUNTARIOS"]);
                     txtMin.Text = Convert.ToString(dr["DURACAO_MEDIA_MINUTOS"]);
-                    //DropDownList1.Text = Convert.ToString(dr["TIPO_ATIVIDADE"]);
+                    
                     txtNome.Enabled = false;
-                    //DropDownList1.Enabled = false;
+                    
                     operacao = 2;
                 }
+            }
+        }
+
+        protected Atividade carregarObj()
+        {
+            Atividade oAtivi = null;
+            if(txtNome.Text.Equals(null)
+            {
+                oAtivi = new Atividade();
+                oAtivi.sNome = txtNome.Text;
+                oAtivi.iQtdVol = Convert.ToInt32(txtQtd.Text);
+                oAtivi.iMedMin = Convert.ToInt32(txtMin.Text);
+                return oAtivi;
+            }
+            else
+            {
+                return oAtivi;
             }
         }
 
@@ -36,21 +55,26 @@ namespace WebApplication5
         {
             if (operacao == 1)
             {
-                SqlCommand comando = new SqlCommand("[dbo].[sp_sgv_incluir_atividades]", SqlDB.Instancia.Connection);
-                comando.CommandType = CommandType.StoredProcedure;
-                comando.Parameters.Add(new SqlParameter("@nome", SqlDbType.VarChar)).Value = txtNome.Text;
-                comando.Parameters.Add(new SqlParameter("@qtd", SqlDbType.Int)).Value = txtQtd.Text;
-                comando.Parameters.Add(new SqlParameter("@duraca", SqlDbType.Int)).Value = txtMin.Text;
-                //comando.Parameters.Add(new SqlParameter("@tipo", SqlDbType.Int)).Value = DropDownList1.Text;
-                int ret = comando.ExecuteNonQuery();
-                if(ret > 0)
+                Atividade oAt = new Atividade();
+                oAt = carregarObj();
+                AtividadeDAO oAtd = new AtividadeDAO();
+                int aux = oAtd.inserirAtividade(oAt);
+                if(aux == 2)
                 {
-                    Response.Write("<script>alert('Cadastro Efetuado');</script>");
-                    Response.Redirect("atividades.apsx");
+                    Response.Write("<script>alert('Inclusão não efetuada, atividade já cadastrada no sistema.')</script>");
                 }
-                else
+                else if(aux == 1)
                 {
-                    Response.Write("<script>alert('Cadastro não Efetuado');</script>");
+                    Response.Write("<script>alert('Inclusão efetuada, redirecionando para a tela de Eventos.')</script>");
+                    Response.Redirect("~/eventos.aspx");
+                }
+                else if(aux == 4)
+                {
+                    Response.Write("<script>alert('Inclusão não efetuada, campo quantidade de voluntários não foi preenchido.')</script>");
+                }
+                else if(aux == 5)
+                {
+                    Response.Write("<script>alert('Inclusão não efetuada, campo nome não foi preechido.')</script>");
                 }
             }
             else

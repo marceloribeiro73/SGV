@@ -169,19 +169,34 @@
                                           <asp:TextBox ID="txtEndereco" CssClass="form-control" runat="server"></asp:TextBox>
                                        </div>
                                        <div class="form-group col-lg-12">
-                                           <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataSourceID="atividades" CssClass="table table-bordered">
+                                           <asp:GridView ID="grvAtividade" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataSourceID="atividades" CssClass="table table-bordered">
                                                <Columns>
                                                    <asp:TemplateField>
                                                        <ItemTemplate>
                                                            <asp:CheckBox ID="CheckBox1" runat="server" />
                                                        </ItemTemplate>
                                                    </asp:TemplateField>
-                                                   <asp:BoundField DataField="NOME ATIVIDADE" HeaderText="NOME ATIVIDADE" SortExpression="NOME ATIVIDADE" />
+                                                   <asp:TemplateField HeaderText="NOME ATIVIDADE" SortExpression="NOME ATIVIDADE">
+                                                       <EditItemTemplate>
+                                                           <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("[NOME ATIVIDADE]") %>'></asp:TextBox>
+                                                       </EditItemTemplate>
+                                                       <ItemTemplate>
+                                                           <asp:Label ID="Label1" runat="server" Text='<%# Bind("[NOME ATIVIDADE]") %>'></asp:Label>
+                                                       </ItemTemplate>
+                                                   </asp:TemplateField>
                                                    <asp:BoundField DataField="QUANTIDADE DE VOLUNTARIOS" HeaderText="QUANTIDADE DE VOLUNTARIOS" SortExpression="QUANTIDADE DE VOLUNTARIOS" />
                                                    <asp:BoundField DataField="HORAS EM MEDIA" HeaderText="HORAS EM MEDIA" ReadOnly="True" SortExpression="HORAS EM MEDIA" />
+                                                   <asp:TemplateField SortExpression="COD_ATIVIDADE" Visible="False">
+                                                       <EditItemTemplate>
+                                                           <asp:Label ID="Label1" runat="server" Text='<%# Eval("COD_ATIVIDADE") %>'></asp:Label>
+                                                       </EditItemTemplate>
+                                                       <ItemTemplate>
+                                                           <asp:Label ID="Label2" runat="server" Text='<%# Bind("COD_ATIVIDADE") %>'></asp:Label>
+                                                       </ItemTemplate>
+                                                   </asp:TemplateField>
                                                </Columns>
                                            </asp:GridView>
-                                           <asp:SqlDataSource ID="atividades" runat="server" ConnectionString="<%$ ConnectionStrings:SGV_DEVConnectionString %>" SelectCommand="SELECT NOME_ATIVIDADE AS 'NOME ATIVIDADE', QTD_VOLUNNTARIOS AS 'QUANTIDADE DE VOLUNTARIOS', QTD_MINUTOS / 60 AS 'HORAS EM MEDIA' FROM ATIVIDADE WHERE STATUS &lt;&gt; 'I'"></asp:SqlDataSource>
+                                           <asp:SqlDataSource ID="atividades" runat="server" ConnectionString="<%$ ConnectionStrings:SGV_DEVConnectionString %>" SelectCommand="SELECT COD_ATIVIDADE, NOME_ATIVIDADE AS 'NOME ATIVIDADE', QTD_VOLUNTARIOS AS 'QUANTIDADE DE VOLUNTARIOS', QTD_MINUTOS / 60 AS 'HORAS EM MEDIA' FROM ATIVIDADE WHERE STATUS &lt;&gt; 'I'"></asp:SqlDataSource>
                                        </div>
                                        <div class="form-group col-lg-12">
                                             <asp:Button ID="btnSalvar" CssClass="btn btn-success btn-outline"  Text="Salvar"  runat="server" OnClick="btnSalvar_Click" />
