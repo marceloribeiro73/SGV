@@ -188,7 +188,7 @@
                                       </asp:TemplateField>
                                   </Columns>
                               </asp:GridView>
-                              <asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString='<%$ ConnectionStrings:SGV_DEVConnectionString %>' SelectCommand="SELECT A.NOME_ATIVIDADE AS 'NOME DA ATIVIDADE',A.QTD_VOLUNTARIOS AS 'QUANTIDADE IDEAL DE VOLUNTARIOS',A.QTD_MINUTOS AS 'DURAÇÃO MEDIA EM MINUTOS',A.STATUS AS 'STATUS',A.DATA_CRIACAO AS 'DATA DE CRIAÇÃO'FROM ATIVIDADE A WHERE A.STATUS <> 'I'"></asp:SqlDataSource>
+                              <asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString='<%$ ConnectionStrings:SGV_DEVConnectionString2 %>' SelectCommand="SELECT A.NOME_ATIVIDADE AS 'NOME DA ATIVIDADE',A.QTD_VOLUNTARIOS AS 'QUANTIDADE IDEAL DE VOLUNTARIOS',A.QTD_MINUTOS AS 'DURAÇÃO MEDIA EM MINUTOS',A.STATUS AS 'STATUS',A.DATA_CRIACAO AS 'DATA DE CRIAÇÃO'FROM ATIVIDADE A WHERE A.STATUS <> 'I'"></asp:SqlDataSource>
                           <asp:Button ID="btnAlterar" CssClass="btn btn-outline btn-primary" Text="Alterar" runat="server" OnClick="btnAlterar_Click" />
                           <asp:Button ID="btnAtivar" CssClass="btn btn-outline btn-primary" Text="Desativar/Ativar" runat="server" OnClick="btnAtivar_Click" />
                           <%--<button type="button" class="btn btn-outline btn-primary">Atribuir Voluntários</button>--%>

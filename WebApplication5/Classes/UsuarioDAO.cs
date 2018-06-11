@@ -60,5 +60,45 @@ namespace WebApplication5.Classes
                 return 2; //retorno Errado
             }
         }
+
+        public int cadUsuario(string pEmail , string pCpf, int pTipoVol)
+        {
+            string sSenha = null;
+            for(int i = 0; i <= 6; i++)
+            {
+                sSenha = sSenha+ pCpf[i];
+            }
+            int iTpUser = 0;
+            if(pTipoVol == 1)
+            {
+                iTpUser =1;//Admin
+            }
+            else if (pTipoVol == 2 || pTipoVol == 3)
+            {
+                iTpUser=2; //
+            }
+            else
+            {
+                return 9; // Erro tipo de voluntario não encontrado
+            }
+            int varRet = 0;
+            string strCmd = string.Format("INSERT INTO USUARIO VALUES ('{0}','{1}','{2}',{3},'I',getdate(),null,0,null)",pCpf,pEmail,sSenha,iTpUser);
+            if(iTpUser != 0 && !strCmd.Equals(null))
+            {
+                varRet = SqlDB.Instancia.FazerUpdate(strCmd);
+                if(varRet > 0)
+                {
+                    return 1; // Sucesso ao cadastrar
+                }
+                else
+                {
+                    return 2; //Erro ao inserir
+                }
+            }
+            else
+            {
+                return 2;//erro ao inserir
+            }
+        }
     }
 }

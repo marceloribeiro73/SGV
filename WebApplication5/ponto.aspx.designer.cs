@@ -22,112 +22,40 @@ namespace WebApplication5 {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// Controle lbl_title_data_marcacao.
+        /// Controle grwUtlDecla.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_title_data_marcacao;
+        protected global::System.Web.UI.WebControls.GridView grwUtlDecla;
         
         /// <summary>
-        /// Controle lbl_title_qtd_horas.
+        /// Controle DECLAANTER.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_title_qtd_horas;
+        protected global::System.Web.UI.WebControls.SqlDataSource DECLAANTER;
         
         /// <summary>
-        /// Controle lbl_title_qtd_atividade.
+        /// Controle grwEventos.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_title_qtd_atividade;
+        protected global::System.Web.UI.WebControls.GridView grwEventos;
         
         /// <summary>
-        /// Controle CheckBox1.
+        /// Controle EVENTOS.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox1;
-        
-        /// <summary>
-        /// Controle Label1.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
-        
-        /// <summary>
-        /// Controle Label2.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
-        
-        /// <summary>
-        /// Controle Label3.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
-        
-        /// <summary>
-        /// Controle Label4.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
-        
-        /// <summary>
-        /// Controle CheckBox2.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox2;
-        
-        /// <summary>
-        /// Controle CheckBox3.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox3;
-        
-        /// <summary>
-        /// Controle CheckBox4.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox4;
-        
-        /// <summary>
-        /// Controle CheckBox5.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox5;
+        protected global::System.Web.UI.WebControls.SqlDataSource EVENTOS;
         
         /// <summary>
         /// Controle lbl_horas_rest_semana.
@@ -139,6 +67,24 @@ namespace WebApplication5 {
         protected global::System.Web.UI.WebControls.Label lbl_horas_rest_semana;
         
         /// <summary>
+        /// Controle btn_aceitar_evento.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_aceitar_evento;
+        
+        /// <summary>
+        /// Controle btn_recusar_evento.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_recusar_evento;
+        
+        /// <summary>
         /// Controle btn_declarar_horas.
         /// </summary>
         /// <remarks>
@@ -146,23 +92,5 @@ namespace WebApplication5 {
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_declarar_horas;
-        
-        /// <summary>
-        /// Controle btn_aceitar_atividade.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_aceitar_atividade;
-        
-        /// <summary>
-        /// Controle btn_recusar_atividade.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_recusar_atividade;
     }
 }

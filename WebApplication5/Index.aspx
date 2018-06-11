@@ -50,7 +50,7 @@
                                 </div>
                                 <div class="form-group">
                                     <!--input class="form-control" placeholder="Password" name="password" type="password" value=""-->
-                                    <asp:TextBox ID="txtSenha" CssClass="form-control" placeholder="Senha" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txtSenha" CssClass="form-control" placeholder="Senha" runat="server" TextMode="Password"></asp:TextBox>
                                 </div>
                                 <div class="form-group">
                                     <asp:Label ID="lblUserInvalido" CssClass="form-group" runat="server" Visible="false" Text="Usuario/Senha Invalido"></asp:Label>

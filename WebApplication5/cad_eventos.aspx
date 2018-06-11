@@ -162,7 +162,7 @@
                                        <div class="form-group col-lg-4">
                                            <label>Tipo do Evento *</label>
                                            <asp:DropDownList ID="ddlTipoEvento" CssClass="form-control" runat="server" DataSourceID="dsDrpEventos" DataTextField="NOME_TIPO_EVENTO" DataValueField="COD_TIPO_EVENTO"></asp:DropDownList>
-                                           <asp:SqlDataSource ID="dsDrpEventos" runat="server" ConnectionString="<%$ ConnectionStrings:SGV_DEVConnectionString %>" SelectCommand="SELECT [COD_TIPO_EVENTO], [NOME_TIPO_EVENTO] FROM [TIPO_EVENTO]"></asp:SqlDataSource>
+                                           <asp:SqlDataSource ID="dsDrpEventos" runat="server" ConnectionString="<%$ ConnectionStrings:SGV_DEVConnectionString2 %>" SelectCommand="SELECT [COD_TIPO_EVENTO], [NOME_TIPO_EVENTO] FROM [TIPO_EVENTO]"></asp:SqlDataSource>
                                        </div>
                                        <div class="form-group col-lg-6">
                                           <label>Endereço</label>
@@ -196,7 +196,7 @@
                                                    </asp:TemplateField>
                                                </Columns>
                                            </asp:GridView>
-                                           <asp:SqlDataSource ID="atividades" runat="server" ConnectionString="<%$ ConnectionStrings:SGV_DEVConnectionString %>" SelectCommand="SELECT COD_ATIVIDADE, NOME_ATIVIDADE AS 'NOME ATIVIDADE', QTD_VOLUNTARIOS AS 'QUANTIDADE DE VOLUNTARIOS', QTD_MINUTOS / 60 AS 'HORAS EM MEDIA' FROM ATIVIDADE WHERE STATUS &lt;&gt; 'I'"></asp:SqlDataSource>
+                                           <asp:SqlDataSource ID="atividades" runat="server" ConnectionString="<%$ ConnectionStrings:SGV_DEVConnectionString2 %>" SelectCommand="SELECT COD_ATIVIDADE, NOME_ATIVIDADE AS 'NOME ATIVIDADE', QTD_VOLUNTARIOS AS 'QUANTIDADE DE VOLUNTARIOS', QTD_MINUTOS / 60 AS 'HORAS EM MEDIA' FROM ATIVIDADE WHERE STATUS &lt;&gt; 'I'"></asp:SqlDataSource>
                                        </div>
                                        <div class="form-group col-lg-12">
                                             <asp:Button ID="btnSalvar" CssClass="btn btn-success btn-outline"  Text="Salvar"  runat="server" OnClick="btnSalvar_Click" />

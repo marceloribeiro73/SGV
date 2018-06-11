@@ -49,10 +49,10 @@ namespace WebApplication5.classes_servicos
             {
                 SqlConnectionStringBuilder scb = new SqlConnectionStringBuilder()
                 {
-                    DataSource = "localhost",
+                    DataSource = "athena-sgv.database.windows.net",
                     InitialCatalog = "SGV_DEV",
-                    UserID = "sa",
-                    Password = "123456"
+                    UserID = "marcelo.ribeiro",
+                    Password = "73System#"
                 };
 
                 return scb.ToString();

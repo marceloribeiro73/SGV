@@ -100,15 +100,31 @@ namespace WebApplication5
                 }
                 else
                 {
-                    Response.Write("<script>alert('Não houve selecão para alteracão.');</script>");
+                    Response.Write("<script>alert('Não houve selecão para atribuição.');</script>");
                 }
             }
         }
 
-        protected void btnLimpar_Click(object sender, EventArgs e)
+        
+            
+
+        protected void btnAtribuir_Click(object sender, EventArgs e)
         {
-            txtNome.Text = "";
-            evento.SelectCommand = "SELECT E.COD_EVENTO, E.NOME_EVENTO, E.DATA_INICIO,E.DATA_FIM, E.STATUS, E.DATA_CRIACAO, E.DATA_INATIVACAO, T.NOME_TIPO_EVENTO FROM EVENTO E, TIPO_EVENTO T WHERE E.TIPO_EVENTO = T.COD_TIPO_EVENTO";
+            int aux = grwEventos.Rows.Count;
+            for (int cont = 0; cont < aux; cont++)
+            {
+                CheckBox check = (CheckBox)grwEventos.Rows[cont].FindControl("CheckBox1");
+                Label lbCod = (Label)grwEventos.Rows[cont].FindControl("Label1");
+                if (check.Checked)
+                {
+                    Session["evento"] = lbCod.Text;
+                    Response.Redirect("atribuicaoVol.aspx");
+                }
+                else
+                {
+                    Response.Write("<script>alert('Não houve selecão para alteracão.');</script>");
+                }
+            }
         }
     }
 }

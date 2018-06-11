@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WebApplication5.Classes;
 
 namespace WebApplication5
 {
@@ -12,6 +13,33 @@ namespace WebApplication5
         protected void Page_Load(object sender, EventArgs e)
         {
 
+        }
+
+        protected void btn_aceitar_evento_Click(object sender, EventArgs e)
+        {
+            Usuario oUs = new Usuario();
+            oUs = (Usuario)Session["usuario"];
+            int varRet = 0;
+            int coutRows = grwEventos.Rows.Count;
+            for (int i = 0; i < coutRows; i++)
+            {
+                CheckBox chk = (CheckBox)grwEventos.Rows[i].FindControl("CheckBox1");
+                Label lblEvento = (Label)grwEventos.Rows[i].FindControl("Label2");
+                if (chk.Checked)
+                {
+                    VoluntarioDAO oVld = new VoluntarioDAO();
+                    int aux = oVld.aceitarEvento(oUs.sVoluntario, Convert.ToInt32(lblEvento.Text));
+                    if (aux == 1)
+                    {
+                        Response.Write(string.Format("<script>alert('Evento Aceito.');window.location = 'ponto.aspx';</script>"));
+                    }
+                    else
+                    {
+                        Response.Write(string.Format("<script>alert('Erro ao aceitar evento.');window.location = 'ponto.aspx';</script>", varRet));
+                    }
+
+                }
+            }
         }
     }
 }

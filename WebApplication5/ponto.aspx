@@ -148,96 +148,60 @@
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="col-lg-12 form-group">
-                                                <label>Utimas declarações</label>
-                                                <table class="table table-striped table-bordered table-hover table-responsive" id="tbl_marcacoes">
-                                                    <thead>
-                                                        <tr>
-                                                            <th><asp:Label ID="lbl_title_data_marcacao" CssClass="form-group" Text="Data Marcação" runat="server" ></asp:Label></th>
-                                                            <th><asp:Label ID="lbl_title_qtd_horas" CssClass="form-group" Text="Quantidade de Horas" runat="server"></asp:Label></th>
-                                                            <th><asp:Label ID="lbl_title_qtd_atividade" CssClass="form-group" Text="Atividade" runat="server"></asp:Label></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <th>19/03/2018</th>
-                                                            <th>2:30</th>
-                                                            <th>Asembleia Geral - Março</th>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>18/03/2018</th>
-                                                            <th>4:00</th>
-                                                            <th>Entrega de Kits - Athur Alvin</th>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>17/03/2018</th>
-                                                            <th>3:20</th>
-                                                            <th>Entrega de Refeições - Largo São Francisco/SP</th>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>3/03/2018</th>
-                                                            <th>5:20</th>
-                                                            <th>Entrega de Refeições - Praça Julio Prestes/SP</th>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>04/03/2018</th>
-                                                            <th>2:50</th>
-                                                            <th>Entrega de Cestas Basicas - A.E. Carvalho/SP</th>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
+                                                <label>Declarações Anteriores</label>
+                                                <asp:GridView ID="grwUtlDecla" CssClass="table table-bordered table-striped table-responsive" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataSourceID="DECLAANTER">
+                                                    <Columns>
+                                                        <asp:BoundField DataField="VOLUNTÁRIO" HeaderText="VOLUNTÁRIO" ReadOnly="True" SortExpression="VOLUNTÁRIO" />
+                                                        <asp:BoundField DataField="EVENTO" HeaderText="EVENTO" SortExpression="EVENTO" />
+                                                        <asp:BoundField DataField="HORAS DECLARADAS" HeaderText="HORAS DECLARADAS" SortExpression="HORAS DECLARADAS" />
+                                                        <asp:BoundField DataField="DATA" HeaderText="DATA" SortExpression="DATA" />
+                                                    </Columns>
+                                                    
+                                                </asp:GridView>
+                                                <asp:SqlDataSource ID="DECLAANTER" runat="server" ConnectionString="<%$ ConnectionStrings:SGV_DEVConnectionString2 %>" SelectCommand="SELECT V.PRIMEIRO_NOME+' '+V.ULTIMO_NOME AS 'VOLUNTÁRIO', E.NOME_EVENTO AS 'EVENTO', DH.HORAS_DECLARADAS AS 'HORAS DECLARADAS', DH.DATA_DECLARACAO AS 'DATA'
+FROM VOLUNTARIO V, EVENTO E, DECLARACAO_HORAS DH WHERE V.CPF = DH.VOLUNTARIO AND DH.EVENTO = E.COD_EVENTO"></asp:SqlDataSource>
                                             </div>
                                             <div class="col-lg-12 form-group">
-                                                <label>Atividades</label>
-                                                <table class="table table-striped table-bordered table-hover table-responsive" id="tbl_atividade">
-                                                    <thead>
-                                                        <tr>
-                                                            <th><asp:CheckBox ID="CheckBox1" runat="server"/></th>
-                                                            <th><asp:Label ID="Label1" CssClass="form-group" Text="Atividade" runat="server" ></asp:Label></th>
-                                                            <th><asp:Label ID="Label2" CssClass="form-group" Text="Data" runat="server"></asp:Label></th>
-                                                            <th><asp:Label ID="Label3" CssClass="form-group" Text="Horas Registradas" runat="server"></asp:Label></th>
-                                                            <th><asp:Label ID="Label4" CssClass="form-group" Text="Status" runat="server"></asp:Label></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <th><asp:CheckBox ID="CheckBox2" runat="server"/></th>
-                                                            <th>Entrega de Refeições - Praça da Reoublica/SP</th>
-                                                            <th>24/03/2018</th>
-                                                            <th>0:00</th>
-                                                            <th>Pendente de Aceitação</th>
-                                                        </tr>
-                                                        <tr>
-                                                            <th><asp:CheckBox ID="CheckBox3" runat="server"/></th>
-                                                            <th>Entrega de Refeições - Região da Luz/SP</th>
-                                                            <th>24/03/2018</th>
-                                                            <th>0:00</th>
-                                                            <th>Recusada</th>
-                                                        </tr>
-                                                        <tr>
-                                                            <th><asp:CheckBox ID="CheckBox4" runat="server"/></th>
-                                                            <th>Asembleia Geral - Março</th>
-                                                            <th>19/03/2018</th>
-                                                            <th>2:30</th>
-                                                            <th>Aceita</th>
-                                                        </tr>
-                                                        <tr>
-                                                            <th><asp:CheckBox ID="CheckBox5" runat="server"/></th>
-                                                            <th>Entrega de Kits - Athur Alvin</th>
-                                                            <th>18/03/2018</th>
-                                                            <th>4:00</th>
-                                                            <th>Aceita</th>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
+                                                <label>Eventos</label>
+                                                <asp:GridView ID="grwEventos" CssClass="table table-bordered table-striped table-responsive" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataSourceID="EVENTOS" DataKeyNames="COD_EVENTO">
+                                                    <Columns>
+                                                        <asp:TemplateField>
+                                                            <ItemTemplate>
+                                                                <asp:CheckBox ID="CheckBox1" runat="server" />
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="COD_EVENTO" InsertVisible="False" SortExpression="COD_EVENTO" Visible="False">
+                                                            <EditItemTemplate>
+                                                                <asp:Label ID="Label1" runat="server" Text='<%# Eval("COD_EVENTO") %>'></asp:Label>
+                                                            </EditItemTemplate>
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="Label2" runat="server" Text='<%# Bind("COD_EVENTO") %>'></asp:Label>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="EVENTO" SortExpression="EVENTO">
+                                                            <EditItemTemplate>
+                                                                <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("EVENTO") %>'></asp:TextBox>
+                                                            </EditItemTemplate>
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="Label1" runat="server" Text='<%# Bind("EVENTO") %>'></asp:Label>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                        <asp:BoundField DataField="DATA DE INICIO" HeaderText="DATA DE INICIO" SortExpression="DATA DE INICIO" />
+                                                        <asp:BoundField DataField="DATA DE TERMINO" HeaderText="DATA DE TERMINO" SortExpression="DATA DE TERMINO" />
+                                                        <asp:BoundField DataField="STATUS" HeaderText="STATUS" SortExpression="STATUS" />
+                                                    </Columns>
+                                                    
+                                                </asp:GridView>
+                                                <asp:SqlDataSource ID="EVENTOS" runat="server" ConnectionString="<%$ ConnectionStrings:SGV_DEVConnectionString2 %>" SelectCommand="SELECT E.COD_EVENTO, E.NOME_EVENTO AS 'EVENTO', E.DATA_INICIO 'DATA DE INICIO', E.DATA_FIM AS 'DATA DE TERMINO' , SA.NOME_STATUS AS 'STATUS' FROM EVENTO E, VOLUNTARIO_x_EVENTO VE, VOLUNTARIO V, STATUS_APP SA WHERE V.CPF=VE.VOLUNTARIO AND E.COD_EVENTO=VE.EVENTO AND SA.SIGLA_STATUS = VE.STATUS"></asp:SqlDataSource>
                                             </div>
-                                            <div class="form-group">
+                                            <!--div class="form-group">
                                                 <label>Horas restantes na semana: </label>
                                                 <asp:Label ID="lbl_horas_rest_semana" CssClass="form-group" runat="server" Text="2:02"></asp:Label>
-                                            </div>
+                                            </div-->
                                             <div class="form-group">
+                                                <asp:Button ID="btn_aceitar_evento" CssClass="btn btn-outline btn-success" runat="server" Text="Aceitar Evento" OnClick="btn_aceitar_evento_Click"  />
+                                                <asp:Button ID="btn_recusar_evento" CssClass="btn btn-outline btn-danger" runat="server" Text="Recusar Evento"/>
                                                 <asp:Button ID="btn_declarar_horas" CssClass="btn btn-outline btn-primary" runat="server" Text="Declarar Horas" />
-                                                <asp:Button ID="btn_aceitar_atividade" CssClass="btn btn-outline btn-success" runat="server" Text="Aceitar Atividade" />
-                                                <asp:Button ID="btn_recusar_atividade" CssClass="btn btn-outline btn-danger" runat="server" Text="Recusar Atividade"/>
                                             </div>
                                     </div>
                                 </div>

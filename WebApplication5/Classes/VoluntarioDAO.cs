@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using WebApplication5.classes_servicos;
 
-namespace WebApplication.Classes
+namespace WebApplication5.Classes
 {
     public class VoluntarioDAO
     {
@@ -78,6 +78,20 @@ namespace WebApplication.Classes
                 return "Alteração não pode ser realizada, verifique os campos e tente novamente.";
             }
 
+        }
+
+        public int aceitarEvento(string pCpf, int pEvento)
+        {
+            string strCmd = string.Format("UPDATE VOLUNTARIO_x_EVENTO SET STATUS = 'Z' WHERE VOLUNTARIO = '{0}' AND EVENTO = {1} ", pCpf, pEvento);
+            int varRet = SqlDB.Instancia.FazerUpdate(strCmd);
+            if(varRet > 0)
+            {
+                return 1;
+            }
+            else
+            {
+                return 2;
+            }
         }
     }
 }

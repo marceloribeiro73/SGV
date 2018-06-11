@@ -263,7 +263,7 @@
                                                 <asp:DropDownList ID="ddwTipoVoluntario" CssClass="form-control" runat="server" DataSourceID="SqlDataSource1" DataTextField="NOME_TIPO_VOLUNTARIO" DataValueField="COD_TIPO_VOLUNTARIO">
 
                                                 </asp:DropDownList>
-                                                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:SGV_DEVConnectionString %>" SelectCommand="SELECT [COD_TIPO_VOLUNTARIO], [NOME_TIPO_VOLUNTARIO] FROM [TIPO_VOLUNTARIO]"></asp:SqlDataSource>
+                                                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:SGV_DEVConnectionString2 %>" SelectCommand="SELECT [COD_TIPO_VOLUNTARIO], [NOME_TIPO_VOLUNTARIO] FROM [TIPO_VOLUNTARIO]"></asp:SqlDataSource>
                                             </div>
                                             <div class="form-group col-lg-3">
                                                 <label>Dias possiveis de Trabalho</label><br />
@@ -280,11 +280,11 @@
                                                 <asp:TextBox ID="txtMaxHorasTrab" CssClass="form-control" TextMode="Number" Text="1" runat="server"></asp:TextBox>
                                                 <asp:Label ID="lblErroHorasMax" CssClass="form-group" Text='Por gentileza, insira valores ente 1 e 8.' runat="server"></asp:Label>
                                             </div>
-                                            <div class="form-group col-lg-4">
+                                            <!--<div class="form-group col-lg-4">
                                                 <label>Foto</label>
                                                 <asp:Image ID="img1"  runat="server" />
                                                 <asp:FileUpload ID="upFoto" CssClass="form-control" runat="server" />
-                                            </div>
+                                            </div>-->
                                             <div class="form-group col-lg-6">
                                                 <!--<label>Status do Termo</label>
                                                 <div class="radio">
@@ -293,8 +293,8 @@
                                                     <label>
                                                         <input type="radio" />Não Assinado</label>
                                                     <!--<asp:Button ID="btnGerarTermo" Text="Gerar Termo" CssClass="btn btn-default" runat="server" />-->
-                                                    <!--<asp:Button ID="btnReceberTermo" Text="Receber Termo" CssClass="btn btn-default" runat="server" />-->
-                                                </div>
+                                                    <!--<asp:Button ID="btnReceberTermo" Text="Receber Termo" CssClass="btn btn-default" runat="server" />
+                                                </div>-->
                                             </div>
                                             <div class="form-group col-lg-12">
                                                 <asp:Button ID="btnSalvar" Text="Salvar" CssClass="btn btn-success" runat="server" OnClick="btnSalvar_Click" />

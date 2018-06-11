@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using WebApplication5.Classes;
 using WebApplication5.classes_servicos;
 
 namespace WebApplication5.Classes
 {
     public class AtividadeDAO
     {
-        protected int inserirAtividade(Atividade pAtividade)
+        public int inserirAtividade(Atividade pAtividade)
         {
             Atividade oAtividade = null;
             if(pAtividade.sNome.Equals(null))

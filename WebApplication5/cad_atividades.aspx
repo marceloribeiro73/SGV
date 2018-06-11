@@ -160,19 +160,9 @@
                                            <asp:TextBox ID="txtMin" TextMode="Number" CssClass="form-control" runat="server"></asp:TextBox>
                                        </div>
                                        <div class="form-group col-lg-6">
-                                           <label>Tipo de Atividade</label>
-                                           <asp:GridView ID="grwTipoVoluntarios" CssClass="table table-striped table-bordered table-hover" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
-                                               <Columns>
-                                                   <asp:TemplateField>
-                                                       <ItemTemplate>
-                                                           <asp:CheckBox ID="CheckBox1" runat="server" />
-                                                       </ItemTemplate>
-                                                   </asp:TemplateField>
-                                                   <asp:BoundField DataField="TIPO VOLUNTARIO" HeaderText="TIPO VOLUNTARIO" SortExpression="TIPO VOLUNTARIO" />
-                                               </Columns>
-                                               
-                                           </asp:GridView>                                           
-                                           <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:SGV_DEVConnectionString %>" SelectCommand="SELECT NOME_TIPO_VOLUNTARIO AS 'TIPO VOLUNTARIO' FROM TIPO_VOLUNTARIO"></asp:SqlDataSource>
+                                           <label>Tipo de Voluntario a realizar essa atividade</label>
+                                           <asp:DropDownList ID="ddwTipoVoluntario" runat="server" DataSourceID="FonteTVNuvem" DataTextField="NOME_TIPO_VOLUNTARIO" DataValueField="COD_TIPO_VOLUNTARIO" CssClass="form-control"></asp:DropDownList>                                        
+                                           <asp:SqlDataSource ID="FonteTVNuvem" runat="server" ConnectionString="<%$ ConnectionStrings:SGV_DEVConnectionString2 %>" SelectCommand="SELECT * FROM [TIPO_VOLUNTARIO]"></asp:SqlDataSource>
                                        </div>
                                        <div class="form-group col-lg-12">
                                             <asp:Button ID="btnSalvar" CssClass="btn btn-success btn-outline" Text="Salvar" runat="server" OnClick="btnSalvar_Click" />

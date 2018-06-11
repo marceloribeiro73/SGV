@@ -76,15 +76,6 @@ namespace WebApplication5 {
         protected global::System.Web.UI.WebControls.Button btnBuscar;
         
         /// <summary>
-        /// Controle btnLimpar.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLimpar;
-        
-        /// <summary>
         /// Controle grwEventos.
         /// </summary>
         /// <remarks>
@@ -119,5 +110,14 @@ namespace WebApplication5 {
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnInativar;
+        
+        /// <summary>
+        /// Controle btnAtribuir.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAtribuir;
     }
 }

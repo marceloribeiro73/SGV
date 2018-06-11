@@ -165,7 +165,6 @@
                                     </div>
                                     <div class="form-group col-lg-12">
                                         <asp:Button ID="btnBuscar" cssClass="btn btn-outline btn-primary" Text="Buscar" runat="server" OnClick="btnBuscarEvento_Click"></asp:Button>
-                                        <asp:Button ID="btnLimpar" cssClass="btn btn-outline btn-primary" Text="Limpar" runat="server" OnClick="btnLimpar_Click"></asp:Button>
                                     </div>
                                 </div>
                                 <asp:GridView ID="grwEventos" runat="server" AutoGenerateColumns="False" DataKeyNames="COD_EVENTO" DataSourceID="evento" CssClass="table table-bordered table-responsive" AllowPaging="True" AllowSorting="True">
@@ -175,7 +174,7 @@
                                                 <asp:CheckBox ID="CheckBox1" runat="server" />
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="COD_EVENTO" InsertVisible="False" SortExpression="COD_EVENTO">
+                                        <asp:TemplateField HeaderText="COD_EVENTO" InsertVisible="False" SortExpression="COD_EVENTO" Visible="False">
                                             <EditItemTemplate>
                                                 <asp:Label ID="Label1" runat="server" Text='<%# Eval("COD_EVENTO") %>'></asp:Label>
                                             </EditItemTemplate>
@@ -183,9 +182,9 @@
                                                 <asp:Label ID="Label1" runat="server" Text='<%# Bind("COD_EVENTO") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:BoundField DataField="NOME_EVENTO" HeaderText="NOME_EVENTO" SortExpression="NOME_EVENTO" />
-                                        <asp:BoundField DataField="DATA_INICIO" HeaderText="DATA_INICIO" SortExpression="DATA_INICIO" />
-                                        <asp:BoundField DataField="DATA_FIM" HeaderText="DATA_FIM" SortExpression="DATA_FIM" />
+                                        <asp:BoundField DataField="NOME_EVENTO" HeaderText="NOME DO EVENTO" SortExpression="NOME_EVENTO" />
+                                        <asp:BoundField DataField="DATA_INICIO" HeaderText="DATA DE INICIO" SortExpression="DATA_INICIO" />
+                                        <asp:BoundField DataField="DATA_FIM" HeaderText="DATA DE FIM" SortExpression="DATA_FIM" />
                                         <asp:TemplateField HeaderText="STATUS" SortExpression="STATUS">
                                             <EditItemTemplate>
                                                 <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("STATUS") %>'></asp:TextBox>
@@ -194,19 +193,19 @@
                                                 <asp:Label ID="Label2" runat="server" Text='<%# Bind("STATUS") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:BoundField DataField="DATA_CRIACAO" HeaderText="DATA_CRIACAO" SortExpression="DATA_CRIACAO" />
-                                        <asp:BoundField DataField="DATA_INATIVACAO" HeaderText="DATA_INATIVACAO" SortExpression="DATA_INATIVACAO" />
-                                        <asp:BoundField DataField="NOME_TIPO_EVENTO" HeaderText="NOME_TIPO_EVENTO" SortExpression="NOME_TIPO_EVENTO" />
+                                        <asp:BoundField DataField="DATA_CRIACAO" HeaderText="DATA DE CRIACAO" SortExpression="DATA_CRIACAO" />
+                                        <asp:BoundField DataField="DATA_INATIVACAO" HeaderText="DATA_INATIVACAO" SortExpression="DATA_INATIVACAO" Visible="False" />
+                                        <asp:BoundField DataField="NOME_TIPO_EVENTO" HeaderText="TIPO EVENTO" SortExpression="NOME_TIPO_EVENTO" />
                                     </Columns>
                                 </asp:GridView>
                                 
-                                <asp:SqlDataSource ID="evento" runat="server" ConnectionString="<%$ ConnectionStrings:SGV_DEVConnectionString %>" SelectCommand="SELECT E.COD_EVENTO, E.NOME_EVENTO, E.DATA_INICIO, 
+                                <asp:SqlDataSource ID="evento" runat="server" ConnectionString="<%$ ConnectionStrings:SGV_DEVConnectionString2 %>" SelectCommand="SELECT E.COD_EVENTO, E.NOME_EVENTO, E.DATA_INICIO, 
 		E.DATA_FIM, E.STATUS, E.DATA_CRIACAO, E.DATA_INATIVACAO, T.NOME_TIPO_EVENTO 
 		FROM EVENTO E , TIPO_EVENTO T WHERE E.TIPO_EVENTO = T.COD_TIPO_EVENTO"></asp:SqlDataSource>
 
                                 <asp:Button ID="btnAlterar" CssClass="btn btn-outline btn-primary" Text="Alterar" runat="server" OnClick="btnAlterar_Click"/>
                                 <asp:Button ID="btnInativar" CssClass="btn btn-outline btn-primary" Text="Inativar/Ativar" runat="server" OnClick="btnInativar_Click" />
-                                <%--<asp:Button ID="btnAtribuir" CssClass="btn btn-outline btn-primary" Text="Atribuir Atividades" runat="server" />--%>
+                                <asp:Button ID="btnAtribuir" CssClass="btn btn-outline btn-primary" Text="Atribuir Voluntários" runat="server" OnClick="btnAtribuir_Click" />
                             </div>
                             <!-- /.panel-body -->
                         </div>

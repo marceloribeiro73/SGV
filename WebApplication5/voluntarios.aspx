@@ -200,7 +200,7 @@
                                   </Columns>
 
                               </asp:GridView>
-                              <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:SGV_DEVConnectionString %>" SelectCommand="SELECT V.CPF AS 'CPF', V.PRIMEIRO_NOME AS 'PRIMEIRO NOME',V.UTIMO_NOME AS 'ULTIMO NOME', V.DATA_NASC AS 'DATA DE NASCIMENTO',
+                              <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:SGV_DEVConnectionString2 %>" SelectCommand="SELECT V.CPF AS 'CPF', V.PRIMEIRO_NOME AS 'PRIMEIRO NOME',V.UlTIMO_NOME AS 'ULTIMO NOME', V.DATA_NASC AS 'DATA DE NASCIMENTO',
 V.DATA_ADESAO AS 'DATA DE ADESÃO', T.NOME_TIPO_VOLUNTARIO AS 'TIPO VOLUNTARIO', V.STATUS AS 'STATUS' 
 FROM VOLUNTARIO V, TIPO_VOLUNTARIO T WHERE V.TIPO_VOLUNTARIO = T.COD_TIPO_VOLUNTARIO"></asp:SqlDataSource>
                           </div>

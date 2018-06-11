@@ -49,22 +49,22 @@ namespace WebApplication5 {
         protected global::System.Web.UI.WebControls.TextBox txtMin;
         
         /// <summary>
-        /// Controle grwTipoVoluntarios.
+        /// Controle ddwTipoVoluntario.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grwTipoVoluntarios;
+        protected global::System.Web.UI.WebControls.DropDownList ddwTipoVoluntario;
         
         /// <summary>
-        /// Controle SqlDataSource1.
+        /// Controle FonteTVNuvem.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
+        protected global::System.Web.UI.WebControls.SqlDataSource FonteTVNuvem;
         
         /// <summary>
         /// Controle btnSalvar.

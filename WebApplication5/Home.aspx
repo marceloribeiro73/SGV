@@ -90,15 +90,12 @@
                                     <a href="#"><i class="fa fa-fw"></i>Parametrização Sistema<span class="fa arrow"></span></a>
                                     <ul class="nav nav-third-level">
                                         <li>
-                                            <a href="tipo_atividade.aspx">Tipo de Atividade</a>
-                                        </li>
-                                        <li>
                                             <a href="tipo_eventos.aspx">Tipo de Evento</a>
                                         </li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="notifications.html">Logs da Aplicação</a>
+                                    <a href="logs.aspx">Logs da Aplicação</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -119,7 +116,7 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li class="active">
-                            <a href="#"><i class="fa fa-clock-o fa-fw"></i>Ponto / Declaração de Horas</a>
+                            <a href="ponto.aspx"><i class="fa fa-clock-o fa-fw"></i>Ponto / Declaração de Horas</a>
                         </li>
                     </ul>
                 </div>
@@ -133,33 +130,53 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header" id="h1Cabecalho">Bem vindo, João Paulo</h1>
+                            <h1 class="page-header" id="h1Cabecalho"><asp:Label ID="lblCab" CssClass="list-group-item" Text="" runat="server"></asp:Label></h1>
                         </div>
                         <!-- /.col-lg-12 -->
                     </div>
                     <!-- /.row -->
-                    <div class="panel panel-default">
+                    <div class="panel panel-default" id="panelAdmin" runat="server" >
                         <div class="panel-heading">
-                            <i class="fa fa-bell fa-fw"></i>Painel de Notificações
+                            <i class="fa fa-bell fa-fw"></i>Painel de Notificações Administrador
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div  class="panel-body" >
+                            <div class="list-group">
+                                <a id="aVoluntarios" href="voluntarios.aspx" class="list-group-item">
+                                    <i class="fa fa-male fa-fw"></i><asp:Label ID="lblVolCad"  Text="0" runat="server"></asp:Label> Voluntarios com pendencias cadastrais
+                                </a>
+                                <a id="aEventos" href="#" class="list-group-item">
+                                    <i class="fa fa-bar-chart fa-fw"></i><asp:Label ID="lblEvePro"  Text="0" runat="server"></asp:Label> Eventos com problemas realcionados a voluntarios
+                                </a>
+                                <a href="voluntarios.aspx" class="list-group-item">
+                                    <i class="fa fa-clock-o fa-fw"></i><asp:Label  Text="0" runat="server"></asp:Label> Voluntários com exesso de horas na semana
+                                </a>
+                                <a od="aVolHoras" href="voluntarios.aspx" class="list-group-item">
+                                    <i class="fa fa-clock-o fa-fw"></i><asp:Label ID="lblVolBloq"  Text="0" runat="server"></asp:Label> Voluntário ativo, sem registrar horas na ultima
+                                </a>
+                                <a id="aUserBlq" href="usuarios.aspx" class="list-group-item">
+                                    <i class="fa fa-user fa-fw"></i><asp:Label ID="lblUser"  Text="0" runat="server"></asp:Label> Usuarios estão com acesso ao sistema bloqueado
+                                </a>
+                            </div>
+                            <!-- /.list-group -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+
+                    <div id="panelUser" class="panel panel-default" runat="server" >
+                        <div class="panel-heading">
+                            <i class="fa fa-bell fa-fw"></i>Painel de Notificações Usuario
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="list-group">
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-male fa-fw"></i>4 Voluntarios com pendencias cadastrais
+                                <a id="aAceptEve" href="ponto.aspx" class="list-group-item">
+                                    <i class="fa fa-male fa-fw"></i>Você não aceitou <asp:Label ID="lblVolAcepEve"  Text="0" runat="server"></asp:Label> convite(s) para um(ns) evento(s).
                                 </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-bar-chart fa-fw"></i>2 Atividades com problemas
+                                <a href="ponto.aspx" class="list-group-item">
+                                    <i class="fa fa-bar-chart fa-fw"></i>Você não declarou horas trabalhadas em <asp:Label ID="lblHoraTrab"  Text="0" runat="server"></asp:Label> Eventos.
                                 </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-clock-o fa-fw"></i>2 Voluntários com exesso de horas na semana
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-clock-o fa-fw"></i>1 Voluntário ativo, sem registrar horas nas utimas duas semanas
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-user fa-fw"></i>3 Usuarios estão com acesso ao sistema bloqueado
-                                </a>
+                                
                             </div>
                             <!-- /.list-group -->
                         </div>

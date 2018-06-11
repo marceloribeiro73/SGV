@@ -2,7 +2,7 @@
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web.UI.WebControls;
-using WebApplication.Classes;
+using WebApplication5.Classes;
 using WebApplication5.classes_servicos;
 
 namespace WebApplication5

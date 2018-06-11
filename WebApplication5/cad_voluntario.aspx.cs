@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using WebApplication.Classes;
+using WebApplication5.Classes;
 using WebApplication5.classes_servicos;
 
 namespace WebApplication5
@@ -87,7 +87,7 @@ namespace WebApplication5
                     txtDataAdesao.Text = oVoluntario.sDataAdesao;
                     txtDataAdesao.Enabled = false;
                     ddwTipoVoluntario.Text =Convert.ToString(oVoluntario.iTipoVoluntario);
-                    upFoto.Enabled = false;
+                    //upFoto.Enabled = false;
                     txtMaxHorasTrab.Text = Convert.ToString(oVoluntario.iMaxHoras);
                     foreach(int i in oVoluntario.oDiasSemana)
                     {
@@ -324,8 +324,8 @@ namespace WebApplication5
         {
             if (operacao == 1)
             {
-                string foto = upLoadFoto();
-                if(!foto.Equals("null"))
+                string foto = "null";
+                if(foto.Equals("null"))
                 {
                     if(validaObrigatorios())
                     {
@@ -343,6 +343,8 @@ namespace WebApplication5
                                     {
                                         Mensagem("Cadastro eferuado com Sucesso.");
                                         Response.Redirect("voluntarios.apsx");
+                                        UsuarioDAO oUsd = new UsuarioDAO();
+                                        int i = oUsd.cadUsuario(oVl.sEmail, oVl.sCpf, oVl.iTipoVoluntario);
                                     }
                                     else
                                     {

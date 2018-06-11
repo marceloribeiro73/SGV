@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using WebApplication5.classes_servicos;
-using WebApplication.Classes;
+using WebApplication5.Classes;
 using WebApplication5.Classes;
 
 namespace WebApplication5
@@ -37,7 +37,7 @@ namespace WebApplication5
         protected Atividade carregarObj()
         {
             Atividade oAtivi = null;
-            if(txtNome.Text.Equals(null)
+            if(txtNome.Text.Equals(null))
             {
                 oAtivi = new Atividade();
                 oAtivi.sNome = txtNome.Text;
