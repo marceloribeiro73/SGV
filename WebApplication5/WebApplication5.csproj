@@ -1483,6 +1483,7 @@
     <Compile Include="Classes\Usuario.cs" />
     <Compile Include="Classes\Voluntario.cs" />
     <Compile Include="Classes\VoluntarioDAO.cs" />
+    <Compile Include="classes_servicos\Notificacoes.cs" />
     <Compile Include="classes_servicos\SqlDB.cs" />
     <Compile Include="declarar_ponto.aspx.cs">
       <DependentUpon>declarar_ponto.aspx</DependentUpon>

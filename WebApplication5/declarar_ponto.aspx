@@ -148,17 +148,23 @@
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="form-group col-lg-6">
-                                                <asp:Label ID="lbl_decla_atividade" CssClass="form-group" Font-Bold="true" Text="Atividade" runat="server"></asp:Label>
-                                                <asp:TextBox ID="txt_decla_atividade" CssClass="form-control" Enabled="false" runat="server"></asp:TextBox>
+                                                <asp:Label ID="lblCod" CssClass="form-group" Font-Bold="true" Visible="false" runat="server"></asp:Label>
+                                                <asp:Label ID="lbl_decla_evento" CssClass="form-group" Font-Bold="true" Text="Evento" runat="server"></asp:Label>
+                                                <asp:TextBox ID="txt_decla_evento" CssClass="form-control" Enabled="false" runat="server"></asp:TextBox>
                                             </div>
                                             <div class="form-group col-lg-6">
                                                 <asp:Label ID="lbl_decla_horas" CssClass="form-group" Font-Bold="true" Text="Quantidade de Horas" runat="server"></asp:Label>
-                                                <asp:TextBox ID="txt_decla_horas" CssClass="form-control" Enabled="true" TextMode="Time"  runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="txt_decla_horas" CssClass="form-control" Enabled="true" TextMode="Number"  runat="server"></asp:TextBox>
+                                            </div>
+                                            <div class="form-group col-lg-6">
+                                                <asp:Label ID="lblData" CssClass="form-group" Font-Bold="true" Text="Data a Ser declarada" runat="server"></asp:Label>
+                                                <asp:TextBox ID="txtData" CssClass="form-control" Enabled="true" TextMode="Date"  runat="server"></asp:TextBox>
                                             </div>
                                             <div class="form-group col-lg-12">
-                                                <asp:Button ID="btn_decla_salvar" CssClass="btn btn-outline btn-success" Text="Salvar" runat="server" />
-                                                <asp:Button ID="btn_decla_cancelar" CssClass="btn btn-outline btn-danger" Text="Cancelar" runat="server" />
+                                                <asp:Button ID="btn_decla_salvar" CssClass="btn btn-outline btn-success" Text="Salvar" runat="server" OnClick="btn_decla_salvar_Click" />
+                                                <asp:Button ID="btn_decla_cancelar" CssClass="btn btn-outline btn-danger" Text="Cancelar" runat="server" OnClick="btn_decla_cancelar_Click" />
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>

@@ -188,8 +188,16 @@ namespace WebApplication5
             SqlDataReader dr = SqlDB.Instancia.FazerSelect(strCmd);
             if(dr.Read())
             {
-                dr.Close();
-                return true;
+                if(dr.HasRows)
+                {
+                    dr.Close();
+                    return true;
+                }
+                else
+                {
+                    dr.Close();
+                    return false;
+                }
             }
             else
             {
@@ -207,36 +215,32 @@ namespace WebApplication5
             {
                 if(DateTime.TryParse(txtDataAdesao.Text, out dAdsao))
                 {
-                   if(DateTime.TryParse(txtDataEmmisaoDoc.Text, out dAdsao))
+                   if(DateTime.TryParse(txtDataEmmisaoDoc.Text, out dEmissaDoc))
                    {
-                       if((dNasc.Year - DateTime.Now.Year) > 18){
-                           if(dNasc.Date < dEmissaDoc.Date)
-                           {
-                               return true;
-                           }
-                           else
-                           {
-                               return false;
-                           }
+                       if((dNasc.Year - DateTime.Now.Year) > 18)
+                       {
+                           
+                        return true;
+                           
                        }
                        else
                        {
-                           return false;
+                           return true;
                        }
                    }
                    else
                    {
-                       return false;
+                       return true;
                    }
                 }
                 else
                 {
-                    return false;
+                    return true;
                 }
             }
             else
             {
-                return false;
+                return true;
             }
         }
 
@@ -263,7 +267,7 @@ namespace WebApplication5
                 oVoluntario2.sUltimoNome = txtUltimoNome.Text;
                 oVoluntario2.sDataNasc = txtDataNasc.Text;
                 oVoluntario2.sDocIdentificacao = txtDocId.Text;
-                oVoluntario2.iTipoVoluntario = Convert.ToInt32(ddwTipoDocID.Text);
+                oVoluntario2.iTipoVoluntario = int.Parse(ddwTipoVoluntario.Text) ;
                 oVoluntario2.sDataEmissao = txtDataEmmisaoDoc.Text;
                 oVoluntario2.sOrgaoEmissor = txtOrgEmissor.Text;
                 oVoluntario2.sNacionalidade = txtNacionalidade.Text;
@@ -329,7 +333,7 @@ namespace WebApplication5
                 {
                     if(validaObrigatorios())
                     {
-                        if(validaSeExiste())
+                        if(validaSeExiste() == false)
                         {
                             if(validaConsisData())
                             {
@@ -389,8 +393,7 @@ namespace WebApplication5
                         string vRet = oVld.alterarVoluntario(oVl);
                         if(vRet.Equals("Alteração realizada com sucesso."))
                         {
-                            Mensagem(vRet);
-                            Response.Redirect("voluntarios.aspx");
+                            Response.Write(string.Format("<script>alert('Cadasro Relizado com sucesso. Redirecionando para a tela de voluntarios ');window.location = 'voluntarios.aspx';</script>"));
                         }
                         else
                         {

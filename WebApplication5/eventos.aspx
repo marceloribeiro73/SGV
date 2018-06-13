@@ -158,7 +158,7 @@
                                         <label>Tipo de Evento</label>
                                         <asp:DropDownList ID="ddlTipoEvento" CssClass="form-control" runat="server" DataSourceID="tipoevento" DataTextField="NOME_TIPO_EVENTO" DataValueField="COD_TIPO_EVENTO">
                                         </asp:DropDownList>
-                                        <asp:SqlDataSource ID="tipoevento" runat="server" ConnectionString="<%$ ConnectionStrings:SGV_DEVConnectionString %>" SelectCommand="SELECT [NOME_TIPO_EVENTO], [COD_TIPO_EVENTO] FROM [TIPO_EVENTO]"></asp:SqlDataSource>
+                                        <asp:SqlDataSource ID="tipoevento" runat="server" ConnectionString="<%$ ConnectionStrings:SGV_DEVConnectionString2 %>" SelectCommand="SELECT [NOME_TIPO_EVENTO], [COD_TIPO_EVENTO] FROM [TIPO_EVENTO]"></asp:SqlDataSource>
                                     </div>
                                     <div class="form-group col-lg-12">
                                         <asp:CheckBox ID="chkInativos" Text="Buscar somente ativos" CssClass="form-group" runat="server" />

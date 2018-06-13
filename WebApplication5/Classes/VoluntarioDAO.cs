@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using WebApplication5.classes_servicos;
@@ -14,7 +15,7 @@ namespace WebApplication5.Classes
         {           
             if(!pVoluntario.sCpf.Equals(null))
             {
-                string strCmd = string.Format("INSERT INTO VOLUNTARIO VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{8}','{9}','{10}','{11}','{12}','{13}',getdate(),'I',{14},{15})",pVoluntario.sCpf,pVoluntario.sPrimeiroNome,pVoluntario.sUltimoNome,pVoluntario.sDataNasc,pVoluntario.sDocIdentificacao,pVoluntario.sTipoDocIdentificacao,pVoluntario.sDataEmissao,pVoluntario.sOrgaoEmissor,pVoluntario.sNacionalidade, pVoluntario.sTelefoneContato, pVoluntario.sTelefoneContato2,pVoluntario.sEmail,pVoluntario.sDataAdesao, pVoluntario.sPathFoto,pVoluntario.iMaxHoras, pVoluntario.iTipoVoluntario);
+                string strCmd = string.Format("INSERT INTO VOLUNTARIO VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}',getdate(),'I',{14},{15})", pVoluntario.sCpf,pVoluntario.sPrimeiroNome,pVoluntario.sUltimoNome,pVoluntario.sDataNasc,pVoluntario.sDocIdentificacao,pVoluntario.sTipoDocIdentificacao,pVoluntario.sDataEmissao,pVoluntario.sOrgaoEmissor,pVoluntario.sNacionalidade, pVoluntario.sTelefoneContato, pVoluntario.sTelefoneContato2,pVoluntario.sEmail,pVoluntario.sDataAdesao, pVoluntario.sPathFoto,pVoluntario.iMaxHoras, pVoluntario.iTipoVoluntario);
 
                 string strCmd2 = string.Format("INSERT INTO ENDERECO VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}')",pVoluntario.sCpf, pVoluntario.sCodPostal, pVoluntario.sLogradouro,pVoluntario.sNumero, pVoluntario.sComplemento,pVoluntario.sBairro,pVoluntario.sCidade,pVoluntario.sEstadoProvincia,pVoluntario.sPais);
 
@@ -93,5 +94,70 @@ namespace WebApplication5.Classes
                 return 2;
             }
         }
+
+        public int recusarEvento(string pCpf, int pEvento)
+        {
+            string strCmd = string.Format("UPDATE VOLUNTARIO_x_EVENTO SET STATUS = 'R' WHERE VOLUNTARIO = '{0}' AND EVENTO = {1} ", pCpf, pEvento);
+            int varRet = SqlDB.Instancia.FazerUpdate(strCmd);
+            if(varRet > 0)
+            {
+                return 1;
+            }
+            else
+            {
+                return 2;
+            }
+        }
+
+        public Voluntario buscarVoluntario(string pCpf)
+        {
+            Voluntario oVl =null;
+            if(!pCpf.Equals(null))
+            {
+                string strCmd = string.Format ("SELECT * FROM VOLUNTARIO WHERE CPF = '{0}'",pCpf);
+                SqlDataReader dr1 = SqlDB.Instancia.FazerSelect(strCmd);
+                if(dr1.Read())
+                {
+                    oVl=new Voluntario();
+                    oVl.sCpf = Convert.ToString(dr1["CPF"]);
+                    oVl.sPrimeiroNome = Convert.ToString(dr1["PRIMEIRO_NOME"]);
+                    oVl.sUltimoNome = Convert.ToString(dr1["ULTIMO_NOME"]);
+                    oVl.sDataNasc = Convert.ToString(dr1["DATA_NASC"]);
+                    oVl.sDocIdentificacao = Convert.ToString(dr1["DOC_IDENTIFICACAO"]);
+                    oVl.sTipoDocIdentificacao = Convert.ToString(dr1["TIPO_DOC_IDENTIFICACAO"]);
+                    oVl.sDataEmissao = Convert.ToString(dr1["DATA_EMISSAO"]);
+                    oVl.sOrgaoEmissor = Convert.ToString(dr1["ORGAO_EMISSOR"]);
+                    oVl.sNacionalidade = Convert.ToString(dr1["NACIONALIDADE"]);
+                    oVl.sTelefoneContato = Convert.ToString(dr1["TELEFONE_CONTATO"]);
+                    oVl.sTelefoneContato2 = Convert.ToString(dr1["TELEFONE_CONTATO2"]);
+                    oVl.sEmail = Convert.ToString(dr1["EMAIL"]);
+                    oVl.sDataAdesao = Convert.ToString(dr1["DATA_ADESAO"]);
+                    oVl.sPathFoto = Convert.ToString(dr1["PATH_FOTO"]);
+                    oVl.sDataCriacao = Convert.ToString(dr1["DATA_CRIACAO"]);
+                    oVl.sStatus = Convert.ToString(dr1["STATUS"]);
+                    oVl.iMaxHoras = Convert.ToInt32(dr1["MAX_HORAS_SEMANAIS"]);
+                    oVl.iTipoVoluntario = Convert.ToInt32(dr1["TIPO_VOLUNTARIO"]);
+                    dr1.Close();
+                }
+                return oVl;
+            }
+            else
+            {
+                return oVl;
+            }
+
+        }
+
+        public int declararHoras(int pEvento, string pVoluntario, int pHoras, DateTime pData)
+        {
+            
+            DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
+            Calendar calendar = dfi.Calendar;
+            int aux = calendar.GetWeekOfYear(pData,dfi.CalendarWeekRule,dfi.FirstDayOfWeek);
+            string strCmd = string.Format("INSERT INTO DECLARACAO_HORAS VALUES ('{0}',{1},{2},{3},{4},getdate())", pVoluntario, pEvento, pHoras,aux ,pData.Year.ToString());
+            int varRet = SqlDB.Instancia.FazerUpdate(strCmd);
+            return varRet;
+        }
+        
     }
 }

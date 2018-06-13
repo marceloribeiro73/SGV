@@ -22,22 +22,31 @@ namespace WebApplication5 {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// Controle lbl_decla_atividade.
+        /// Controle lblCod.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_decla_atividade;
+        protected global::System.Web.UI.WebControls.Label lblCod;
         
         /// <summary>
-        /// Controle txt_decla_atividade.
+        /// Controle lbl_decla_evento.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_decla_atividade;
+        protected global::System.Web.UI.WebControls.Label lbl_decla_evento;
+        
+        /// <summary>
+        /// Controle txt_decla_evento.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_decla_evento;
         
         /// <summary>
         /// Controle lbl_decla_horas.
@@ -56,6 +65,24 @@ namespace WebApplication5 {
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_decla_horas;
+        
+        /// <summary>
+        /// Controle lblData.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblData;
+        
+        /// <summary>
+        /// Controle txtData.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtData;
         
         /// <summary>
         /// Controle btn_decla_salvar.

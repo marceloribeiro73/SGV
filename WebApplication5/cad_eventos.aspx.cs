@@ -158,8 +158,8 @@ namespace WebApplication5
                                         int inu = SqlDB.Instancia.FazerUpdate(strCmd);
                                     }
                                 }
-                                Response.Write("<script>alert('Cadastro Efetuado, voce será redirecionado para a tela de eventos.');</script>");
-                                Response.Redirect("~/eventos.apsx");
+                                Response.Write(string.Format("<script>alert('Cadastro Efetuado, voce será redirecionado para a tela de eventos.');window.location = 'eventos.aspx';</script>"));
+
                             }
                         }
                         else
@@ -179,8 +179,7 @@ namespace WebApplication5
                 int ret =SqlDB.Instancia.FazerUpdate(strCmd);
                 if(ret > 0)
                 {
-                    Response.Write("<script>alert('Alteração Concluida.');</script>");
-                    Response.Redirect("~/eventos.apsx");
+                    Response.Write(string.Format("<script>alert('Cadastro Efetuado, voce será redirecionado para a tela de eventos.');window.location = 'eventos.aspx';</script>"));
                 }
                 else
                 {

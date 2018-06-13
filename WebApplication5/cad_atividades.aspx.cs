@@ -65,8 +65,7 @@ namespace WebApplication5
                 }
                 else if(aux == 1)
                 {
-                    Response.Write("<script>alert('Inclusão efetuada, redirecionando para a tela de Eventos.')</script>");
-                    Response.Redirect("~/eventos.aspx");
+                    Response.Write(string.Format("<script>alert('Inclusão efetuada, redirecionando para a tela de Atividades.');window.location = 'atividades.aspx';</script>"));
                 }
                 else if(aux == 4)
                 {
@@ -83,8 +82,7 @@ namespace WebApplication5
                 int ret = SqlDB.Instancia.FazerUpdate(strCmd);
                 if (ret > 0)
                 {
-                    Response.Write("<script>alert('Alteração Concluida');</script>");
-                    Response.Redirect("eventos.apsx");
+                    Response.Write(string.Format("<script>alert('Alteração efetuada, redirecionando para a tela de Ativivdades.');window.location = 'atividades.aspx';</script>"));
                 }
                 else
                 {

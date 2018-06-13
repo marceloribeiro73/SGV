@@ -201,7 +201,7 @@ FROM VOLUNTARIO V, EVENTO E, DECLARACAO_HORAS DH WHERE V.CPF = DH.VOLUNTARIO AND
                                             <div class="form-group">
                                                 <asp:Button ID="btn_aceitar_evento" CssClass="btn btn-outline btn-success" runat="server" Text="Aceitar Evento" OnClick="btn_aceitar_evento_Click"  />
                                                 <asp:Button ID="btn_recusar_evento" CssClass="btn btn-outline btn-danger" runat="server" Text="Recusar Evento"/>
-                                                <asp:Button ID="btn_declarar_horas" CssClass="btn btn-outline btn-primary" runat="server" Text="Declarar Horas" />
+                                                <asp:Button ID="btn_declarar_horas" CssClass="btn btn-outline btn-primary" runat="server" Text="Declarar Horas" OnClick="btn_declarar_horas_Click" />
                                             </div>
                                     </div>
                                 </div>

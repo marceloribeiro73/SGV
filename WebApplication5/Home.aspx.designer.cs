@@ -40,6 +40,15 @@ namespace WebApplication5 {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl panelAdmin;
         
         /// <summary>
+        /// Controle aVoluntarios.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor aVoluntarios;
+        
+        /// <summary>
         /// Controle lblVolCad.
         /// </summary>
         /// <remarks>
@@ -47,6 +56,15 @@ namespace WebApplication5 {
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblVolCad;
+        
+        /// <summary>
+        /// Controle aEventos.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor aEventos;
         
         /// <summary>
         /// Controle lblEvePro.
@@ -67,6 +85,15 @@ namespace WebApplication5 {
         protected global::System.Web.UI.WebControls.Label lblVolBloq;
         
         /// <summary>
+        /// Controle aUserBlq.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor aUserBlq;
+        
+        /// <summary>
         /// Controle lblUser.
         /// </summary>
         /// <remarks>
@@ -85,6 +112,15 @@ namespace WebApplication5 {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl panelUser;
         
         /// <summary>
+        /// Controle aAceptEve.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor aAceptEve;
+        
+        /// <summary>
         /// Controle lblVolAcepEve.
         /// </summary>
         /// <remarks>
@@ -92,6 +128,15 @@ namespace WebApplication5 {
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblVolAcepEve;
+        
+        /// <summary>
+        /// Controle aDeclEve.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor aDeclEve;
         
         /// <summary>
         /// Controle lblHoraTrab.
