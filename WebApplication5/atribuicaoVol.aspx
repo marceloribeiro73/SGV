@@ -36,7 +36,6 @@
     <form id="form1" runat="server">
         <div id="wrapper">
 
-        <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -72,7 +71,7 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="voluntarios.aspx"><i class="fa fa-male fa-fw"></i>Voluntarios</a>
+                            <a href="voluntarios.aspx"><i class="fa fa-male fa-fw"></i> Voluntarios</a>
                         </li>
                         <li>
                             <a href="atividades.aspx"><i class="fa fa-bar-chart-o fa-fw"></i>Atividades</a>
@@ -90,15 +89,12 @@
                                     <a href="#"><i class="fa fa-fw"></i>Parametrização Sistema<span class="fa arrow"></span></a>
                                     <ul class="nav nav-third-level">
                                         <li>
-                                            <a href="tipo_atividade.aspx">Tipo de Atividade</a>
-                                        </li>
-                                        <li>
-                                            <a href="Home.aspx">Tipo de Evento</a>
+                                            <a href="tipo_eventos.aspx">Tipo de Evento</a>
                                         </li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="notifications.html">Logs da Aplicação</a>
+                                    <a href="logs.aspx">Logs da Aplicação</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -142,7 +138,7 @@
                     <div class="col-lg-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                Atribuição de Voluntários a Eventos
+                                Atribuição de Voluntários a Atividades
                             </div>
                             <div class="panel-body">
                                 <div class="row">
@@ -160,6 +156,11 @@
                                            <label>Data Fim</label>
                                            <asp:TextBox ID="txtDtFim" CssClass="form-control" Enabled="false" TextMode="Date"
                                                runat="server"></asp:TextBox>
+                                       </div>
+                                       <div class="form-group col-lg-4">
+                                            <label>Atividade</label>
+                                            <asp:DropDownList ID="ddwTipoVoluntario" runat="server" DataSourceID="fonteatrvol" DataTextField="NOME_TIPO_VOLUNTARIO" DataValueField="COD_TIPO_VOLUNTARIO" CssClass="form-control"></asp:DropDownList>
+                                            <asp:SqlDataSource ID="fonteatrvol" runat="server" ConnectionString="<%$ ConnectionStrings:SGV_DEVConnectionString2 %>" SelectCommand="SELECT * FROM [ATIVIDADE]"></asp:SqlDataSource>
                                        </div>
                                        <div class="row">
                                            <div class="col-lg-12">

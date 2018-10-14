@@ -36,7 +36,6 @@
     <form id="form1" runat="server">
         <div id="wrapper">
 
-        <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -90,15 +89,12 @@
                                     <a href="#"><i class="fa fa-fw"></i>Parametrização Sistema<span class="fa arrow"></span></a>
                                     <ul class="nav nav-third-level">
                                         <li>
-                                            <a href="tipo_atividade.aspx">Tipo de Atividade</a>
-                                        </li>
-                                        <li>
-                                            <a href="Home.aspx">Tipo de Evento</a>
+                                            <a href="tipo_eventos.aspx">Tipo de Evento</a>
                                         </li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="notifications.html">Logs da Aplicação</a>
+                                    <a href="logs.aspx">Logs da Aplicação</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -119,7 +115,7 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li class="active">
-                            <a href="#"><i class="fa fa-clock-o fa-fw"></i>Ponto / Declaração de Horas</a>
+                            <a href="ponto.aspx"><i class="fa fa-clock-o fa-fw"></i>Ponto / Declaração de Horas</a>
                         </li>
                     </ul>
                 </div>
@@ -151,11 +147,11 @@
                                            <label>Nome da Atividade</label>
                                            <asp:TextBox ID="txtNome" CssClass="form-control" runat="server"></asp:TextBox>
                                        </div>
-                                       <div class="form-group col-lg-4">
+                                       <div class="form-group col-lg-3">
                                            <label>Quatidade Ideal de Voluntários</label>
                                            <asp:TextBox ID="txtQtd" TextMode="Number" CssClass="form-control" runat="server"></asp:TextBox>
                                        </div>
-                                       <div class="form-group col-lg-4">
+                                       <div class="form-group col-lg-3">
                                            <label>Duração Media em Minutos</label>
                                            <asp:TextBox ID="txtMin" TextMode="Number" CssClass="form-control" runat="server"></asp:TextBox>
                                        </div>

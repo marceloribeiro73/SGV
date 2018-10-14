@@ -36,7 +36,6 @@
     <form id="form1" runat="server">
         <div id="wrapper">
 
-        <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -72,13 +71,13 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="voluntarios.aspx"><i class="fa fa-male fa-fw"></i>Voluntarios</a>
+                            <a href="voluntarios.aspx"><i class="fa fa-male fa-fw"></i> Voluntarios</a>
                         </li>
                         <li>
                             <a href="atividades.aspx"><i class="fa fa-bar-chart-o fa-fw"></i>Atividades</a>
                         </li>
                         <li>
-                            <a href="evetos.aspx"><i class="fa fa-table fa-fw"></i>Eventos</a>
+                            <a href="eventos.aspx"><i class="fa fa-table fa-fw"></i>Eventos</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i>Administração do Sistema<span class="fa arrow"></span></a>
@@ -90,15 +89,12 @@
                                     <a href="#"><i class="fa fa-fw"></i>Parametrização Sistema<span class="fa arrow"></span></a>
                                     <ul class="nav nav-third-level">
                                         <li>
-                                            <a href="tipo_atividade.aspx">Tipo de Atividade</a>
-                                        </li>
-                                        <li>
-                                            <a href="Home.aspx">Tipo de Evento</a>
+                                            <a href="tipo_eventos.aspx">Tipo de Evento</a>
                                         </li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="notifications.html">Logs da Aplicação</a>
+                                    <a href="logs.aspx">Logs da Aplicação</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -119,7 +115,7 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li class="active">
-                            <a href="#"><i class="fa fa-clock-o fa-fw"></i>Ponto / Declaração de Horas</a>
+                            <a href="ponto.aspx"><i class="fa fa-clock-o fa-fw"></i>Ponto / Declaração de Horas</a>
                         </li>
                     </ul>
                 </div>

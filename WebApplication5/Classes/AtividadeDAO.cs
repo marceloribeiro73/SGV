@@ -13,21 +13,21 @@ namespace WebApplication5.Classes
         public int inserirAtividade(Atividade pAtividade)
         {
             Atividade oAtividade = null;
-            if(pAtividade.sNome.Equals(null))
+            if(!pAtividade.sNome.Equals(" "))
             {
-                if(pAtividade.iQtdVol.Equals(null))
+                if(!pAtividade.iQtdVol.Equals(null))
                 {
                     string strCmd = string.Format("SELECT * FROM ATIVIDADE WHERE NOME_ATIVIDADE = '{0}'", pAtividade.sNome);
                     SqlDataReader dr = SqlDB.Instancia.FazerSelect(strCmd);
                     if(dr.Read())
                     {
                         dr.Close();
-                        return 2;  //Retorno de já existente
+                        return 6;  //Retorno de já existente
                     }
                     else
                     {
                         dr.Close();
-                        strCmd = string.Format("INSERT INTO ATIVIDADE VALUES ('{0}','{1}',{2},{3},'{4}',getdate())",pAtividade.iCod,pAtividade.sNome,pAtividade.iQtdVol,pAtividade.iMedMin,pAtividade.sStatus);
+                        strCmd = string.Format("INSERT INTO ATIVIDADE VALUES ('{0}',{1},{2}, 'A',getdate())",pAtividade.sNome,pAtividade.iQtdVol,pAtividade.iMedMin);
                         int varRet = SqlDB.Instancia.FazerUpdate(strCmd);
                         if(varRet > 0)
                         {
@@ -45,7 +45,7 @@ namespace WebApplication5.Classes
                                 }
                                 else
                                 {
-                                    return 3; // Erro ao vincular tipo voluntario
+                                    return 1; // Erro ao vincular tipo voluntario
                                 }
                             }
                             else

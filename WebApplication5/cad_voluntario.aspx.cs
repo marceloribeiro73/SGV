@@ -18,35 +18,35 @@ namespace WebApplication5
             if(Session["voluntario"] != null)
             {
                 string aux = (string)Session["voluntario"];
-                string strCmd = string.Format("SELECT V.CPF, V.PRIMEIRO_NOME, V.UTIMO_NOME,V.DATA_NASC, V.DOC_IDENTIFICACAO,V.TIPO_DOC_IDENTFICACAO,V.ORGAO_EMISSOR ,V.DATA_EMISSAO,V.NACIONALIDADE,V.TELEFONE_CONTATO,V.TELEFONE_CONTATO2, V.EMAIL, V.DATA_ADESAO,V.MAX_HORAS_SEMANAIS ,V.TIPO_VOLUNTARIO, E.COD_POSTAL,E.LOGRADOURO,E.NUMERO,E.COMPLEMENTO,E.BAIRO, E.CIDADE, E.ESTADO_PROVINCIA, E.PAIS FROM VOLUNTARIO V, ENDERECO E WHERE V.CPF = '{0}' AND V.CPF = E.CPF", aux);
+                string strCmd = string.Format("SELECT V.CPF, V.PRIMEIRO_NOME, V.ULTIMO_NOME,V.DATA_NASC, V.DOC_IDENTIFICACAO,V.TIPO_DOC_IDENTIFICACAO,V.ORGAO_EMISSOR ,V.DATA_EMISSAO,V.NACIONALIDADE,V.TELEFONE_CONTATO,V.TELEFONE_CONTATO2, V.EMAIL, V.DATA_ADESAO,V.MAX_HORAS_SEMANAIS ,V.TIPO_VOLUNTARIO, E.COD_POSTAL,E.LOGRADOURO,E.NUMERO,E.COMPLEMENTO,E.BAIRRO, E.CIDADE, E.ESTADO_PROVINCIA, E.PAIS FROM VOLUNTARIO V, ENDERECO E WHERE V.CPF = '{0}' AND V.CPF = E.CPF", aux);
                 SqlDataReader dr = SqlDB.Instancia.FazerSelect(strCmd);
                 Voluntario oVoluntario = null;
                 if (dr.Read())
                 {
                     oVoluntario = new Voluntario();
-                    oVoluntario.sCpf = Convert.ToString(dr["CPF"]);
-                    oVoluntario.sPrimeiroNome = Convert.ToString(dr["PRIMEIRO_NOME"]);
-                    oVoluntario.sUltimoNome = Convert.ToString(dr["UTIMO_NOME"]);
-                    oVoluntario.sDataNasc = Convert.ToString(dr["DATA_NASC"]);
-                    oVoluntario.sDocIdentificacao = Convert.ToString(dr["DOC_IDENTIFICACAO"]);
-                    oVoluntario.sTipoDocIdentificacao = Convert.ToString(dr["TIPO_DOC_IDENTFICACAO"]);
-                    oVoluntario.sDataEmissao = Convert.ToString(dr["DATA_EMISSAO"]);
-                    oVoluntario.sNacionalidade = Convert.ToString(dr["NACIONALIDADE"]);
-                    oVoluntario.sTelefoneContato = Convert.ToString(dr["TELEFONE_CONTATO"]);
-                    oVoluntario.sTelefoneContato2 = Convert.ToString(dr["TELEFONE_CONTATO2"]);
-                    oVoluntario.sEmail = Convert.ToString(dr["EMAIL"]);
-                    oVoluntario.sDataAdesao = Convert.ToString(dr["DATA_ADESAO"]);
-                    oVoluntario.iTipoVoluntario = Convert.ToInt32(dr["TIPO_VOLUNTARIO"]);
-                    oVoluntario.sCodPostal = Convert.ToString(dr["COD_POSTAL"]);
-                    oVoluntario.sLogradouro = Convert.ToString(dr["LOGRADOURO"]);
-                    oVoluntario.sLogradouro = Convert.ToString(dr["NUMERO"]);
-                    oVoluntario.sComplemento = Convert.ToString(dr["COMPLEMENTO"]);
-                    oVoluntario.sBairro = Convert.ToString(dr["BAIRO"]);
-                    oVoluntario.sCidade = Convert.ToString(dr["CIDADE"]);
-                    oVoluntario.sEstadoProvincia = Convert.ToString(dr["ESTADO_PROVINCIA"]);
-                    oVoluntario.sPais = Convert.ToString(dr["PAIS"]);
+                    oVoluntario.sCpf = Convert.ToString(dr["V.CPF"]);
+                    oVoluntario.sPrimeiroNome = Convert.ToString(dr["V.PRIMEIRO_NOME"]);
+                    oVoluntario.sUltimoNome = Convert.ToString(dr["V.ULTIMO_NOME"]);
+                    oVoluntario.sDataNasc = Convert.ToString(dr["V.DATA_NASC"]);
+                    oVoluntario.sDocIdentificacao = Convert.ToString(dr["V.DOC_IDENTIFICACAO"]);
+                    oVoluntario.sTipoDocIdentificacao = Convert.ToString(dr["V.TIPO_DOC_IDENTIFICACAO"]);
+                    oVoluntario.sDataEmissao = Convert.ToString(dr["V.DATA_EMISSAO"]);
+                    oVoluntario.sNacionalidade = Convert.ToString(dr["V.NACIONALIDADE"]);
+                    oVoluntario.sTelefoneContato = Convert.ToString(dr["V.TELEFONE_CONTATO"]);
+                    oVoluntario.sTelefoneContato2 = Convert.ToString(dr["V.TELEFONE_CONTATO2"]);
+                    oVoluntario.sEmail = Convert.ToString(dr["V.EMAIL"]);
+                    oVoluntario.sDataAdesao = Convert.ToString(dr["V.DATA_ADESAO"]);
+                    oVoluntario.iTipoVoluntario = Convert.ToInt32(dr["V.TIPO_VOLUNTARIO"]);
+                    oVoluntario.sCodPostal = Convert.ToString(dr["E.COD_POSTAL"]);
+                    oVoluntario.sLogradouro = Convert.ToString(dr["E.LOGRADOURO"]);
+                    oVoluntario.sLogradouro = Convert.ToString(dr["E.NUMERO"]);
+                    oVoluntario.sComplemento = Convert.ToString(dr["E.COMPLEMENTO"]);
+                    oVoluntario.sBairro = Convert.ToString(dr["E.BAIRRO"]);
+                    oVoluntario.sCidade = Convert.ToString(dr["E.CIDADE"]);
+                    oVoluntario.sEstadoProvincia = Convert.ToString(dr["E.ESTADO_PROVINCIA"]);
+                    oVoluntario.sPais = Convert.ToString(dr["E.PAIS"]);
                     dr.Close();
-                    string strCmd2 = string.Format("SELECT FS.DIA_SEMANA FROM DIAS_SEMANA_VOLUNTARIO FS, VOLUNTARIO V WHERE FS.VOLUNTARIO = V.CPF");
+                    string strCmd2 = string.Format("SELECT FS.DIA_SEMANA FROM DIAS_SEMANA_VOLUNTARIO FS, VOLUNTARIO V WHERE FS.VOLUNTARIO = V.CPF AND V.CPF '{0}'",oVoluntario.sCpf);
                     oVoluntario.oDiasSemana = new List<int>();
                     SqlDataReader dr1 = SqlDB.Instancia.FazerSelect(strCmd2);
                     while(dr1.Read())
@@ -345,10 +345,9 @@ namespace WebApplication5
                                     string varRet =oVld.inserirVoluntario(oVl);
                                     if(varRet.Equals("Cadastro eferuado com Sucesso."))
                                     {
-                                        Mensagem("Cadastro eferuado com Sucesso.");
-                                        Response.Redirect("voluntarios.apsx");
                                         UsuarioDAO oUsd = new UsuarioDAO();
                                         int i = oUsd.cadUsuario(oVl.sEmail, oVl.sCpf, oVl.iTipoVoluntario);
+                                        Response.Write(string.Format("<script>alert('Cadastro Efetuado, voce será redirecionado para a tela de voluntários.');window.location = 'voluntarios.aspx';</script>"));
                                     }
                                     else
                                     {

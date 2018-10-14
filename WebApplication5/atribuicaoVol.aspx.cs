@@ -26,6 +26,10 @@ namespace WebApplication5
                 txtDTinico.Text = dateInicio.ToString("yyyy-MM-dd");
                 txtDtFim.Text = dateFim.ToString("yyyy-MM-dd");
                 lblCodEve.Text = Convert.ToString(oEv.iCodEvento);
+                voldisponiveis.SelectCommand = string.Format("SELECT V.CPF,V.PRIMEIRO_NOME +' '+V.ULTIMO_NOME AS 'VOLUNTÁRIO' , TV.NOME_TIPO_VOLUNTARIO FROM VOLUNTARIO V, TIPO_VOLUNTARIO TV WHERE V.TIPO_VOLUNTARIO = TV.COD_TIPO_VOLUNTARIO AND V.CPF NOT IN(SELECT V.CPF FROM VOLUNTARIO V, EVENTO E, VOLUNTARIO_x_EVENTO VE WHERE V.CPF = VE.VOLUNTARIO AND VE.EVENTO = E.COD_EVENTO AND E.COD_EVENTO = {0})", oEv.iCodEvento);
+                volAtribuidos.SelectCommand = string.Format("SELECT V.CPF,V.PRIMEIRO_NOME +' '+V.ULTIMO_NOME AS 'VOLUNTÁRIO' , TV.NOME_TIPO_VOLUNTARIO FROM VOLUNTARIO V, TIPO_VOLUNTARIO TV, EVENTO E, VOLUNTARIO_x_EVENTO VE WHERE V.TIPO_VOLUNTARIO = TV.COD_TIPO_VOLUNTARIO AND V.CPF = VE.VOLUNTARIO AND E.COD_EVENTO = VE.EVENTO AND E.COD_EVENTO = '{0}'", oEv.iCodEvento);
+                fonteatrvol.SelectCommand= string.Format("SELECT A.COD_ATIVIDADE, A.NOME_ATIVIDADE, A.QTD_VOLUNTARIOS, A.QTD_MINUTOS, A.STATUS FROM ATIVIDADE A, EVENTO E, ATIVIDADE_x_EVENTO AE WHERE A.COD_ATIVIDADE = AE.ATIVIDADE AND E.COD_EVENTO = AE.EVENTO AND A.STATUS <> 'I' AND COD_EVENTO = {0}", oEv.iCodEvento);
+
             }
             else
             {

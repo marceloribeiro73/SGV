@@ -612,7 +612,9 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.12.4.min.map" />
     <None Include="Properties\PublishProfiles\sgv-test - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\sgv-test - FTP1.pubxml" />
     <None Include="Properties\PublishProfiles\sgv-test - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\sgv-test - Web Deploy1.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

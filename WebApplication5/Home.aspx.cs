@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using WebApplication5.Classes;
+using WebApplication5.classes_servicos;
 
 namespace WebApplication5
 {
@@ -17,21 +18,40 @@ namespace WebApplication5
             VoluntarioDAO oVld = new VoluntarioDAO();
             oVus = oVld.buscarVoluntario(oUs.sVoluntario);
             carregaNomeVol(oVus);
+            carregaPainelUser(oUs.sVoluntario);
             if(oUs.iTipoUsuario == 1)
             {
                 panelAdmin.Visible = true;
+                carregaPainelAdm();
                 
             }    
         }
 
         protected void carregaNomeVol(Voluntario pVol)
         {
-            lblUser.Text = string.Format("Bem vindo, {0} {1}",pVol.sPrimeiroNome,pVol.sUltimoNome);
+            lblCab.Text = string.Format("Bem vindo, {0} {1}",pVol.sPrimeiroNome,pVol.sUltimoNome);
         }
 
         protected void carregaPainelAdm()
         {
+            Notificacoes oNoti = new Notificacoes();
+            lblVolCad.Text =Convert.ToString(oNoti.adminPendenciasVolunatrio());
+            lblVolBloq.Text = Convert.ToString(oNoti.adminUserBloq());
+            lblVolBloq.Visible = true;
+            lblVolCad.Visible = true;
+            aVoluntarios.Visible = true;
+            aUserBlq.Visible = true;
+        }
 
+        protected void carregaPainelUser(string pCpf)
+        {
+            Notificacoes oNoti = new Notificacoes();
+            lblVolAcepEve.Text = Convert.ToString(oNoti.userPendentesAceitacao(pCpf));
+            lblVolAcepEve.Visible = true;
+            lblHoraTrab.Text = Convert.ToString(oNoti.userPendentesDeclaracao(pCpf));
+            lblHoraTrab.Visible = true;
+            aAceptEve.Visible =true;
+            aDeclEve.Visible = true;
         }
     }
 }

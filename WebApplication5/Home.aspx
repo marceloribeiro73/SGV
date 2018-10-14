@@ -135,7 +135,7 @@
                         <!-- /.col-lg-12 -->
                     </div>
                     <!-- /.row -->
-                    <div class="panel panel-default" id="panelAdmin" runat="server" >
+                    <div class="panel panel-default" id="panelAdmin" Visible="false" runat="server" >
                         <div class="panel-heading">
                             <i class="fa fa-bell fa-fw"></i>Painel de Notificações Administrador
                         </div>

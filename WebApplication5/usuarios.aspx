@@ -1,5 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="usuarios.aspx.cs" Inherits="WebApplication5.usuarios" %>
-
+﻿
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="usuarios.aspx.cs" Inherits="WebApplication5.usuarios" %>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -25,6 +25,8 @@
     <!-- Custom Fonts -->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css" />
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -36,97 +38,93 @@
     <form id="form1" runat="server">
         <div id="wrapper">
 
-            <!-- Navigation -->
             <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="Home.aspx">SGV</a>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="Home.aspx">SGV</a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-right">
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="Index.aspx"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="voluntarios.aspx"><i class="fa fa-male fa-fw"></i> Voluntarios</a>
+                        </li>
+                        <li>
+                            <a href="atividades.aspx"><i class="fa fa-bar-chart-o fa-fw"></i>Atividades</a>
+                        </li>
+                        <li>
+                            <a href="eventos.aspx"><i class="fa fa-table fa-fw"></i>Eventos</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-wrench fa-fw"></i>Administração do Sistema<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="usuarios.aspx"><i class="fa fa-user"></i>Usuarios</a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-fw"></i>Parametrização Sistema<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                        <li>
+                                            <a href="tipo_eventos.aspx">Tipo de Evento</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="logs.aspx">Logs da Aplicação</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-dashboard fa-fw"></i>Relatorios<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="#">Voluntarios por tipo</a>
+                                </li>
+                                <li>
+                                    <a href="#">Tarefas por tipo</a>
+                                </li>
+                                <li>
+                                    <a href="#">Eventos por tipo</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li class="active">
+                            <a href="ponto.aspx"><i class="fa fa-clock-o fa-fw"></i>Ponto / Declaração de Horas</a>
+                        </li>
+                    </ul>
                 </div>
-                <!-- /.navbar-header -->
-
-                <ul class="nav navbar-top-links navbar-right">
-
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-user fa-fw"></i><i class="fa fa-caret-down"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-user">
-                            <li><a href="#"><i class="fa fa-user fa-fw"></i>User Profile</a>
-                            </li>
-                            <li class="divider"></li>
-                            <li><a href="Index.aspx"><i class="fa fa-sign-out fa-fw"></i>Logout</a>
-                            </li>
-                        </ul>
-                        <!-- /.dropdown-user -->
-                    </li>
-                    <!-- /.dropdown -->
-                </ul>
-                <!-- /.navbar-top-links -->
-
-                <div class="navbar-default sidebar" role="navigation">
-                    <div class="sidebar-nav navbar-collapse">
-                        <ul class="nav" id="side-menu">
-                            <li>
-                                <a href="voluntarios.aspx"><i class="fa fa-male fa-fw"></i>Voluntarios</a>
-                            </li>
-                            <li>
-                                <a href="atividades.aspx"><i class="fa fa-bar-chart-o fa-fw"></i>Atividades</a>
-                            </li>
-                            <li>
-                                <a href="eventos.aspx"><i class="fa fa-table fa-fw"></i>Eventos</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-wrench fa-fw"></i>Administração do Sistema<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <a href="usuarios.aspx"><i class="fa fa-user"></i>Usuarios</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-fw"></i>Parametrização Sistema<span class="fa arrow"></span></a>
-                                        <ul class="nav nav-third-level">
-                                            <li>
-                                                <a href="Home.aspx">Tipo de Atividade</a>
-                                            </li>
-                                            <li>
-                                                <a href="Home.aspx">Tipo de Evento</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="notifications.html">Logs da Aplicação</a>
-                                    </li>
-                                </ul>
-                                <!-- /.nav-second-level -->
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-dashboard fa-fw"></i>Relatorios<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <a href="#">Voluntarios por tipo</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Tarefas por tipo</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Eventos por tipo</a>
-                                    </li>
-                                </ul>
-                                <!-- /.nav-second-level -->
-                            </li>
-                            <li class="active">
-                                <a href="#"><i class="fa fa-clock-o fa-fw"></i>Ponto / Declaração de Horas</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- /.sidebar-collapse -->
-                </div>
-                <!-- /.navbar-static-side -->
-            </nav>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
 
             <!-- Page Content -->
             <div id="page-wrapper">
@@ -149,77 +147,37 @@
                                         <div class="col-lg-12">
                                             <div class="form-group col-lg-6">
                                                 <label>Usuario</label>
-                                                <input type="text" class="form-control" />
-                                            </div>
-                                            <div class=" form-group col-lg-6">
-                                                <label>Tipo</label>
-                                                <select class="form-control">
-                                                    <option>Administrator</option>
-                                                    <option>Usuario Padrão</option>
-                                                    <option>Somente Leitura</option>
-                                                </select>
+                                                <asp:TextBox ID="txtUsuario" CssClass="form-control" runat="server" />
                                             </div>
                                             <div class="form-group col-lg-6">
                                                 <label>Inativo</label>
-                                                <input type="checkbox" />
+                                                <asp:CheckBox ID="chkInativo" runat="server" />
                                             </div>
                                             <div class="form-group col-lg-12">
-                                                <button type="button" class="btn btn-primary btn-outline">Buscar</button>
-                                                <button type="button" class="btn btn-primary btn-outline">Limpar</button>
+                                                <asp:Button ID="btnBuscar" Text="Buscar" CssClass="btn btn-primary btn-outline" runat="server" OnClick="btnBuscar_Click"/>
+                                                <asp:Button ID="btnLimpar" Text="Limpar" CssClass="btn btn-primary btn-outline" runat="server"/>
                                             </div>
                                             <div class="form-group ">
-                                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                                    <thead>
-                                                        <tr>
-                                                            <th><input type="checkbox" /></th>
-                                                            <th>Nome Usuario</th>
-                                                            <th>Tipo</th>
-                                                            <th>Voluntario</th>
-                                                            <th>Utimo Acesso</th>
-                                                            <th>Estado</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr class="odd gradeX">
-                                                            <th><input type="checkbox"></th>
-                                                            <td>jpedro</td>
-                                                            <td>Administrador</td>
-                                                            <td class="center">João Pedro</td>
-                                                            <td class="center">13/03/2018</td>
-                                                            <td class="center">Ativo</td>
-                                                        </tr>
-                                                        <tr class="even gradeC">
-                                                            <th><input type="checkbox"></th>
-                                                            <td>amaximo</td>
-                                                            <td>Usuario Padrão</td>
-                                                            <td class="center">Amanda Maximo</td>
-                                                            <td class="center">30/02/2018</td>
-                                                            <td class="center">Ativo</td>
-                                                        </tr>
-                                                        <tr class="odd gradeA">
-                                                            <th><input type="checkbox"></th>
-                                                            <td>hsilva</td>
-                                                            <td>Somente-Leitura</td>
-                                                            <td class="center">Hugo Silva</td>
-                                                            <td class="center">05/03/2018</td>
-                                                            <td class="center">Ativo</td>
-                                                        </tr>
-                                                        <tr class="odd gradeA">
-                                                            <th><input type="checkbox"></th>
-                                                            <td>kchagas</td>
-                                                            <td>Usuario Padrão</td>
-                                                            <td class="center">Karina Chagas</td>
-                                                            <td class="center">05/06/2017</td>
-                                                            <td class="center">Ativo</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
+                                                <asp:GridView ID="tblusuarios" runat="server" AutoGenerateColumns="False" DataKeyNames="CODIGO" DataSourceID="dataUsuarios" CssClass="table table-striped table-bordered table-hover" BorderStyle="None">
+                                                    <Columns>
+                                                        <asp:BoundField DataField="CODIGO" HeaderText="CODIGO" ReadOnly="True" InsertVisible="False" SortExpression="CODIGO" Visible="False"></asp:BoundField>
+                                                        <asp:BoundField DataField="VOLUNTARIO" HeaderText="VOLUNTARIO" SortExpression="VOLUNTARIO"></asp:BoundField>
+                                                        <asp:BoundField DataField="USUARIO" HeaderText="USUARIO" SortExpression="USUARIO"></asp:BoundField>
+                                                        <asp:BoundField DataField="SEGREDO" HeaderText="SEGREDO" SortExpression="SEGREDO" Visible="False"></asp:BoundField>
+                                                        <asp:BoundField DataField="TIPO" HeaderText="TIPO" SortExpression="TIPO"></asp:BoundField>
+                                                        <asp:BoundField DataField="STATUS" HeaderText="STATUS" SortExpression="STATUS"></asp:BoundField>
+                                                        <asp:BoundField DataField="DATA DE CRIA&#199;&#195;O" HeaderText="DATA DE CRIA&#199;&#195;O" SortExpression="DATA DE CRIA&#199;&#195;O"></asp:BoundField>
+                                                        <asp:BoundField DataField="DATA DE INATIVA&#199;&#195;O" HeaderText="DATA DE INATIVA&#199;&#195;O" SortExpression="DATA DE INATIVA&#199;&#195;O"></asp:BoundField>
+                                                        <asp:BoundField DataField="FALHAS LOGIN" HeaderText="FALHAS LOGIN" SortExpression="FALHAS LOGIN"></asp:BoundField>
+                                                        <asp:BoundField DataField="DATA DE BLOQUEIO" HeaderText="DATA DE BLOQUEIO" SortExpression="DATA DE BLOQUEIO"></asp:BoundField>
+                                                    </Columns>
+                                                </asp:GridView>
                                                 <!-- /.table-responsive -->
+                                                <asp:SqlDataSource runat="server" ID="dataUsuarios" ConnectionString='<%$ ConnectionStrings:SGV_DEVConnectionString2 %>' SelectCommand="SELECT U.COD_USUARIO AS 'CODIGO', V.PRIMEIRO_NOME +' '+ V.ULTIMO_NOME AS 'VOLUNTARIO', U.LOGIN_NAME AS 'USUARIO', U.PASSWD AS 'SEGREDO', TU.NOME_TIPO_USUARIO AS 'TIPO', U.STATUS AS 'STATUS', U.DATA_CRIACAO AS 'DATA DE CRIAÇÃO', U.DATA_INATIVACAO AS 'DATA DE INATIVAÇÃO', U.QTD_FALHAS_LOGIN AS 'FALHAS LOGIN', U.DATA_BLOQUEIO AS 'DATA DE BLOQUEIO' FROM USUARIO U, TIPO_USUARIO TU, VOLUNTARIO V WHERE U.STATUS <> 'I' AND U.TIPO_USUARIO = TU.COD_TIPO_USUARIO AND V.CPF = U.VOLUNTARIO"></asp:SqlDataSource>
                                             </div>
                                             <div class="form-group col-lg-12">
                                                 <asp:Button Text="Incluir" CssClass="btn btn-primary btn-outline" runat="server"/>
                                                 <asp:Button Text="Alterar" CssClass="btn btn-primary btn-outline" runat="server"/>
-                                                <asp:Button Text="Excuir" CssClass="btn btn-danger btn-outline" runat="server"/>
                                                 <asp:Button Text="Inativar" CssClass="btn btn-primary btn-outline" runat="server"/>
                                             </div>
                                         </div>
@@ -248,6 +206,22 @@
 
         <!-- Custom Theme JavaScript -->
         <script src="../dist/js/sb-admin-2.js"></script>
+
+        <!-- DataTables JavaScript -->
+        
+  
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+        <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#tblusuarios").prepend($("<thead></thead>").append($(this).find("tr:first"))).dataTable();
+                $('#tblusuarios').DataTable({
+                    destroy: true,
+                    stateSave: true
+                });
+            });
+    </script>
     </form>
 </body>
 </html>

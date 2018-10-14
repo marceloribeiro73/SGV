@@ -22,13 +22,13 @@ namespace WebApplication5
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            //SqlDataSource2.SelectCommand = string.Format("SELECT A.NOME_ATIVIDADE AS 'NOME DA ATIVIDADE',A.QTD_VOLUNTARIOS AS 'QUANTIDADE IDEAL DE VOLUNTARIOS',A.DURACAO_MEDIA_MINUTOS AS 'dURAÇÃO MEDIA EM MINUTOS',A.STATUS AS 'STATUS',A.DATA_CRIACAO AS 'DATA DE CRIAÇÃO',T.NOME_TIPO_ATIVIDADE AS 'TIPO DE ATIVIDADE' FROM ATIVIDADE A, TIPO_ATIVIDADE T WHERE T.COD_TIPO_ATIVIDADE = A.TIPO_ATIVIDADE AND A.NOME_ATIVIDADE LIKE '%{0}%' AND A.TIPO_ATIVIDADE = {1}", txtNome.Text, /*ddtipoAtividade.Text*/);
+            SqlDataSource2.SelectCommand = string.Format("SELECT A.NOME_ATIVIDADE AS 'NOME DA ATIVIDADE',A.QTD_VOLUNTARIOS AS 'QUANTIDADE IDEAL DE VOLUNTARIOS',A.QTD_MINUTOS AS 'DURAÇÃO MEDIA EM MINUTOS',A.STATUS AS 'STATUS',A.DATA_CRIACAO AS 'DATA DE CRIAÇÃO' FROM ATIVIDADE A WHERE  AND A.NOME_ATIVIDADE LIKE '%{0}%'", txtNome.Text);
         }
 
         protected void btnLimpar_Click(object sender, EventArgs e)
         {
             txtNome.Text = string.Empty;
-            SqlDataSource2.SelectCommand = "SELECT A.NOME_ATIVIDADE AS 'NOME DA ATIVIDADE',A.QTD_VOLUNTARIOS AS 'QUANTIDADE IDEAL DE VOLUNTARIOS',A.DURACAO_MEDIA_MINUTOS AS 'dURAÇÃO MEDIA EM MINUTOS',A.STATUS AS 'STATUS',A.DATA_CRIACAO AS 'DATA DE CRIAÇÃO',T.NOME_TIPO_ATIVIDADE AS 'TIPO DE ATIVIDADE' FROM ATIVIDADE A, TIPO_ATIVIDADE T WHERE T.COD_TIPO_ATIVIDADE = A.TIPO_ATIVIDADE";
+            SqlDataSource2.SelectCommand = "SELECT A.NOME_ATIVIDADE AS 'NOME DA ATIVIDADE',A.QTD_VOLUNTARIOS AS 'QUANTIDADE IDEAL DE VOLUNTARIOS',A.QTD_MINUTOS AS 'DURAÇÃO MEDIA EM MINUTOS',A.STATUS AS 'STATUS',A.DATA_CRIACAO AS 'DATA DE CRIAÇÃO'FROM ATIVIDADE A WHERE A.STATUS <> 'I'";
         }
 
         protected void btnAlterar_Click(object sender, EventArgs e)
@@ -41,7 +41,7 @@ namespace WebApplication5
                 if (check.Checked)
                 {
                     Session["atividade"] = lbCod.Text;
-                    Response.Redirect("cad_atividade.aspx");
+                    Response.Redirect("cad_atividades.aspx");
                 }
                 else
                 {

@@ -100,5 +100,48 @@ namespace WebApplication5.Classes
                 return 2;//erro ao inserir
             }
         }
+
+        public Object BuscarUsuario(string pVoluntario)
+        {
+            Usuario oVolRet;
+            if (!pVoluntario.Equals("") || pVoluntario.Length != 11)
+            {
+                string strCmd = string.Format("SELECT USUARIO.COD_USUARIO,USUARIO.VOLUNTARIO, USUARIO.LOGIN_NAME, USUARIO.PASSWD,USUARIO.TIPO_USUARIO, USUARIO.STATUS,USUARIO.DATA_CRIACAO, USUARIO.DATA_INATIVACAO, USUARIO.QTD_FALHAS_LOGIN, USUARIO.DATA_BLOQUEIO FROM USUARIO WHERE USUARIO.VOLUNTARIO = '{0}'", pVoluntario);
+                try {
+                    SqlDataReader dr1 = SqlDB.Instancia.FazerSelect(strCmd);
+                    if (dr1.Read())
+                    {
+                        oVolRet = new Usuario
+                        {
+                            sVoluntario = Convert.ToString(pVoluntario),
+                            iCodUsuario = Convert.ToInt32(dr1["USUSARIO.COD_USUARIO"]),
+                            sLoginName = Convert.ToString(dr1["USUARIO.LOGIN_NAME"]),
+                            sPasswd = Convert.ToString(dr1["USUARIO.PASSWD"]),
+                            iTipoUsuario = Convert.ToInt32(dr1["USUARIO.TIPO_USUARIO"]),
+                            cStatus = Convert.ToChar(dr1["USUARIO.STATTUS"]),
+                            sDataCriacao = Convert.ToString(dr1["USUARIO.DATA_CRIACAO"]),
+                            sDataInativacao = Convert.ToString(dr1["USUARIO.DATA_INATIVACAO"]),
+                            iQtdErradas = Convert.ToInt32(dr1["USUARIO.QTD_FALHAS_LOGIN"]),
+                            sDataBolque = Convert.ToString(dr1["USUARIO.DATA_BLOQUEIO"])
+                        };
+
+                        dr1.Close();
+                        return oVolRet;
+                    }
+                    else
+                    {
+                        return "Usuario não encontrado.";
+                    }
+                }
+                catch (SqlException e)
+                {
+                    return e.Message;
+                }
+            }
+            else
+            {
+                return "Usuario não encontrado";
+            }
+        }
     }
 }

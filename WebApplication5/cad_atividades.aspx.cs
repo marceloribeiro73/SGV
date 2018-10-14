@@ -8,7 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using WebApplication5.classes_servicos;
 using WebApplication5.Classes;
-using WebApplication5.Classes;
+
 
 namespace WebApplication5
 {
@@ -19,13 +19,13 @@ namespace WebApplication5
         {
             if(Session["atividade"] != null)
             {
-                string strCmd = string.Format("SELECT NOME_ATIVIDADE, QTD_VOLUNTARIOS,DURACAO_MEDIA_MINUTOS,TIPO_ATIVIDADE WHERE NOME_ATIVIDADE = '{0}' ", (string)Session["atividade"]);
+                string strCmd = string.Format("SELECT NOME_ATIVIDADE, QTD_VOLUNTARIOS,QTD_MINUTOS FROM ATIVIDADE WHERE NOME_ATIVIDADE = '{0}' ", (string)Session["atividade"]);
                 SqlDataReader dr = classes_servicos.SqlDB.Instancia.FazerSelect(strCmd);
                 if (dr.Read())
                 {
                     txtNome.Text = Convert.ToString(dr["NOME_ATIVIDADE"]);
                     txtQtd.Text = Convert.ToString(dr["QTD_VOLUNTARIOS"]);
-                    txtMin.Text = Convert.ToString(dr["DURACAO_MEDIA_MINUTOS"]);
+                    txtMin.Text = Convert.ToString(dr["QTD_MINUTOS"]);
                     
                     txtNome.Enabled = false;
                     
@@ -37,7 +37,7 @@ namespace WebApplication5
         protected Atividade carregarObj()
         {
             Atividade oAtivi = null;
-            if(txtNome.Text.Equals(null))
+            if(!txtNome.Text.Equals(null))
             {
                 oAtivi = new Atividade();
                 oAtivi.sNome = txtNome.Text;
@@ -59,7 +59,7 @@ namespace WebApplication5
                 oAt = carregarObj();
                 AtividadeDAO oAtd = new AtividadeDAO();
                 int aux = oAtd.inserirAtividade(oAt);
-                if(aux == 2)
+                if(aux == 6)
                 {
                     Response.Write("<script>alert('Inclusão não efetuada, atividade já cadastrada no sistema.')</script>");
                 }
@@ -75,10 +75,14 @@ namespace WebApplication5
                 {
                     Response.Write("<script>alert('Inclusão não efetuada, campo nome não foi preechido.')</script>");
                 }
+                else
+                {
+                    Response.Write("<script>alert('Inclusão não efetuada, erro ao efetuar cadastro.')</script>");
+                }
             }
             else
             {
-                string strCmd = string.Format("UPDATE ATIVIDADE SET QTD_VOLUNTARIOS = {0},DURACAO_MEDIA_MINUTOS = {1} WHERE NOME_ATIVIDADE = `'{2}'", txtQtd.Text, txtMin.Text, txtNome.Text);
+                string strCmd = string.Format("UPDATE ATIVIDADE SET QTD_VOLUNTARIOS = {0},QTD_MINUTOS = {1} WHERE NOME_ATIVIDADE = `'{2}'", txtQtd.Text, txtMin.Text, txtNome.Text);
                 int ret = SqlDB.Instancia.FazerUpdate(strCmd);
                 if (ret > 0)
                 {
