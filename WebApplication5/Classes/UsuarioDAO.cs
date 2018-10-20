@@ -130,7 +130,7 @@ namespace WebApplication5.Classes
                     }
                     else
                     {
-                        return "Usuario não encontrado.";
+                        return null;
                     }
                 }
                 catch (SqlException e)
@@ -140,7 +140,61 @@ namespace WebApplication5.Classes
             }
             else
             {
-                return "Usuario não encontrado";
+                return null;
+            }
+        }
+
+        public string alteraStaus(sring pVoluntario)
+        {
+            string varRet;
+            UsuarioDAO UDaux = new UsuarioDAO;
+            if(!pVoluntario.Equals(null))
+            {
+                Usuario oUser = new Usuario();
+                oUser = UDaux.BuscarUsuario(pVoluntario);
+                if(oUser.sVoluntario == pVoluntario)
+                {
+                    string strCmd = null;
+                    string auxStatus = null;
+                    if(oUser.cStatus.Equals("I"))
+                    {
+                        auxStatus = "A"
+                    }
+                    else if(oUser.cStatus.Equals("A"))
+                    {
+                        auxStatus = "I"
+                    }
+                    if(!auxStatus.Equals(null))
+                    {
+                        strCmd = string.Format("UPADATE USUARIO SET USUARIO.STATUS = '{0}' WHERE USUSARIO.VOLUNTARIO = '{1}'", auxStatus,pVoluntario);
+                    }
+                    if(!strCmd.Equals(null))
+                    {
+                        try
+                        {
+                            int rowsUpdate = SqlDB.Instancia.FazerUpdate(strCmd);
+                            if(rowsUpdate > 0)
+                            {
+                                return string.Format("Status do Usuario {0} foi alterado para {1}.",oUser.sLoginName,auxStatus);
+                            }
+                        }
+                        catch(SqlException sqle)
+                        {
+                            return sqle.Message;
+                        }
+                        catch(NullException nulle)
+                        {
+                            return nulle.Message;
+                        }
+                        catch(HttpException httpe)
+                        {
+                            return httpe.Message;
+                        }
+                    }
+
+                }
+                return "Status não alterado."
+
             }
         }
     }
