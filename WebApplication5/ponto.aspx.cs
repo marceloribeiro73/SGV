@@ -29,14 +29,14 @@ namespace WebApplication5
                 if (chk.Checked)
                 {
                     VoluntarioDAO oVld = new VoluntarioDAO();
-                    int aux = oVld.aceitarEvento(oUs.sVoluntario, Convert.ToInt32(lblEvento.Text));
+                    int aux = oVld.AceitarEvento(oUs.sVoluntario, Convert.ToInt32(lblEvento.Text));
                     if (aux == 1)
                     {
                         Response.Write(string.Format("<script>alert('Evento Aceito.');window.location = 'ponto.aspx';</script>"));
                     }
                     else
                     {
-                        Response.Write(string.Format("<script>alert('Erro ao aceitar evento.');window.location = 'ponto.aspx';</script>", varRet));
+                        Response.Write(string.Format("<script>alert('Erro ao aceitar evento.');window.location = 'ponto.aspx';</script>"));
                     }
 
                 }
@@ -56,14 +56,14 @@ namespace WebApplication5
                 if (chk.Checked)
                 {
                     VoluntarioDAO oVld = new VoluntarioDAO();
-                    int aux = oVld.recusarEvento(oUs.sVoluntario, Convert.ToInt32(lblEvento.Text));
+                    int aux = oVld.RecusarEvento(oUs.sVoluntario, Convert.ToInt32(lblEvento.Text));
                     if (aux == 1)
                     {
                         Response.Write(string.Format("<script>alert('Evento Recusado.');window.location = 'ponto.aspx';</script>"));
                     }
                     else
                     {
-                        Response.Write(string.Format("<script>alert('Erro ao reccusar evento.');window.location = 'ponto.aspx';</script>", varRet));
+                        Response.Write(string.Format("<script>alert('Erro ao reccusar evento.');window.location = 'ponto.aspx';</script>"));
                     }
 
                 }

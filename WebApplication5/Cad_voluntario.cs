@@ -10,7 +10,7 @@ using WebApplication5.classes_servicos;
 
 namespace WebApplication5
 {
-    public partial class cad_voluntario : System.Web.UI.Page
+    public partial class Cad_voluntario : System.Web.UI.Page
     {
         int operacao = 1;
         protected void Page_Load(object sender, EventArgs e)
@@ -18,43 +18,45 @@ namespace WebApplication5
             if(Session["voluntario"] != null)
             {
                 string aux = (string)Session["voluntario"];
-                string strCmd = string.Format("SELECT V.CPF, V.PRIMEIRO_NOME, V.ULTIMO_NOME,V.DATA_NASC, V.DOC_IDENTIFICACAO,V.TIPO_DOC_IDENTIFICACAO,V.ORGAO_EMISSOR ,V.DATA_EMISSAO,V.NACIONALIDADE,V.TELEFONE_CONTATO,V.TELEFONE_CONTATO2, V.EMAIL, V.DATA_ADESAO,V.MAX_HORAS_SEMANAIS ,V.TIPO_VOLUNTARIO, E.COD_POSTAL,E.LOGRADOURO,E.NUMERO,E.COMPLEMENTO,E.BAIRRO, E.CIDADE, E.ESTADO_PROVINCIA, E.PAIS FROM VOLUNTARIO V, ENDERECO E WHERE V.CPF = '{0}' AND V.CPF = E.CPF", aux);
+                Mensagem(aux);
+                string strCmd = string.Format("SELECT V.CPF, V.PRIMEIRO_NOME, V.ULTIMO_NOME,V.DATA_NASC, V.DOC_IDENTIFICACAO,V.TIPO_DOC_IDENTIFICACAO,V.ORGAO_EMISSOR ,V.DATA_EMISSAO,V.NACIONALIDADE,V.TELEFONE_CONTATO,V.TELEFONE_CONTATO2, V.EMAIL, V.DATA_ADESAO,V.MAX_HORAS_SEMANAIS ,V.TIPO_VOLUNTARIO,V.PATH_FOTO ,E.COD_POSTAL,E.LOGRADOURO,E.NUMERO,E.COMPLEMENTO,E.BAIRRO, E.CIDADE, E.ESTADO_PROVINCIA, E.PAIS FROM VOLUNTARIO V, ENDERECO E WHERE V.CPF = '{0}' AND V.CPF = E.CPF", aux);
                 SqlDataReader dr = SqlDB.Instancia.FazerSelect(strCmd);
                 Voluntario oVoluntario = null;
                 if (dr.Read())
                 {
                     oVoluntario = new Voluntario();
-                    oVoluntario.sCpf = Convert.ToString(dr["V.CPF"]);
-                    oVoluntario.sPrimeiroNome = Convert.ToString(dr["V.PRIMEIRO_NOME"]);
-                    oVoluntario.sUltimoNome = Convert.ToString(dr["V.ULTIMO_NOME"]);
-                    oVoluntario.sDataNasc = Convert.ToString(dr["V.DATA_NASC"]);
-                    oVoluntario.sDocIdentificacao = Convert.ToString(dr["V.DOC_IDENTIFICACAO"]);
-                    oVoluntario.sTipoDocIdentificacao = Convert.ToString(dr["V.TIPO_DOC_IDENTIFICACAO"]);
-                    oVoluntario.sDataEmissao = Convert.ToString(dr["V.DATA_EMISSAO"]);
-                    oVoluntario.sNacionalidade = Convert.ToString(dr["V.NACIONALIDADE"]);
-                    oVoluntario.sTelefoneContato = Convert.ToString(dr["V.TELEFONE_CONTATO"]);
-                    oVoluntario.sTelefoneContato2 = Convert.ToString(dr["V.TELEFONE_CONTATO2"]);
-                    oVoluntario.sEmail = Convert.ToString(dr["V.EMAIL"]);
-                    oVoluntario.sDataAdesao = Convert.ToString(dr["V.DATA_ADESAO"]);
-                    oVoluntario.iTipoVoluntario = Convert.ToInt32(dr["V.TIPO_VOLUNTARIO"]);
-                    oVoluntario.sCodPostal = Convert.ToString(dr["E.COD_POSTAL"]);
-                    oVoluntario.sLogradouro = Convert.ToString(dr["E.LOGRADOURO"]);
-                    oVoluntario.sLogradouro = Convert.ToString(dr["E.NUMERO"]);
-                    oVoluntario.sComplemento = Convert.ToString(dr["E.COMPLEMENTO"]);
-                    oVoluntario.sBairro = Convert.ToString(dr["E.BAIRRO"]);
-                    oVoluntario.sCidade = Convert.ToString(dr["E.CIDADE"]);
-                    oVoluntario.sEstadoProvincia = Convert.ToString(dr["E.ESTADO_PROVINCIA"]);
-                    oVoluntario.sPais = Convert.ToString(dr["E.PAIS"]);
+                    oVoluntario.sCpf = Convert.ToString(dr["CPF"]);
+                    oVoluntario.sPrimeiroNome = Convert.ToString(dr["PRIMEIRO_NOME"]);
+                    oVoluntario.sUltimoNome = Convert.ToString(dr["ULTIMO_NOME"]);
+                   oVoluntario.sDataNasc = Convert.ToString(dr["DATA_NASC"]);
+                    oVoluntario.sDocIdentificacao = Convert.ToString(dr["DOC_IDENTIFICACAO"]);
+                    oVoluntario.sTipoDocIdentificacao = Convert.ToString(dr["TIPO_DOC_IDENTIFICACAO"]);
+                    oVoluntario.sDataEmissao = Convert.ToString(dr["DATA_EMISSAO"]);
+                    oVoluntario.sNacionalidade = Convert.ToString(dr["NACIONALIDADE"]);
+                    oVoluntario.sTelefoneContato = Convert.ToString(dr["TELEFONE_CONTATO"]);
+                    oVoluntario.sTelefoneContato2 = Convert.ToString(dr["TELEFONE_CONTATO2"]);
+                    oVoluntario.sEmail = Convert.ToString(dr["EMAIL"]);
+                    oVoluntario.sDataAdesao = Convert.ToString(dr["DATA_ADESAO"]);
+                    oVoluntario.iTipoVoluntario = Convert.ToInt32(dr["TIPO_VOLUNTARIO"]);
+                    oVoluntario.sCodPostal = Convert.ToString(dr["COD_POSTAL"]);
+                    oVoluntario.sLogradouro = Convert.ToString(dr["LOGRADOURO"]);
+                    oVoluntario.sLogradouro = Convert.ToString(dr["NUMERO"]);
+                    oVoluntario.sComplemento = Convert.ToString(dr["COMPLEMENTO"]);
+                    oVoluntario.sBairro = Convert.ToString(dr["BAIRRO"]);
+                    oVoluntario.sCidade = Convert.ToString(dr["CIDADE"]);
+                    oVoluntario.sEstadoProvincia = Convert.ToString(dr["ESTADO_PROVINCIA"]);
+                    oVoluntario.sPais = Convert.ToString(dr["PAIS"]);
+                    oVoluntario.sPathFoto = Convert.ToString(dr["PATH_FOTO"]);
                     dr.Close();
-                    string strCmd2 = string.Format("SELECT FS.DIA_SEMANA FROM DIAS_SEMANA_VOLUNTARIO FS, VOLUNTARIO V WHERE FS.VOLUNTARIO = V.CPF AND V.CPF '{0}'",oVoluntario.sCpf);
+                    string strCmd2 = string.Format("SELECT FS.DIA_SEMANA FROM DIAS_SEMANA_VOLUNTARIO FS, VOLUNTARIO V WHERE FS.VOLUNTARIO = V.CPF AND V.CPF ='{0}'",oVoluntario.sCpf);
                     oVoluntario.oDiasSemana = new List<int>();
                     SqlDataReader dr1 = SqlDB.Instancia.FazerSelect(strCmd2);
                     while(dr1.Read())
                     {
-                        int aux1 = Convert.ToInt32(dr1["FS.DIA_SEMANA"]);
+                        int aux1 = Convert.ToInt32(dr1["DIA_SEMANA"]);
                         oVoluntario.oDiasSemana.Add(aux1);
                     }
-                    
+                    dr1.Close();
                 }
                 if(oVoluntario != null)
                 {
@@ -68,7 +70,8 @@ namespace WebApplication5
                     txtDataNasc.Enabled = false;
                     txtDocId.Text = oVoluntario.sDocIdentificacao;
                     txtDocId.Enabled = false;
-                    txtDataEmmisaoDoc.Text = oVoluntario.sDataEmissao;
+                    txtOrgEmissor.Text = oVoluntario.sOrgaoEmissor;
+                    txtOrgEmissor.Enabled = false;
                     txtDataEmmisaoDoc.Enabled = false;
                     ddwTipoDocID.Text = oVoluntario.sTipoDocIdentificacao;
                     ddwTipoDocID.Enabled = false;
@@ -87,8 +90,24 @@ namespace WebApplication5
                     txtDataAdesao.Text = oVoluntario.sDataAdesao;
                     txtDataAdesao.Enabled = false;
                     ddwTipoVoluntario.Text =Convert.ToString(oVoluntario.iTipoVoluntario);
-                    //upFoto.Enabled = false;
+                    upFoto.Enabled = false;
+                    img1.ImageUrl = oVoluntario.sPathFoto;
                     txtMaxHorasTrab.Text = Convert.ToString(oVoluntario.iMaxHoras);
+                    DateTime dtNasc = new DateTime();
+                    DateTime dtEmissao = new DateTime();
+                    DateTime dtAdmissao = new DateTime();
+                    try
+                    {
+                        DateTime.TryParse(oVoluntario.sDataNasc, out dtNasc);
+                        DateTime.TryParse(oVoluntario.sDataEmissao, out dtEmissao);
+                        DateTime.TryParse(oVoluntario.sDataAdesao, out dtAdmissao);
+                        txtDataNasc.Text = dtNasc.ToString("yyyy-MM-dd");
+                        txtDataEmmisaoDoc.Text = dtEmissao.ToString("yyyy-MM-dd");
+                        txtDataAdesao.Text = dtEmissao.ToString("yyyy-MM-dd");
+                    }catch(Exception ex)
+                    {
+                        Mensagem(ex.Message);
+                    }
                     foreach(int i in oVoluntario.oDiasSemana)
                     {
                         if(i == 1)
@@ -143,7 +162,7 @@ namespace WebApplication5
             txtEstadoProvincia.Text = string.Empty;
             txtPais.Text = string.Empty;
         }
-        private string upLoadFoto()
+        private string UpLoadFoto()
         {
             bool fotoOk = false;
             String path = Server.MapPath("~/Fotos/");
@@ -328,8 +347,8 @@ namespace WebApplication5
         {
             if (operacao == 1)
             {
-                string foto = "null";
-                if(foto.Equals("null"))
+                string foto = UpLoadFoto();
+                if(!foto.Equals("null"))
                 {
                     if(validaObrigatorios())
                     {
@@ -346,7 +365,7 @@ namespace WebApplication5
                                     if(varRet.Equals("Cadastro eferuado com Sucesso."))
                                     {
                                         UsuarioDAO oUsd = new UsuarioDAO();
-                                        int i = oUsd.cadUsuario(oVl.sEmail, oVl.sCpf, oVl.iTipoVoluntario);
+                                        int i = oUsd.CadUsuario(oVl.sEmail, oVl.sCpf, oVl.iTipoVoluntario);
                                         Response.Write(string.Format("<script>alert('Cadastro Efetuado, voce será redirecionado para a tela de voluntários.');window.location = 'voluntarios.aspx';</script>"));
                                     }
                                     else

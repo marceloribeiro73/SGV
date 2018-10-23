@@ -61,7 +61,7 @@ namespace WebApplication5.Classes
             }
         }
 
-        public int cadUsuario(string pEmail , string pCpf, int pTipoVol)
+        public int CadUsuario(string pEmail , string pCpf, int pTipoVol)
         {
             string sSenha = null;
             for(int i = 0; i <= 6; i++)
@@ -101,7 +101,7 @@ namespace WebApplication5.Classes
             }
         }
 
-        public Object BuscarUsuario(string pVoluntario)
+        public Usuario BuscarUsuario(string pVoluntario)
         {
             Usuario oVolRet;
             if (!pVoluntario.Equals("") || pVoluntario.Length != 11)
@@ -135,7 +135,7 @@ namespace WebApplication5.Classes
                 }
                 catch (SqlException e)
                 {
-                    return e.Message;
+                    return null;
                 }
             }
             else
@@ -144,10 +144,10 @@ namespace WebApplication5.Classes
             }
         }
 
-        public string alteraStaus(sring pVoluntario)
+        public string AlteraStaus(string pVoluntario)
         {
             string varRet;
-            UsuarioDAO UDaux = new UsuarioDAO;
+            UsuarioDAO UDaux = new UsuarioDAO();
             if(!pVoluntario.Equals(null))
             {
                 Usuario oUser = new Usuario();
@@ -158,11 +158,11 @@ namespace WebApplication5.Classes
                     string auxStatus = null;
                     if(oUser.cStatus.Equals("I"))
                     {
-                        auxStatus = "A"
+                        auxStatus = "A";
                     }
                     else if(oUser.cStatus.Equals("A"))
                     {
-                        auxStatus = "I"
+                        auxStatus = "I";
                     }
                     if(!auxStatus.Equals(null))
                     {
@@ -182,7 +182,7 @@ namespace WebApplication5.Classes
                         {
                             return sqle.Message;
                         }
-                        catch(NullException nulle)
+                        catch(ArgumentNullException nulle)
                         {
                             return nulle.Message;
                         }
@@ -193,9 +193,10 @@ namespace WebApplication5.Classes
                     }
 
                 }
-                return "Status não alterado."
+                return "Status não alterado.";
 
             }
+            return "Status não alterado."; 
         }
     }
 }

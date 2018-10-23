@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="cad_voluntario.aspx.cs" Inherits="WebApplication5.cad_voluntario" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Cad_voluntario.cs" Inherits="WebApplication5.Cad_voluntario" %>
 
 <!DOCTYPE html>
 
@@ -31,6 +31,80 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script type="text/javascript">
+        function limpa_formulário_cep() {
+            //Limpa valores do formulário de cep.
+            document.getElementById('txtLogradouro').value=("");
+            document.getElementById('txtBairro').value=("");
+            document.getElementById('txtCidade').value=("");
+            document.getElementById('txtEstadoProvincia').value=("");
+            document.getElementById('txtPais').value=("");
+    }
+
+        function meu_callback(conteudo) {
+        if (!("erro" in conteudo)) {
+            //Atualiza os campos com os valores.
+            document.getElementById('txtLogradouro').value=(conteudo.logradouro);
+            document.getElementById('txtBairro').value=(conteudo.bairro);
+            document.getElementById('txtCidade').value=(conteudo.localidade);
+            document.getElementById('txtEstadoProvincia').value=(conteudo.uf);
+            document.getElementById('txtPais').value=("Brasil");
+        } //end if.
+        else {
+            //CEP não Encontrado.
+            limpa_formulário_cep();
+            alert("Codigo postal não encontrado, insira os dados manualmente. ");
+        }
+    }
+
+    function pesquisacep(valor){
+        var cep = valor.replace(/\D/g, '');
+
+        if (cep != ""){
+            //Expressão regular para validar o CEP.
+            var validacep = /^[0-9]{8}$/;
+            if(validacep.test(cep)){
+                //Preenche os campos com "..." enquanto consulta webservice.
+                document.getElementById('txtLogradouro').value="...";
+                document.getElementById('txtBairro').value="...";
+                document.getElementById('txtCidade').value="...";
+                document.getElementById('txtEstadoProvincia').value="...";
+                document.getElementById('txtPais').value="...";
+
+                //Cria um elemento javascript.
+                var script = document.createElement('script');
+
+                //Sincroniza com o callback.
+                script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
+
+                //Insere script no documento e carrega o conteúdo.
+                document.body.appendChild(script);
+            }
+            else{
+                //cep é inválido.
+                limpa_formulário_cep();
+                alert("Formato de CEP inválido.");
+            }
+        }
+        //cep sem valor, limpa formulário.
+        limpa_formulário_cep();
+    }
+    </script>
+
+    <script type="text/javascript">
+        function valida_horas_max(valor){
+            //Valida se é nulo
+            if(valor != null){
+                //Valida se está entre 1 e 8
+                if(valor < 1 || valor > 8){
+                    document.getElementById("txtMaxHorasTrab").value="1";
+                    alert("Quantidade de horas não permitidas.");
+                }
+            }
+        }
+    </script>
+
+
 </head>
 <body>
     <form id="form1" runat="server">
@@ -203,7 +277,7 @@
                                                         <div class="col-lg-12">
                                                             <div class="form-group col-lg-2">
                                                                 <label>CEP *</label>
-                                                                <asp:TextBox ID="txtCep" CssClass="form-control" runat="server"></asp:TextBox>
+                                                                <asp:TextBox ID="txtCep" CssClass="form-control" runat="server" onblur="pesquisacep(this.value)" ></asp:TextBox>
                                                             </div>
                                                             <div class="form-group col-lg-4">
                                                                 <label>Logradouro *</label>
@@ -262,24 +336,24 @@
                                             </div>
                                             <div class="form-group col-lg-3">
                                                 <label>Dias possiveis de Trabalho</label><br />
-                                                <asp:Checkbox ID="chkDiaDomingo" CssClasss="form-control" Text="D" TextAlign="Left" runat="server" />
-                                                <asp:Checkbox ID="chkDiaSegunda" CssClasss="form-control" Text="S" TextAlign="Left" runat="server" />
-                                                <asp:Checkbox ID="chkDiaTerca" CssClasss="form-control" Text="T" TextAlign="Left" runat="server" />
-                                                <asp:Checkbox ID="chkDiaQuarta" CssClasss="form-control" Text="Q" TextAlign="Left" runat="server" />
-                                                <asp:Checkbox ID="chkDiaQuinta" CssClasss="form-control" Text="Q" TextAlign="Left" runat="server" />
-                                                <asp:Checkbox ID="chkDiaSexta" CssClasss="form-control" Text="S" TextAlign="Left" runat="server" />
-                                                <asp:Checkbox ID="chkDiaSabado" CssClasss="form-control" Text="S" TextAlign="Left" runat="server" />
+                                                <asp:Checkbox ID="chkDiaDomingo" CssClass="form-control" Text="D" TextAlign="Left" runat="server" />
+                                                <asp:Checkbox ID="chkDiaSegunda" CssClass="form-control" Text="S" TextAlign="Left" runat="server" />
+                                                <asp:Checkbox ID="chkDiaTerca" CssClass="form-control" Text="T" TextAlign="Left" runat="server" />
+                                                <asp:Checkbox ID="chkDiaQuarta" CssClass="form-control" Text="Q" TextAlign="Left" runat="server" />
+                                                <asp:Checkbox ID="chkDiaQuinta" CssClass="form-control" Text="Q" TextAlign="Left" runat="server" />
+                                                <asp:Checkbox ID="chkDiaSexta" CssClass="form-control" Text="S" TextAlign="Left" runat="server" />
+                                                <asp:Checkbox ID="chkDiaSabado" CssClass="form-control" Text="S" TextAlign="Left" runat="server" />
                                             </div>
                                             <div class="form-group col-lg-2">
                                                 <label>Maximo de Horas trabalhadas por semana *</label>
-                                                <asp:TextBox ID="txtMaxHorasTrab" CssClass="form-control" TextMode="Number" Text="1" runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="txtMaxHorasTrab" CssClass="form-control" TextMode="Number" Text="1" runat="server" onblur="valida_horas_max(this.value)"></asp:TextBox>
                                                 <asp:Label ID="lblErroHorasMax" CssClass="form-group" Text='Por gentileza, insira valores ente 1 e 8.' runat="server"></asp:Label>
                                             </div>
-                                            <!--<div class="form-group col-lg-4">
+                                            <<div class="form-group col-lg-4">
                                                 <label>Foto</label>
                                                 <asp:Image ID="img1"  runat="server" />
                                                 <asp:FileUpload ID="upFoto" CssClass="form-control" runat="server" />
-                                            </div>-->
+                                            </div>
                                             <div class="form-group col-lg-6">
                                                 <!--<label>Status do Termo</label>
                                                 <div class="radio">
@@ -321,6 +395,8 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+
+
     </form>
 </body>
 </html>

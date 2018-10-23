@@ -54,9 +54,9 @@ namespace WebApplication5.Classes
         {
             string strCmd1 = string.Format("UPDATE VOLUNTARIO SET TELEFONE_CONTATO = '{0}', TELEFONE_CONTATO2 = '{1}', EMAIL = '{2}', PATH_FOTO = '{3}', MAX_HORAS_SEMANIS = {4} , TIPO_VOLUNTARIO = {5} WHERE CPF = '{6}'", pVoluntario.sTelefoneContato, pVoluntario.sTelefoneContato2, pVoluntario.sEmail, pVoluntario.sPathFoto, pVoluntario.iMaxHoras, pVoluntario.iTipoVoluntario, pVoluntario.sCpf);
 
-            string strCmd2 = string.Format("UPDATE ENDERECO SET COD_POSTAL = '{0}', LOGRADOURO = '{1}', NUMERO = '{2}', COMPLEMENTO = '{3}', BAIRRO = '{4}', CIDADE = '{5}', ESTADO_PROVINCIA = '{6}', PAIS = '{7}' WHERE CPF = '{8}'", pVoluntario.sCodPostal, pVoluntario.sLogradouro, pVoluntario.sNumero, pVoluntario.sBairro, pVoluntario.sCidade, pVoluntario.sEstadoProvincia, pVoluntario.sPais,    pVoluntario.sCpf);
+            string strCmd2 = string.Format("UPDATE ENDERECO SET COD_POSTAL = '{0}', LOGRADOURO = '{1}', NUMERO = '{2}', COMPLEMENTO = '{3}', BAIRRO = '{4}', CIDADE = '{5}', ESTADO_PROVINCIA = '{6}', PAIS = '{7}' WHERE CPF = '{8}'", pVoluntario.sCodPostal, pVoluntario.sLogradouro, pVoluntario.sNumero,pVoluntario.sComplemento, pVoluntario.sBairro, pVoluntario.sCidade, pVoluntario.sEstadoProvincia, pVoluntario.sPais,    pVoluntario.sCpf);
             
-            string strCmdDel = string.Format("DELETE FROM DIAS_SEMANA_VOLUNTARIO WHERE VOLUNTARIO = '{0'}", pVoluntario.sCpf);
+            string strCmdDel = string.Format("DELETE FROM DIAS_SEMANA_VOLUNTARIO WHERE VOLUNTARIO = '{0}'", pVoluntario.sCpf);
 
             int vRetDel = SqlDB.Instancia.FazerUpdate(strCmdDel);
 
@@ -81,7 +81,7 @@ namespace WebApplication5.Classes
 
         }
 
-        public int aceitarEvento(string pCpf, int pEvento)
+        public int AceitarEvento(string pCpf, int pEvento)
         {
             string strCmd = string.Format("UPDATE VOLUNTARIO_x_EVENTO SET STATUS = 'Z' WHERE VOLUNTARIO = '{0}' AND EVENTO = {1} ", pCpf, pEvento);
             int varRet = SqlDB.Instancia.FazerUpdate(strCmd);
@@ -95,7 +95,7 @@ namespace WebApplication5.Classes
             }
         }
 
-        public int recusarEvento(string pCpf, int pEvento)
+        public int RecusarEvento(string pCpf, int pEvento)
         {
             string strCmd = string.Format("UPDATE VOLUNTARIO_x_EVENTO SET STATUS = 'R' WHERE VOLUNTARIO = '{0}' AND EVENTO = {1} ", pCpf, pEvento);
             int varRet = SqlDB.Instancia.FazerUpdate(strCmd);
@@ -109,7 +109,7 @@ namespace WebApplication5.Classes
             }
         }
 
-        public Voluntario buscarVoluntario(string pCpf)
+        public Voluntario BuscarVoluntario(string pCpf)
         {
             Voluntario oVl =null;
             if(!pCpf.Equals(null))
@@ -148,7 +148,7 @@ namespace WebApplication5.Classes
 
         }
 
-        public int declararHoras(int pEvento, string pVoluntario, int pHoras, DateTime pData)
+        public int DeclararHoras(int pEvento, string pVoluntario, int pHoras, DateTime pData)
         {
             
             DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;

@@ -33,7 +33,7 @@ namespace WebApplication5
                 DateTime dataDecla = new DateTime();
                 DateTime.TryParse(txtData.Text, out dataDecla);
                 VoluntarioDAO oVld = new VoluntarioDAO();
-                int aux = oVld.declararHoras(Convert.ToInt32(lblCod.Text), oUs.sVoluntario, Convert.ToInt32(txt_decla_horas.Text), dataDecla);
+                int aux = oVld.DeclararHoras(Convert.ToInt32(lblCod.Text), oUs.sVoluntario, Convert.ToInt32(txt_decla_horas.Text), dataDecla);
                 if(aux > 0)
                 {
                     Response.Write(string.Format("<script>alert('Declaração Efetuada, voce será redirecionado para a tela de ponto');window.location = 'ponto.aspx';</script>"));

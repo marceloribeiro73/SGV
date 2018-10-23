@@ -10,7 +10,7 @@
 namespace WebApplication5 {
     
     
-    public partial class cad_voluntario {
+    public partial class Cad_voluntario {
         
         /// <summary>
         /// Controle form1.

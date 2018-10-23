@@ -16,7 +16,7 @@ namespace WebApplication5
             Usuario oUs = (Usuario)Session["usuario"];
             Voluntario oVus = new Voluntario();
             VoluntarioDAO oVld = new VoluntarioDAO();
-            oVus = oVld.buscarVoluntario(oUs.sVoluntario);
+            oVus = oVld.BuscarVoluntario(oUs.sVoluntario);
             carregaNomeVol(oVus);
             carregaPainelUser(oUs.sVoluntario);
             if(oUs.iTipoUsuario == 1)
