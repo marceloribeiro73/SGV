@@ -158,7 +158,7 @@
                                                 <asp:Button ID="btnLimpar" Text="Limpar" CssClass="btn btn-primary btn-outline" runat="server"/>
                                             </div>
                                             <div class="form-group ">
-                                                <asp:GridView ID="tblusuarios" runat="server" AutoGenerateColumns="False" DataKeyNames="CODIGO" DataSourceID="dataUsuarios" CssClass="table table-striped table-bordered table-hover" BorderStyle="None">
+                                                <asp:GridView ID="tblusuarios" runat="server" AutoGenerateColumns="False" DataKeyNames="CODIGO" DataSourceID="dataUsuarios" CssClass="table table-striped table-responsive" >
                                                     <Columns>
                                                         <asp:BoundField DataField="CODIGO" HeaderText="CODIGO" ReadOnly="True" InsertVisible="False" SortExpression="CODIGO" Visible="False"></asp:BoundField>
                                                         <asp:BoundField DataField="VOLUNTARIO" HeaderText="VOLUNTARIO" SortExpression="VOLUNTARIO"></asp:BoundField>
@@ -210,18 +210,7 @@
         <!-- DataTables JavaScript -->
         
   
-        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-
-        <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $("#tblusuarios").prepend($("<thead></thead>").append($(this).find("tr:first"))).dataTable();
-                $('#tblusuarios').DataTable({
-                    destroy: true,
-                    stateSave: true
-                });
-            });
-    </script>
+        
     </form>
 </body>
 </html>

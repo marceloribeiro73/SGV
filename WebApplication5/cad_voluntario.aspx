@@ -93,7 +93,9 @@
 
     <script type="text/javascript">
         function valida_horas_max(valor){
+            var data = now.getDay + now.getMonth + now.getFullYear;
             //Valida se é nulo
+            now = new Date;
             if(valor != null){
                 //Valida se está entre 1 e 8
                 if(valor < 1 || valor > 8){
@@ -355,15 +357,8 @@
                                                 <asp:FileUpload ID="upFoto" CssClass="form-control" runat="server" />
                                             </div>
                                             <div class="form-group col-lg-6">
-                                                <!--<label>Status do Termo</label>
-                                                <div class="radio">
-                                                    <label>
-                                                        <input type="radio" />Assinado</label>
-                                                    <label>
-                                                        <input type="radio" />Não Assinado</label>
-                                                    <!--<asp:Button ID="btnGerarTermo" Text="Gerar Termo" CssClass="btn btn-default" runat="server" />-->
-                                                    <!--<asp:Button ID="btnReceberTermo" Text="Receber Termo" CssClass="btn btn-default" runat="server" />
-                                                </div>-->
+                                                <asp:Image ID="i"  runat="server" />
+                                                <asp:FileUpload ID="upTermo" CssClass="form-control" runat="server"/>
                                             </div>
                                             <div class="form-group col-lg-12">
                                                 <asp:Button ID="btnSalvar" Text="Salvar" CssClass="btn btn-success" runat="server" OnClick="btnSalvar_Click" />

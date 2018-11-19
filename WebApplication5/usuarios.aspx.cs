@@ -13,7 +13,7 @@ namespace WebApplication5
         {
 
         }
-
+        
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
             if (chkInativo.Checked)
@@ -28,5 +28,7 @@ namespace WebApplication5
             }
             dataUsuarios.DataBind();
         }
+
+
     }
 }

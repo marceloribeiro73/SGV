@@ -12,8 +12,8 @@ namespace WebApplication5
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Usuario oUs = (Usuario)Session["usuario"];
-            EVENTOS.SelectCommand = string.Format("SELECT E.COD_EVENTO, E.NOME_EVENTO AS 'EVENTO', E.DATA_INICIO 'DATA DE INICIO', E.DATA_FIM AS 'DATA DE TERMINO', SA.NOME_STATUS AS 'STATUS' FROM EVENTO E, VOLUNTARIO_x_EVENTO VE, VOLUNTARIO V, STATUS_APP SA WHERE V.CPF = VE.VOLUNTARIO AND E.COD_EVENTO = VE.EVENTO AND SA.SIGLA_STATUS = VE.STATUS AND V.CPF = '{0}'", oUs.sVoluntario);
+            //Usuario oUs = (Usuario)Session["usuario"];
+            //EVENTOS.SelectCommand = string.Format("SELECT E.COD_EVENTO, E.NOME_EVENTO AS 'EVENTO', E.DATA_INICIO 'DATA DE INICIO', E.DATA_FIM AS 'DATA DE TERMINO', SA.NOME_STATUS AS 'STATUS' FROM EVENTO E, VOLUNTARIO_x_EVENTO VE, VOLUNTARIO V, STATUS_APP SA WHERE V.CPF = VE.VOLUNTARIO AND E.COD_EVENTO = VE.EVENTO AND SA.SIGLA_STATUS = VE.STATUS AND V.CPF = '{0}'", oUs.sVoluntario);
         }
 
         protected void btn_aceitar_evento_Click(object sender, EventArgs e)

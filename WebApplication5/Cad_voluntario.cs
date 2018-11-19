@@ -200,6 +200,8 @@ namespace WebApplication5
             }
         }
 
+       
+
         protected bool validaSeExiste()
         {
             string sCpf = txtCpf.Text;
@@ -236,30 +238,42 @@ namespace WebApplication5
                 {
                    if(DateTime.TryParse(txtDataEmmisaoDoc.Text, out dEmissaDoc))
                    {
-                       if((dNasc.Year - DateTime.Now.Year) > 18)
+                       if((dNasc.Year - DateTime.Now.Year) > 16)
                        {
-                           
-                        return true;
-                           
+                        if(dAdsao.Year > dNasc.Year)
+                        {
+                            if(dEmissaDoc.Year > dNasc.Year)
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                return false;
+                            }
+                        }
+                        else
+                        {
+                            return false;  
+                        }
                        }
                        else
                        {
-                           return true;
+                           return false;
                        }
                    }
                    else
                    {
-                       return true;
+                       return false;
                    }
                 }
                 else
                 {
-                    return true;
+                    return false;
                 }
             }
             else
             {
-                return true;
+                return false;
             }
         }
 
@@ -343,6 +357,8 @@ namespace WebApplication5
             }
         }
 
+        
+
         protected void btnSalvar_Click(object sender, EventArgs e)
         {
             if (operacao == 1)
@@ -380,7 +396,7 @@ namespace WebApplication5
                             }
                             else
                             {
-                                Mensagem("Cadastro não realizado devido a inconsistencias entre as data de Adesão e Nacimento, por gentileza verificar.");
+                                Mensagem("Cadastro não realizado devido a inconsistencias entre as data de Adesão e Nacimento ou entre a data de nascimento e a data de emissão do documento, por gentileza verifique os dados e tente novamente.");
                             }
                         }
                         else
@@ -440,5 +456,7 @@ namespace WebApplication5
         {
             Response.Redirect("voluntarios.aspx");
         }
+
+        
     }
 }

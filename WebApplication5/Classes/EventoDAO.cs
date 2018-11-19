@@ -26,9 +26,9 @@ namespace WebApplication5.Classes
 
         }
 
-        public int atribuirVoluntarioEvento(string pVolun, int pCodEvento)
+        public int atribuirVoluntarioEvento(string pVolun, int pCodEvento, string pAtividade_Evento)
         {
-            string strCmd = string.Format("INSERT INTO VOLUNTARIO_x_EVENTO VALUES('{0}',{1},getdate(),'P')",pVolun,pCodEvento);
+            string strCmd = string.Format("INSERT INTO VOLUNTARIO_x_ATIVIDADE_x_EVENTO VALUES ('{0}',{1},getdate(),'P')", pVolun, pAtividade_Evento);
             int varRet = SqlDB.Instancia.FazerUpdate(strCmd);
             if(varRet > 0)
             {
@@ -40,9 +40,9 @@ namespace WebApplication5.Classes
             }
         }
 
-        public int desatribuirVolutarioEvento(string pVolun, int pCodEvento)
+        public int desatribuirVolutarioEvento(string pVolun, string pAtividade_Evento)
         {
-            string strCmd = string.Format("DELETE FROM VOLUNTARIO_x_EVENTO WHERE VOLUNTARIO = '{0}' AND EVENTO = {1}",pVolun,pCodEvento);
+            string strCmd = string.Format("DELETE FROM VOLUNTARIO_x_ATIVIDADE_x_EVENTO WHERE VOLUNTARIO = '{0}' AND ATIVIDADE_x_EVENTO = {1}", pVolun, pAtividade_Evento);
             int varRet = SqlDB.Instancia.FazerUpdate(strCmd);
             if(varRet > 0 )
             {

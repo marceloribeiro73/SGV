@@ -88,6 +88,7 @@ namespace WebApplication5
 
         protected void btnAlterar_Click(object sender, EventArgs e)
         {
+            Session["evento"] = null;
             int aux = grwEventos.Rows.Count;
             for(int cont =0; cont < aux; cont++)
             {
@@ -110,6 +111,7 @@ namespace WebApplication5
 
         protected void btnAtribuir_Click(object sender, EventArgs e)
         {
+            Session["evento"] = null;
             int aux = grwEventos.Rows.Count;
             for (int cont = 0; cont < aux; cont++)
             {
