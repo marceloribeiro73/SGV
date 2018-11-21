@@ -119,7 +119,7 @@ namespace WebApplication5
 
         protected void btnSalvar_Click(object sender, EventArgs e)
         {
-            if (operacao ==1)
+            if (operacao == 1)
             {
                 bool bObrPreenchidos = validaObrigatorio();
                 if (bObrPreenchidos != true)
@@ -154,7 +154,7 @@ namespace WebApplication5
                                     Label lblAtivi = (Label)grvAtividade.Rows[cont].FindControl("label2");
                                     if(checkAtivi.Checked == true)
                                     {
-                                        string strCmd = string.Format("INSERT INTO ATIVIDADE_x_EVENTO VALUES ({0},{1})", lblAtivi.Text, iCodEvento);
+                                        string strCmd = string.Format("INSERT INTO ATIVIDADE_x_EVENTO VALUES ({0},{1},null)", lblAtivi.Text, iCodEvento);
                                         int inu = SqlDB.Instancia.FazerUpdate(strCmd);
                                     }
                                 }

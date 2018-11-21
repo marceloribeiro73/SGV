@@ -12,8 +12,14 @@ namespace WebApplication5
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Usuario oUs = (Usuario)Session["usuario"];
-            //EVENTOS.SelectCommand = string.Format("SELECT E.COD_EVENTO, E.NOME_EVENTO AS 'EVENTO', E.DATA_INICIO 'DATA DE INICIO', E.DATA_FIM AS 'DATA DE TERMINO', SA.NOME_STATUS AS 'STATUS' FROM EVENTO E, VOLUNTARIO_x_EVENTO VE, VOLUNTARIO V, STATUS_APP SA WHERE V.CPF = VE.VOLUNTARIO AND E.COD_EVENTO = VE.EVENTO AND SA.SIGLA_STATUS = VE.STATUS AND V.CPF = '{0}'", oUs.sVoluntario);
+            
+            UsuarioDAO usuarioDAO = new UsuarioDAO();
+            Usuario oUs = usuarioDAO.BuscarUsuario("20132467801"); //(Usuario)Session["usuario"];
+            if(!oUs.Equals(null))
+            {
+                SqlDataSource1.SelectCommand = string.Format("SELECT E.NOME_EVENTO, A.NOME_ATIVIDADE, VAE.DATA_DECLARADA, VAE.QUANTIDADE_HORAS_DELCARADA, VAE.DATA_DECLARACAO, VAE.STATUS_DECLARACAO FROM VOLUNTARIO_x_ATIVIDADE_x_EVENTO VAE, VOLUNTARIO V, ATIVIDADE_x_EVENTO AE, ATIVIDADE A, EVENTO E WHERE E.COD_EVENTO = AE.EVENTO AND A.COD_ATIVIDADE = AE.ATIVIDADE AND AE.SEQUENCIAL = VAE.ATIVIDADE_x_EVENTO AND VAE.VOLUNTARIO = V.CPF AND V.CPF = '{0}'",oUs.sVoluntario.ToString());
+                SqlDataSource2.SelectCommand = string.Format("SELECT AE.SEQUENCIAL,E.NOME_EVENTO, A.NOME_ATIVIDADE, VAE.STATUS, VAE.QUANTIDADE_HORAS_DELCARADA FROM EVENTO E, ATIVIDADE A, ATIVIDADE_x_EVENTO AE, VOLUNTARIO V, VOLUNTARIO_x_ATIVIDADE_x_EVENTO VAE WHERE E.COD_EVENTO = AE.EVENTO AND A.COD_ATIVIDADE = AE.ATIVIDADE AND AE.SEQUENCIAL = VAE.ATIVIDADE_x_EVENTO AND V.CPF = VAE.VOLUNTARIO AND V.CPF = '{0}'", oUs.sVoluntario.ToString());
+            }
         }
 
         protected void btn_aceitar_evento_Click(object sender, EventArgs e)
@@ -25,7 +31,7 @@ namespace WebApplication5
             for (int i = 0; i < coutRows; i++)
             {
                 CheckBox chk = (CheckBox)grwEventos.Rows[i].FindControl("CheckBox1");
-                Label lblEvento = (Label)grwEventos.Rows[i].FindControl("Label2");
+                Label lblEvento = (Label)grwEventos.Rows[i].FindControl("Label1");
                 if (chk.Checked)
                 {
                     VoluntarioDAO oVld = new VoluntarioDAO();
@@ -79,7 +85,7 @@ namespace WebApplication5
             for (int i = 0; i < coutRows; i++)
             {
                 CheckBox chk = (CheckBox)grwEventos.Rows[i].FindControl("CheckBox1");
-                Label lblEvento = (Label)grwEventos.Rows[i].FindControl("Label2");
+                Label lblEvento = (Label)grwEventos.Rows[i].FindControl("Label1");
                 if (chk.Checked)
                 {
                     Session["evento"] = lblEvento.Text;
@@ -87,5 +93,7 @@ namespace WebApplication5
                 }
             }
         }
+
+        
     }
 }

@@ -28,7 +28,7 @@ namespace WebApplication5.Classes
 
         public int atribuirVoluntarioEvento(string pVolun, int pCodEvento, string pAtividade_Evento)
         {
-            string strCmd = string.Format("INSERT INTO VOLUNTARIO_x_ATIVIDADE_x_EVENTO VALUES ('{0}',{1},getdate(),'P')", pVolun, pAtividade_Evento);
+            string strCmd = string.Format("INSERT INTO VOLUNTARIO_x_ATIVIDADE_x_EVENTO VALUES ('{0}',{1},getdate(),'P',NULL,NULL,NULL,NULL,NULL)", pVolun, pAtividade_Evento);
             int varRet = SqlDB.Instancia.FazerUpdate(strCmd);
             if(varRet > 0)
             {

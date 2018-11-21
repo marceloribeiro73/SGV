@@ -114,15 +114,13 @@ namespace WebApplication5.Classes
                         oVolRet = new Usuario
                         {
                             sVoluntario = Convert.ToString(pVoluntario),
-                            iCodUsuario = Convert.ToInt32(dr1["USUSARIO.COD_USUARIO"]),
-                            sLoginName = Convert.ToString(dr1["USUARIO.LOGIN_NAME"]),
-                            sPasswd = Convert.ToString(dr1["USUARIO.PASSWD"]),
-                            iTipoUsuario = Convert.ToInt32(dr1["USUARIO.TIPO_USUARIO"]),
-                            cStatus = Convert.ToChar(dr1["USUARIO.STATTUS"]),
-                            sDataCriacao = Convert.ToString(dr1["USUARIO.DATA_CRIACAO"]),
-                            sDataInativacao = Convert.ToString(dr1["USUARIO.DATA_INATIVACAO"]),
-                            iQtdErradas = Convert.ToInt32(dr1["USUARIO.QTD_FALHAS_LOGIN"]),
-                            sDataBolque = Convert.ToString(dr1["USUARIO.DATA_BLOQUEIO"])
+                            iCodUsuario = Convert.ToInt32(dr1["COD_USUARIO"]),
+                            sLoginName = Convert.ToString(dr1["LOGIN_NAME"]),
+                            sPasswd = Convert.ToString(dr1["PASSWD"]),
+                            iTipoUsuario = Convert.ToInt32(dr1["TIPO_USUARIO"]),
+                            cStatus = Convert.ToChar(dr1["STATUS"]),
+                            sDataCriacao = Convert.ToString(dr1["DATA_CRIACAO"]),
+                            
                         };
 
                         dr1.Close();

@@ -81,18 +81,25 @@ namespace WebApplication5.Classes
 
         }
 
-        public int AceitarEvento(string pCpf, int pEvento)
+        public int AceitarEvento(string pCpf, int pSequencial)
         {
-            string strCmd = string.Format("UPDATE VOLUNTARIO_x_EVENTO SET STATUS = 'Z' WHERE VOLUNTARIO = '{0}' AND EVENTO = {1} ", pCpf, pEvento);
-            int varRet = SqlDB.Instancia.FazerUpdate(strCmd);
-            if(varRet > 0)
+            if(!pCpf.Equals(null))
             {
-                return 1;
+                if(pSequencial.Equals(null))
+                {
+
+                    return 1;
+                }
+                else
+                {
+                    return 5;
+                }
             }
             else
             {
-                return 2;
+                return 4;
             }
+
         }
 
         public int RecusarEvento(string pCpf, int pEvento)
