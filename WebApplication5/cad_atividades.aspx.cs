@@ -28,7 +28,9 @@ namespace WebApplication5
                     txtMin.Text = Convert.ToString(dr["QTD_MINUTOS"]);
                     
                     txtNome.Enabled = false;
-                    
+                    ddwTipoVoluntario.Enabled = false;
+                    FonteTVNuvem.SelectCommand = string.Format("SELECT * FROM TIPO_VOLUNTARIO TV, ATIVIDADE A, TIPO_VOLUNTARIO_x_ATIVIDADE TVA WHERE TV.COD_TIPO_VOLUNTARIO = TVA.TIPO_VOLUNTARIO AND TVA.ATIVIDADE = A.COD_ATIVIDADE AND A.NOME_ATIVIDADE = '{0}'", txtNome.Text);
+
                     operacao = 2;
                 }
             }
@@ -43,6 +45,8 @@ namespace WebApplication5
                 oAtivi.sNome = txtNome.Text;
                 oAtivi.iQtdVol = Convert.ToInt32(txtQtd.Text);
                 oAtivi.iMedMin = Convert.ToInt32(txtMin.Text);
+                oAtivi.sTipoVoluntario = Convert.ToString(ddwTipoVoluntario.Text);
+                
                 return oAtivi;
             }
             else
@@ -58,6 +62,7 @@ namespace WebApplication5
                 Atividade oAt = new Atividade();
                 oAt = carregarObj();
                 AtividadeDAO oAtd = new AtividadeDAO();
+                Response.Write(string.Format("<script>alert('{0}.')</script>",oAt.sTipoVoluntario));
                 int aux = oAtd.inserirAtividade(oAt);
                 if(aux == 6)
                 {
@@ -82,7 +87,7 @@ namespace WebApplication5
             }
             else
             {
-                string strCmd = string.Format("UPDATE ATIVIDADE SET QTD_VOLUNTARIOS = {0},QTD_MINUTOS = {1} WHERE NOME_ATIVIDADE = `'{2}'", txtQtd.Text, txtMin.Text, txtNome.Text);
+                string strCmd = string.Format("UPDATE ATIVIDADE SET QTD_VOLUNTARIOS = {0},QTD_MINUTOS = {1} WHERE NOME_ATIVIDADE = '{2}'", txtQtd.Text, txtMin.Text, txtNome.Text);
                 int ret = SqlDB.Instancia.FazerUpdate(strCmd);
                 if (ret > 0)
                 {

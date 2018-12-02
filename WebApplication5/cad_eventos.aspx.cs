@@ -43,19 +43,25 @@ namespace WebApplication5
                     txtEndereco.Text = oEvento.sEndereco;
                     ddlTipoEvento.Text = Convert.ToString(oEvento.iTipoEvento);
                     ddlTipoEvento.Enabled = false;
-                    string strCmd3 = string.Format("SELECT ATIVIDADE FROM ATIVIDADE_x_EVENTO WHERE EVENTO = {0} ", oEvento.iCodEvento);
-                    SqlDataReader dr2 = SqlDB.Instancia.FazerSelect(strCmd);
-                    while(dr2.Read())
-                    {
-                        int aux1 = grvAtividade.Rows.Count;
-                        for(int i = 0; i < aux1; i++)
-                        {
-
-                        }
-                    }
+                    atividades.SelectCommand = string.Format("SELECT A.COD_ATIVIDADE, A.NOME_ATIVIDADE AS 'NOME ATIVIDADE', A.QTD_VOLUNTARIOS AS 'QUANTIDADE DE VOLUNTARIOS', A.QTD_MINUTOS / 60 AS 'HORAS EM MEDIA' FROM ATIVIDADE A WHERE A.STATUS = 'A' AND A.COD_ATIVIDADE NOT IN(SELECT A.COD_ATIVIDADE FROM ATIVIDADE A, ATIVIDADE_x_EVENTO AE, EVENTO E WHERE A.COD_ATIVIDADE = AE.ATIVIDADE AND E.COD_EVENTO = AE.EVENTO AND E.COD_EVENTO = {0}) ", oEvento.iCodEvento);
+                    SqlDataSource1.SelectCommand = string.Format("SELECT A.COD_ATIVIDADE, A.NOME_ATIVIDADE AS 'NOME ATIVIDADE', A.QTD_VOLUNTARIOS AS 'QUANTIDADE DE VOLUNTARIOS', A.QTD_MINUTOS / 60 AS 'HORAS EM MEDIA' FROM ATIVIDADE A WHERE A.STATUS = 'A' AND A.COD_ATIVIDADE IN(SELECT A.COD_ATIVIDADE FROM ATIVIDADE A, ATIVIDADE_x_EVENTO AE, EVENTO E WHERE A.COD_ATIVIDADE = AE.ATIVIDADE AND E.COD_EVENTO = AE.EVENTO AND E.COD_EVENTO = 1) ", oEvento.iCodEvento);
                     operacao = 2;
                 }
             }
+            if(operacao == 1)
+            {
+                grvAtividade.Visible = false;
+                GridView1.Visible = false;
+            }
+            else
+            {
+                grvAtividade.Visible = true;
+                GridView1.Visible = true;
+                lblAtvAtrb.Visible = true;
+                lblAtvDispo.Visible = true;
+                btnAtribuir.Visible = true;
+            }
+            
         }
 
         private bool validaObrigatorio()
@@ -97,7 +103,14 @@ namespace WebApplication5
                 {
                     if(dFim.Date >= dInicio.Date)
                     {
-                        return true;
+                        if(dInicio.Date > DateTime.Now)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
                     }
                     else
                     {
@@ -139,32 +152,20 @@ namespace WebApplication5
                             bool auxRet = oEvd.inserirEvento(txtNomeEvento.Text, txtDataInicio.Text, txtDataFim.Text, Convert.ToInt32(ddlTipoEvento.Text), txtEndereco.Text);
                             if (auxRet == true)
                             {
-                                string strCmdCod = string.Format("SELECT COD_EVENTO FROM EVENTO WHERE NOME_EVENTO = '{0}'", txtNomeEvento.Text);
-                                SqlDataReader dr1 = SqlDB.Instancia.FazerSelect(strCmdCod);
-                                int iCodEvento = 0;
-                                if (dr1.Read())
+                                Response.Write(string.Format("<script>alert('Cadastro Efetuado.');</script>"));
+                                string strCmd = string.Format("select COD_EVENTO from EVENTO where NOME_EVENTO = '{0}'", txtNomeEvento.Text);
+                                SqlDataReader dr1 = SqlDB.Instancia.FazerSelect(strCmd);
+                                if(dr1.HasRows)
                                 {
-                                    iCodEvento = Convert.ToInt32(dr1["COD_EVENTO"]);
+                                    Session["evento"] = Convert.ToString(dr1["COD_EVENTO"]);
+                                    dr1.Close();
                                 }
-                                dr1.Close();
-                                int aux = grvAtividade.Rows.Count;
-                                for(int cont = 0; cont < aux; cont++)
-                                {
-                                    CheckBox checkAtivi = (CheckBox)grvAtividade.Rows[cont].FindControl("CheckBox1");
-                                    Label lblAtivi = (Label)grvAtividade.Rows[cont].FindControl("label2");
-                                    if(checkAtivi.Checked == true)
-                                    {
-                                        string strCmd = string.Format("INSERT INTO ATIVIDADE_x_EVENTO VALUES ({0},{1},null)", lblAtivi.Text, iCodEvento);
-                                        int inu = SqlDB.Instancia.FazerUpdate(strCmd);
-                                    }
-                                }
-                                Response.Write(string.Format("<script>alert('Cadastro Efetuado, voce será redirecionado para a tela de eventos.');window.location = 'eventos.aspx';</script>"));
 
                             }
                         }
                         else
                         {
-                            Response.Write("<script>alert('Cadastro não efetuado, data de fim menor que a data de inicio.');</script>");
+                            Response.Write("<script>alert('Cadastro não efetuado, data de fim menor que a data de inicio ou data de inicio anterior a data atual.');</script>");
                         }
                     }
                     else
@@ -179,7 +180,7 @@ namespace WebApplication5
                 int ret =SqlDB.Instancia.FazerUpdate(strCmd);
                 if(ret > 0)
                 {
-                    Response.Write(string.Format("<script>alert('Cadastro Efetuado, voce será redirecionado para a tela de eventos.');window.location = 'eventos.aspx';</script>"));
+                    Response.Write(string.Format("<script>alert('Cadastro Efetuado');</script>"));
                 }
                 else
                 {
@@ -190,7 +191,33 @@ namespace WebApplication5
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/eventos.apsx");
+            Response.Redirect("eventos.aspx");
+            Session["evento"] = null;
+        }
+
+        protected void btnAtribuir_Click(object sender, EventArgs e)
+        {
+            string strCmdCod = string.Format("SELECT COD_EVENTO FROM EVENTO WHERE NOME_EVENTO = '{0}'", txtNomeEvento.Text);
+            SqlDataReader dr1 = SqlDB.Instancia.FazerSelect(strCmdCod);
+            int iCodEvento = 0;
+            if (dr1.Read())
+            {
+                iCodEvento = Convert.ToInt32(dr1["COD_EVENTO"]);
+            }
+            dr1.Close();
+            int aux = grvAtividade.Rows.Count;
+            for (int cont = 0; cont < aux; cont++)
+            {
+                CheckBox checkAtivi = (CheckBox)grvAtividade.Rows[cont].FindControl("CheckBox1");
+                Label lblAtivi = (Label)grvAtividade.Rows[cont].FindControl("label2");
+                if (checkAtivi.Checked == true)
+                {
+                    string strCmd = string.Format("INSERT INTO ATIVIDADE_x_EVENTO VALUES ({0},{1},null)", lblAtivi.Text, iCodEvento);
+                    int inu = SqlDB.Instancia.FazerUpdate(strCmd);
+                    
+                }
+            }
+            Response.Redirect("cad_eventos.aspx");
         }
     }
 }

@@ -82,7 +82,7 @@ namespace WebApplication5.Classes
                 return 9; // Erro tipo de voluntario não encontrado
             }
             int varRet = 0;
-            string strCmd = string.Format("INSERT INTO USUARIO VALUES ('{0}','{1}','{2}',{3},'I',getdate(),null,0,null)",pCpf,pEmail,sSenha,iTpUser);
+            string strCmd = string.Format("INSERT INTO USUARIO VALUES ('{0}','{1}','{2}',{3},'I',getdate(),0,0,0)",pCpf,pEmail,sSenha,iTpUser);
             if(iTpUser != 0 && !strCmd.Equals(null))
             {
                 varRet = SqlDB.Instancia.FazerUpdate(strCmd);

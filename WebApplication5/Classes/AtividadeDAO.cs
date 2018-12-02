@@ -27,17 +27,17 @@ namespace WebApplication5.Classes
                     else
                     {
                         dr.Close();
-                        strCmd = string.Format("INSERT INTO ATIVIDADE VALUES ('{0}',{1},{2}, 'A',getdate())",pAtividade.sNome,pAtividade.iQtdVol,pAtividade.iMedMin);
+                        strCmd = string.Format("INSERT INTO ATIVIDADE VALUES ('{0}',{1},{2},'A',getdate())",pAtividade.sNome,pAtividade.iQtdVol,pAtividade.iMedMin);
                         int varRet = SqlDB.Instancia.FazerUpdate(strCmd);
                         if(varRet > 0)
                         {
-                            strCmd = string.Format("SELECT COD_ATIVIDADE FROM ATIVIDADE WHERE NOME_ATIVIDADE = '{0}'",pAtividade.iCod);
+                            strCmd = string.Format("SELECT COD_ATIVIDADE FROM ATIVIDADE WHERE NOME_ATIVIDADE = '{0}'",pAtividade.sNome);
                             SqlDataReader dr2 = SqlDB.Instancia.FazerSelect(strCmd);
                             if(dr2.Read())
                             {
                                 int vCod = Convert.ToInt32(dr2["COD_ATIVIDADE"]);
                                 dr2.Close();
-                                strCmd = string.Format("INSERT INTO TIPO_VOLUNTARIO_x_ATIVIDADE VALUES ({0},{1})",vCod,pAtividade.iTipoVoluntario);
+                                strCmd = string.Format("INSERT INTO TIPO_VOLUNTARIO_x_ATIVIDADE VALUES ({0},{1})",vCod,pAtividade.sTipoVoluntario);
                                 varRet = SqlDB.Instancia.FazerUpdate(strCmd);
                                 if(varRet > 0)
                                 {
@@ -70,6 +70,7 @@ namespace WebApplication5.Classes
             }
         }
 
+       
         
     }
 }

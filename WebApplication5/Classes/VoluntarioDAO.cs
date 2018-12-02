@@ -52,7 +52,7 @@ namespace WebApplication5.Classes
         }
         public string alterarVoluntario(Voluntario pVoluntario)
         {
-            string strCmd1 = string.Format("UPDATE VOLUNTARIO SET TELEFONE_CONTATO = '{0}', TELEFONE_CONTATO2 = '{1}', EMAIL = '{2}', PATH_FOTO = '{3}', MAX_HORAS_SEMANIS = {4} , TIPO_VOLUNTARIO = {5} WHERE CPF = '{6}'", pVoluntario.sTelefoneContato, pVoluntario.sTelefoneContato2, pVoluntario.sEmail, pVoluntario.sPathFoto, pVoluntario.iMaxHoras, pVoluntario.iTipoVoluntario, pVoluntario.sCpf);
+            string strCmd1 = string.Format("UPDATE VOLUNTARIO SET TELEFONE_CONTATO = '{0}', TELEFONE_CONTATO2 = '{1}', EMAIL = '{2}', PATH_FOTO = '{3}', MAX_HORAS_SEMANAIS = {4} , TIPO_VOLUNTARIO = {5} WHERE CPF = '{6}'", pVoluntario.sTelefoneContato, pVoluntario.sTelefoneContato2, pVoluntario.sEmail, pVoluntario.sPathFoto, pVoluntario.iMaxHoras, pVoluntario.iTipoVoluntario, pVoluntario.sCpf);
 
             string strCmd2 = string.Format("UPDATE ENDERECO SET COD_POSTAL = '{0}', LOGRADOURO = '{1}', NUMERO = '{2}', COMPLEMENTO = '{3}', BAIRRO = '{4}', CIDADE = '{5}', ESTADO_PROVINCIA = '{6}', PAIS = '{7}' WHERE CPF = '{8}'", pVoluntario.sCodPostal, pVoluntario.sLogradouro, pVoluntario.sNumero,pVoluntario.sComplemento, pVoluntario.sBairro, pVoluntario.sCidade, pVoluntario.sEstadoProvincia, pVoluntario.sPais,    pVoluntario.sCpf);
             
@@ -166,5 +166,44 @@ namespace WebApplication5.Classes
             return varRet;
         }
         
+        public int CaregarTermo(string pCpf, string pPath)
+        {
+            
+            if (!pCpf.Equals(null))
+            {
+                if (!pPath.Equals(null))
+                {
+                    string strCmd = string.Format("select TA.PATH_TERMO from TERMO_ADSAO TA, VOLUNTARIO V where v.cpf = ta.voluntario and v.cpf = '{0}'", pCpf);
+                    SqlDataReader dr1 = SqlDB.Instancia.FazerSelect(strCmd);
+                    if (dr1.HasRows)
+                    {
+                        if(dr1.Read())
+                        {
+                            string cmd2 = string.Format("update TERMO_ADSAO set STATUS='I' where voluntario = '{0}'", pCpf);
+                        }
+                        dr1.Close();
+                    }
+                    string cmd3 = string.Format("INSERT INTO TERMO_ADSAO VALUES ('{0}','{1}','A')", pCpf, pPath);
+                    int rows = SqlDB.Instancia.FazerUpdate(cmd3);
+                    if (rows > 0)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 2;
+                    }
+
+                }
+                else
+                {
+                    return 3;
+                }
+            }
+            else
+            {
+                return 4;
+            }
+        }
     }
 }

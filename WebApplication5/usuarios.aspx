@@ -157,8 +157,8 @@
                                                 <asp:Button ID="btnBuscar" Text="Buscar" CssClass="btn btn-primary btn-outline" runat="server" OnClick="btnBuscar_Click"/>
                                                 <asp:Button ID="btnLimpar" Text="Limpar" CssClass="btn btn-primary btn-outline" runat="server"/>
                                             </div>
-                                            <div class="form-group ">
-                                                <asp:GridView ID="tblusuarios" runat="server" AutoGenerateColumns="False" DataKeyNames="CODIGO" DataSourceID="dataUsuarios" CssClass="table table-striped table-responsive" >
+                                            <div class="form-group col-lg-12 table-bordered">
+                                                <asp:GridView ID="tblusuarios" runat="server" AutoGenerateColumns="False" DataKeyNames="CODIGO" DataSourceID="dataUsuarios" CssClass="table table-condensed tatable-responsive" Width="100%">
                                                     <Columns>
                                                         <asp:BoundField DataField="CODIGO" HeaderText="CODIGO" ReadOnly="True" InsertVisible="False" SortExpression="CODIGO" Visible="False"></asp:BoundField>
                                                         <asp:BoundField DataField="VOLUNTARIO" HeaderText="VOLUNTARIO" SortExpression="VOLUNTARIO"></asp:BoundField>
@@ -208,7 +208,20 @@
         <script src="../dist/js/sb-admin-2.js"></script>
 
         <!-- DataTables JavaScript -->
-        
+        <script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
+
+            <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+            <script>
+                $(document).ready(function () {
+                    $("#tblusuarios").prepend($("<thead></thead>").append($("#tblusuarios").find("tr:first"))).dataTable({
+                        responsive: true
+                    });
+                   
+                });
+
+            </script>
   
         
     </form>

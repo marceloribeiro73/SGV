@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using WebApplication5.classes_servicos;
+using WebApplication5.Classes;
 
 namespace WebApplication5
 {
@@ -38,7 +39,16 @@ namespace WebApplication5
                         strCmd = string.Format("UPDATE EVENTO SET STATUS = 'I' WHERE COD_EVENTO = {0}", lbCod.Text);
                     }else if (lbStat.Text.Equals("I"))
                     {
-                        strCmd = string.Format("UPDATE EVENTO SET STATUS = 'A' WHERE COD_EVENTO = {0}", lbCod.Text);
+                        EventoDAO evd = new EventoDAO();
+                        int ret = evd.ativarEvento(lbCod.Text);
+                        if(ret == 1)
+                        {
+                            strCmd = "tetete";
+                        }
+                        else
+                        {
+                            Response.Write("<script>alert('Evento com data de fim anterior a data atual.');</script>");
+                        }
                     }
                     else
                     {

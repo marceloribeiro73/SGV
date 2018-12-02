@@ -249,11 +249,11 @@
                                                                 <label>Orgão Emissor *</label>
                                                                 <asp:TextBox ID="txtOrgEmissor" CssClass="form-control" runat="server"></asp:TextBox>
                                                             </div>
-                                                            <div class="form-group col-lg-2">
+                                                            <div class="form-group col-lg-3">
                                                                 <label>Data de Emissão *</label>
                                                                 <asp:TextBox ID="txtDataEmmisaoDoc" CssClass="form-control" runat="server" TextMode="Date"></asp:TextBox>
                                                             </div>
-                                                            <div class="form-group col-lg-3">
+                                                            <div class="form-group col-lg-2">
                                                                 <label>Tipo de Documento de Indentificação *</label>
                                                                 <asp:DropDownList ID="ddwTipoDocID" CssClass="form-control" runat="server">
                                                                     <asp:ListItem Value="R">RG</asp:ListItem>
@@ -351,14 +351,11 @@
                                                 <asp:TextBox ID="txtMaxHorasTrab" CssClass="form-control" TextMode="Number" Text="1" runat="server" onblur="valida_horas_max(this.value)"></asp:TextBox>
                                                 <asp:Label ID="lblErroHorasMax" CssClass="form-group" Text='Por gentileza, insira valores ente 1 e 8.' runat="server"></asp:Label>
                                             </div>
-                                            <<div class="form-group col-lg-4">
-                                                <label>Foto</label>
-                                                <asp:Image ID="img1"  runat="server" />
-                                                <asp:FileUpload ID="upFoto" CssClass="form-control" runat="server" />
-                                            </div>
+                                            
                                             <div class="form-group col-lg-6">
-                                                <asp:Image ID="i"  runat="server" />
-                                                <asp:FileUpload ID="upTermo" CssClass="form-control" runat="server"/>
+                                                <label>Termo da adesão</label>
+                                                <asp:FileUpload ID="upFoto" CssClass="form-control" runat="server" />
+                                                <asp:Button ID="btnDownload" Text="Download Termo" CssClass="btn btn-outline" runat="server" OnClick="btnDownload_Click" />
                                             </div>
                                             <div class="form-group col-lg-12">
                                                 <asp:Button ID="btnSalvar" Text="Salvar" CssClass="btn btn-success" runat="server" OnClick="btnSalvar_Click" />

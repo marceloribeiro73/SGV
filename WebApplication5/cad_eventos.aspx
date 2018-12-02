@@ -165,7 +165,9 @@
                                           <asp:TextBox ID="txtEndereco" CssClass="form-control" runat="server"></asp:TextBox>
                                        </div>
                                        <div class="form-group col-lg-12">
-                                           <asp:GridView ID="grvAtividade" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataSourceID="atividades" CssClass="table table-bordered">
+                                        
+                                           <asp:Label ID="lblAtvDispo" Text="Atividades Disponiveis" Visible="false" runat="server"></asp:Label>
+                                           <asp:GridView ID="grvAtividade" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataSourceID="atividades" CssClass="table table-bordered" Width="100%">
                                                <Columns>
                                                    <asp:TemplateField>
                                                        <ItemTemplate>
@@ -192,11 +194,42 @@
                                                    </asp:TemplateField>
                                                </Columns>
                                            </asp:GridView>
-                                           <asp:SqlDataSource ID="atividades" runat="server" ConnectionString="<%$ ConnectionStrings:SGV_DEVConnectionString2 %>" SelectCommand="SELECT COD_ATIVIDADE, NOME_ATIVIDADE AS 'NOME ATIVIDADE', QTD_VOLUNTARIOS AS 'QUANTIDADE DE VOLUNTARIOS', QTD_MINUTOS / 60 AS 'HORAS EM MEDIA' FROM ATIVIDADE WHERE STATUS &lt;&gt; 'I'"></asp:SqlDataSource>
+                                           <asp:SqlDataSource ID="atividades" runat="server" ConnectionString="<%$ ConnectionStrings:SGV_DEVConnectionString2 %>" SelectCommand=""></asp:SqlDataSource>
                                        </div>
                                        <div class="form-group col-lg-12">
+                                           <asp:Button ID="btnAtribuir" CssClass="btn btn-warning btn-outline" Visible="false" Text="Atribuir"  runat="server" OnClick="btnAtribuir_Click" />
+                                       </div>
+                                       <div class="form-group col-lg-12">
+                                           <asp:Label ID="lblAtvAtrb" Text="Atividades Atribuidas" Visible="false" runat="server"></asp:Label>
+                                           <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" CssClass="table table-bordered" Width="100%">
+                                               <Columns>
+                                                   
+                                                   <asp:TemplateField HeaderText="NOME ATIVIDADE" SortExpression="NOME ATIVIDADE">
+                                                       <EditItemTemplate>
+                                                           <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("[NOME ATIVIDADE]") %>'></asp:TextBox>
+                                                       </EditItemTemplate>
+                                                       <ItemTemplate>
+                                                           <asp:Label ID="Label1" runat="server" Text='<%# Bind("[NOME ATIVIDADE]") %>'></asp:Label>
+                                                       </ItemTemplate>
+                                                   </asp:TemplateField>
+                                                   <asp:BoundField DataField="QUANTIDADE DE VOLUNTARIOS" HeaderText="QUANTIDADE DE VOLUNTARIOS" SortExpression="QUANTIDADE DE VOLUNTARIOS" />
+                                                   <asp:BoundField DataField="HORAS EM MEDIA" HeaderText="HORAS EM MEDIA" ReadOnly="True" SortExpression="HORAS EM MEDIA" />
+                                                   <asp:TemplateField SortExpression="COD_ATIVIDADE" Visible="False">
+                                                       <EditItemTemplate>
+                                                           <asp:Label ID="Label1" runat="server" Text='<%# Eval("COD_ATIVIDADE") %>'></asp:Label>
+                                                       </EditItemTemplate>
+                                                       <ItemTemplate>
+                                                           <asp:Label ID="Label2" runat="server" Text='<%# Bind("COD_ATIVIDADE") %>'></asp:Label>
+                                                       </ItemTemplate>
+                                                   </asp:TemplateField>
+                                               </Columns>
+                                           </asp:GridView>
+                                           <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:SGV_DEVConnectionString2 %>" SelectCommand=""></asp:SqlDataSource>
+                                       </div>
+
+                                       <div class="form-group col-lg-12">
                                             <asp:Button ID="btnSalvar" CssClass="btn btn-success btn-outline"  Text="Salvar"  runat="server" OnClick="btnSalvar_Click" />
-                                            <asp:Button ID="btnCancelar" CssClass="btn btn-danger btn-outline"  Text="Cancelar"  runat="server" OnClick="btnCancelar_Click" />
+                                            <asp:Button ID="btnCancelar" CssClass="btn btn-danger btn-outline"  Text="Sair"  runat="server" OnClick="btnCancelar_Click" />
                                        </div>
                                        <div class="col-lg-12">
                                            <label>Campos com * são obrigatorios</label><br />
@@ -228,6 +261,23 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+        <script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
+
+            <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+            <script>
+                $(document).ready(function () {
+                    $("#GridView1").prepend($("<thead></thead>").append($("#GridView1").find("tr:first"))).dataTable({
+                        responsive: true
+                    });
+                    $("#grvAtividade").prepend($("<thead></thead>").append($("#grvAtividade").find("tr:first"))).dataTable({
+                        responsive: true,
+                        
+                    });
+                });
+
+            </script>
     </form>
 </body>
 </html>

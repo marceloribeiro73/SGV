@@ -56,7 +56,7 @@ namespace WebApplication5
             for(int i = 0; i < aux; i++)
             {
                 string strCmd = null;
-                CheckBox check = (CheckBox)grwAtividades.Rows[i].FindControl("Checkox1");
+                CheckBox check = (CheckBox)grwAtividades.Rows[i].FindControl("CheckBox1");
                 Label lbNome = (Label)grwAtividades.Rows[i].FindControl("Label1");
                 Label lbStatus = (Label)grwAtividades.Rows[i].FindControl("Label2");
                 if (check.Checked)

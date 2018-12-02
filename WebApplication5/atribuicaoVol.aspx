@@ -171,7 +171,7 @@
                                                         </div>
                                                         <div class="panel-body">
                                                             <div class="table-responsive">
-                                                                <asp:GridView ID="grwVolDispo" runat="server" AutoGenerateColumns="False" DataKeyNames="CPF" DataSourceID="SqlDataSource1" CssClass="table table-bordered">
+                                                                <asp:GridView ID="grwVolDispo" runat="server" AutoGenerateColumns="False" DataKeyNames="CPF" DataSourceID="SqlDataSource1" CssClass="table table-bordered" Width="100%">
                                                                     <Columns>
                                                                         <asp:TemplateField>
                                                                             <ItemTemplate>
@@ -210,7 +210,7 @@
                                                         </div>
                                                         <div class="panel-body">
                                                             <div class="table-responsive">
-                                                                <asp:GridView ID="grwVolAtr" runat="server" AutoGenerateColumns="False" DataKeyNames="CPF" DataSourceID="SqlDataSource2" CssClass="table table-bordered">
+                                                                <asp:GridView ID="grwVolAtr" runat="server" AutoGenerateColumns="False" DataKeyNames="CPF" DataSourceID="SqlDataSource2" CssClass="table table-bordered" Width="100%">
 
                                                                     <Columns>
                                                                         <asp:TemplateField>
@@ -275,15 +275,23 @@
 
         <!-- Custom Theme JavaScript -->
         <script src="../dist/js/sb-admin-2.js"></script>
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-footable/0.1.0/css/footable.min.css"
-            rel="stylesheet" type="text/css" />
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-footable/0.1.0/js/footable.min.js"></script>
-        <script type="text/javascript">
-            $(function () {
-                $('[id*=grwVolDispo]').footable();
-            });
-        </script>
+        <script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
+
+            <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+            <script>
+                $(document).ready(function () {
+                    $("#grwVolDispo").prepend($("<thead></thead>").append($("#grwVolDispo").find("tr:first"))).dataTable({
+                        responsive: true
+                    });
+                    $("#grwVolAtr").prepend($("<thead></thead>").append($("#grwVolAtr").find("tr:first"))).dataTable({
+                        responsive: true,
+
+                    });
+                });
+
+            </script>
     </form>
 </body>
 </html>

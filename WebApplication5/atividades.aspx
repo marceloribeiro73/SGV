@@ -157,7 +157,7 @@
                           </div>
                       </div>
                       <div class="panel-body">
-                              <asp:GridView ID="grwAtividades" CssClass="table table-striped table-bordered table-hover" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource2" AllowPaging="True" AllowSorting="True">
+                              <asp:GridView ID="grwAtividades" CssClass="table table-striped table-bordered table-hover" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource2" AllowPaging="True" AllowSorting="True" Width="100%">
                                   <Columns>
                                       <asp:TemplateField>
                                           <ItemTemplate>
@@ -215,6 +215,20 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+      <script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
+
+            <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+            <script>
+                $(document).ready(function () {
+                    $("#grwAtividades").prepend($("<thead></thead>").append($("#grwAtividades").find("tr:first"))).dataTable({
+                        responsive: true
+                    });
+                   
+                });
+
+            </script>
   </form>
 </body>
 </html>

@@ -38,7 +38,7 @@ namespace WebApplication5
 
         public int userPendentesAceitacao(string pCpf)
         {
-            string strCmd = string.Format("SELECT COUNT(V.CPF) AS 'PENDENCIAS' FROM VOLUNTARIO V, EVENTO E, VOLUNTARIO_x_EVENTO VE WHERE V.CPF = VE.VOLUNTARIO AND E.COD_EVENTO = VE.EVENTO AND V.STATUS = 'P' AND V.CPF = '{0}'", pCpf);
+            string strCmd = string.Format("SELECT COUNT(V.CPF) AS 'PENDENCIAS' FROM VOLUNTARIO V, SGV_DEV.DBO.VOLUNTARIO_X_ATIVIDADE_X_EVENTO VAE WHERE V.CPF = VAE.VOLUNTARIO AND V.STATUS = 'P' AND V.CPF = '{0}'", pCpf);
             SqlDataReader dr1 = SqlDB.Instancia.FazerSelect(strCmd);
             if(dr1.Read())
             {
@@ -53,7 +53,7 @@ namespace WebApplication5
 
         public int userPendentesDeclaracao(string pCpf)
         {
-            string strCmd = string.Format("SELECT COUNT(V.CPF) AS 'PENDENCIAS' FROM VOLUNTARIO V, EVENTO E, VOLUNTARIO_x_EVENTO VE WHERE V.CPF = VE.VOLUNTARIO AND E.COD_EVENTO = VE.EVENTO AND V.STATUS = 'P' AND V.CPF = '{0}'", pCpf);
+            string strCmd = string.Format("SELECT COUNT(V.CPF) AS 'PENDENCIAS' FROM VOLUNTARIO V, VOLUNTARIO_X_ATIVIDADE_X_EVENTO VAE WHERE V.CPF = VAE.VOLUNTARIO AND VAE.QUANTIDADE_HORAS_DECLARADA <= 0 AND V.STATUS = 'A' AND V.CPF = '{0}'", pCpf);
             SqlDataReader dr1 = SqlDB.Instancia.FazerSelect(strCmd);
             if(dr1.Read())
             {

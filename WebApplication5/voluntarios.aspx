@@ -162,7 +162,7 @@
                                         <asp:Button ID="btnLimpar" CssClass="btn btn-primary btn-outline" Text="Limpar" runat="server" OnClick="btnLimpar_Click" />
                                     </div>
                                     <div class="form-group col-lg-12">
-                                        <asp:GridView ID="grwVoluntarios" CssClass="table table-bordered table-responsive" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="SqlDataSource1" AutoGenerateColumns="False" DataKeyNames="CPF" >
+                                        <asp:GridView ID="grwVoluntarios" CssClass="table table-bordered table-responsive" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="SqlDataSource1" AutoGenerateColumns="False" DataKeyNames="CPF" Width="100%" >
                                             <Columns>
                                                 <asp:TemplateField>
                                                     <ItemTemplate>
@@ -229,7 +229,21 @@ FROM VOLUNTARIO V, TIPO_VOLUNTARIO T WHERE V.TIPO_VOLUNTARIO = T.COD_TIPO_VOLUNT
 
         <!-- Custom Theme JavaScript -->
         <script src="../dist/js/sb-admin-2.js"></script>
+        <!-- DataTables JavaScript -->
+        <script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
 
+            <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+            <script>
+                $(document).ready(function () {
+                    $("#grwVoluntarios").prepend($("<thead></thead>").append($("#grwVoluntarios").find("tr:first"))).dataTable({
+                        responsive: true
+                    });
+                   
+                });
+
+            </script>
        
     </form>
 </body>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -12,7 +13,10 @@ namespace WebApplication5
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                Session["voluntario"] = null;
+            }
         }
 
         protected void btnBuscar_Click(object sender, EventArgs e)
@@ -68,7 +72,18 @@ namespace WebApplication5
                         strCmd = string.Format("UPDATE VOLUNTARIO SET STATUS = 'I' WHERE CPF = '{0}'", lbCpf.Text);
                     }else if (lbStatus.Text.Equals("I"))
                     {
-                        strCmd = string.Format("UPDATE VOLUNTARIO SET STATUS = 'A' WHERE CPF = '{0}'", lbCpf.Text);
+                        SqlDataReader dr1 = SqlDB.Instancia.FazerSelect(string.Format("SELECT * FROM TERMO_ADSAO WHERE VOLUNTARIO = '{0}'", lbCpf.Text));
+                        if (dr1.Read())
+                        {
+                            strCmd = string.Format("UPDATE VOLUNTARIO SET STATUS = 'A' WHERE CPF = '{0}'", lbCpf.Text);
+                            
+                        }
+                        else
+                        {
+                            Response.Write("<script>alert('Voluntário não possui termo de adesão ativo, assim não pode ser ativado.');</script>");
+                        }
+                        dr1.Close();
+
                     }
                     else
                     {

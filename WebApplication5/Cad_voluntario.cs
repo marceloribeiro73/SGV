@@ -7,6 +7,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using WebApplication5.Classes;
 using WebApplication5.classes_servicos;
+using System.IO;
+using System.Data;
 
 namespace WebApplication5
 {
@@ -15,7 +17,7 @@ namespace WebApplication5
         int operacao = 1;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(Session["voluntario"] != null)
+            if (Session["voluntario"] != null)
             {
                 string aux = (string)Session["voluntario"];
                 Mensagem(aux);
@@ -28,7 +30,7 @@ namespace WebApplication5
                     oVoluntario.sCpf = Convert.ToString(dr["CPF"]);
                     oVoluntario.sPrimeiroNome = Convert.ToString(dr["PRIMEIRO_NOME"]);
                     oVoluntario.sUltimoNome = Convert.ToString(dr["ULTIMO_NOME"]);
-                   oVoluntario.sDataNasc = Convert.ToString(dr["DATA_NASC"]);
+                    oVoluntario.sDataNasc = Convert.ToString(dr["DATA_NASC"]);
                     oVoluntario.sDocIdentificacao = Convert.ToString(dr["DOC_IDENTIFICACAO"]);
                     oVoluntario.sTipoDocIdentificacao = Convert.ToString(dr["TIPO_DOC_IDENTIFICACAO"]);
                     oVoluntario.sDataEmissao = Convert.ToString(dr["DATA_EMISSAO"]);
@@ -40,7 +42,7 @@ namespace WebApplication5
                     oVoluntario.iTipoVoluntario = Convert.ToInt32(dr["TIPO_VOLUNTARIO"]);
                     oVoluntario.sCodPostal = Convert.ToString(dr["COD_POSTAL"]);
                     oVoluntario.sLogradouro = Convert.ToString(dr["LOGRADOURO"]);
-                    oVoluntario.sLogradouro = Convert.ToString(dr["NUMERO"]);
+                    oVoluntario.sNumero = Convert.ToString(dr["NUMERO"]);
                     oVoluntario.sComplemento = Convert.ToString(dr["COMPLEMENTO"]);
                     oVoluntario.sBairro = Convert.ToString(dr["BAIRRO"]);
                     oVoluntario.sCidade = Convert.ToString(dr["CIDADE"]);
@@ -48,17 +50,17 @@ namespace WebApplication5
                     oVoluntario.sPais = Convert.ToString(dr["PAIS"]);
                     oVoluntario.sPathFoto = Convert.ToString(dr["PATH_FOTO"]);
                     dr.Close();
-                    string strCmd2 = string.Format("SELECT FS.DIA_SEMANA FROM DIAS_SEMANA_VOLUNTARIO FS, VOLUNTARIO V WHERE FS.VOLUNTARIO = V.CPF AND V.CPF ='{0}'",oVoluntario.sCpf);
+                    string strCmd2 = string.Format("SELECT FS.DIA_SEMANA FROM DIAS_SEMANA_VOLUNTARIO FS, VOLUNTARIO V WHERE FS.VOLUNTARIO = V.CPF AND V.CPF ='{0}'", oVoluntario.sCpf);
                     oVoluntario.oDiasSemana = new List<int>();
                     SqlDataReader dr1 = SqlDB.Instancia.FazerSelect(strCmd2);
-                    while(dr1.Read())
+                    while (dr1.Read())
                     {
                         int aux1 = Convert.ToInt32(dr1["DIA_SEMANA"]);
                         oVoluntario.oDiasSemana.Add(aux1);
                     }
                     dr1.Close();
                 }
-                if(oVoluntario != null)
+                if (oVoluntario != null)
                 {
                     txtCpf.Text = Convert.ToString(oVoluntario.sCpf);
                     txtCpf.Enabled = false;
@@ -73,7 +75,7 @@ namespace WebApplication5
                     txtOrgEmissor.Text = oVoluntario.sOrgaoEmissor;
                     txtOrgEmissor.Enabled = false;
                     txtDataEmmisaoDoc.Enabled = false;
-                    ddwTipoDocID.Text = oVoluntario.sTipoDocIdentificacao;
+                    ddwTipoDocID.DataValueField = oVoluntario.sTipoDocIdentificacao;
                     ddwTipoDocID.Enabled = false;
                     txtNacionalidade.Text = oVoluntario.sNacionalidade;
                     txtCep.Text = oVoluntario.sCodPostal;
@@ -89,9 +91,9 @@ namespace WebApplication5
                     txtEmail.Text = oVoluntario.sEmail;
                     txtDataAdesao.Text = oVoluntario.sDataAdesao;
                     txtDataAdesao.Enabled = false;
-                    ddwTipoVoluntario.Text =Convert.ToString(oVoluntario.iTipoVoluntario);
-                    upFoto.Enabled = false;
-                    img1.ImageUrl = oVoluntario.sPathFoto;
+                    ddwTipoVoluntario.Text = Convert.ToString(oVoluntario.iTipoVoluntario);
+                    upFoto.Enabled = true;
+                    //img1.ImageUrl = oVoluntario.sPathFoto;
                     txtMaxHorasTrab.Text = Convert.ToString(oVoluntario.iMaxHoras);
                     DateTime dtNasc = new DateTime();
                     DateTime dtEmissao = new DateTime();
@@ -104,37 +106,37 @@ namespace WebApplication5
                         txtDataNasc.Text = dtNasc.ToString("yyyy-MM-dd");
                         txtDataEmmisaoDoc.Text = dtEmissao.ToString("yyyy-MM-dd");
                         txtDataAdesao.Text = dtEmissao.ToString("yyyy-MM-dd");
-                    }catch(Exception ex)
+                    } catch (Exception ex)
                     {
                         Mensagem(ex.Message);
                     }
-                    foreach(int i in oVoluntario.oDiasSemana)
+                    foreach (int i in oVoluntario.oDiasSemana)
                     {
-                        if(i == 1)
+                        if (i == 1)
                         {
                             chkDiaDomingo.Checked = true;
                         }
-                        else if(i ==2)
+                        else if (i == 2)
                         {
                             chkDiaSegunda.Checked = true;
                         }
-                        else if(i== 3)
+                        else if (i == 3)
                         {
                             chkDiaTerca.Checked = true;
                         }
-                        else if(i==4)
+                        else if (i == 4)
                         {
                             chkDiaQuarta.Checked = true;
-                        } 
-                        else if(i==5)
+                        }
+                        else if (i == 5)
                         {
                             chkDiaQuinta.Checked = true;
                         }
-                        else if(i==6)
+                        else if (i == 6)
                         {
                             chkDiaSexta.Checked = true;
                         }
-                        else if(i==7)
+                        else if (i == 7)
                         {
                             chkDiaSabado.Checked = true;
                         }
@@ -162,10 +164,11 @@ namespace WebApplication5
             txtEstadoProvincia.Text = string.Empty;
             txtPais.Text = string.Empty;
         }
+        /*
         private string UpLoadFoto()
         {
             bool fotoOk = false;
-            String path = Server.MapPath("~/Fotos/");
+            String path = Server.MapPath("http://localhost:24354Fotos/");
             if (upFoto.HasFile)
             {
                 String extencao = System.IO.Path.GetExtension(upFoto.FileName).ToLower();
@@ -199,7 +202,51 @@ namespace WebApplication5
                 return "null";
             }
         }
+        */
+        protected string  uploadtermo()
+        {
+            string ret = "0";
+            String path = Server.MapPath("~/Termos/");
+            if (upFoto.HasFile)
+            {
+                bool termook = false;
+                String extencao = System.IO.Path.GetExtension(upFoto.FileName).ToLower();
+                String[] extencoesAceitas = { ".pdf"};
+                for (int i = 0; i < extencoesAceitas.Length; i++)
+                {
+                    if (extencao == extencoesAceitas[i])
+                    {
+                        termook = true;
+                    }
+                    
+                }
+                if(termook == true)
+                {
+                    try
+                    {
+                        upFoto.PostedFile.SaveAs(path + txtCpf.Text + System.IO.Path.GetExtension(upFoto.FileName).ToLower());
+                        Mensagem("Termo Aceito");
+                        return path + txtCpf.Text + System.IO.Path.GetExtension(upFoto.FileName).ToLower();
+                    }
+                    catch(Exception e)
+                    {
+                        Mensagem(e.Message);
+                        return "2";
+                    }
+                }
+                else
+                {
+                    return "3";
+                }
 
+            }
+            else
+            {
+                return  "4";
+            }
+           
+        }
+        
        
 
         protected bool validaSeExiste()
@@ -226,54 +273,54 @@ namespace WebApplication5
                 return false;
             }
         }
-        
-        protected bool validaConsisData()
+
+        protected int validaConsisData()
         {
             DateTime dNasc = new DateTime();
             DateTime dEmissaDoc = new DateTime(); //Há a necessidade de validar a data de Emissao?
             DateTime dAdsao = new DateTime();
-            if(DateTime.TryParse(txtDataNasc.Text, out dNasc))
+            if (DateTime.TryParse(txtDataNasc.Text, out dNasc))
             {
-                if(DateTime.TryParse(txtDataAdesao.Text, out dAdsao))
+                if (DateTime.TryParse(txtDataAdesao.Text, out dAdsao))
                 {
-                   if(DateTime.TryParse(txtDataEmmisaoDoc.Text, out dEmissaDoc))
-                   {
-                       if((dNasc.Year - DateTime.Now.Year) > 16)
-                       {
-                        if(dAdsao.Year > dNasc.Year)
+                    if (DateTime.TryParse(txtDataEmmisaoDoc.Text, out dEmissaDoc))
+                    {
+                        if ((DateTime.Now.Year - dNasc.Year) > 16)
                         {
-                            if(dEmissaDoc.Year > dNasc.Year)
+                            if (dAdsao.Year > dNasc.Year)
                             {
-                                return true;
+                                if (dEmissaDoc.Year > dNasc.Year)
+                                {
+                                    return 1;
+                                }
+                                else
+                                {
+                                    return 2;
+                                }
                             }
                             else
                             {
-                                return false;
+                                return 3;
                             }
                         }
                         else
                         {
-                            return false;  
+                            return 4;
                         }
-                       }
-                       else
-                       {
-                           return false;
-                       }
-                   }
-                   else
-                   {
-                       return false;
-                   }
+                    }
+                    else
+                    {
+                        return 5;
+                    }
                 }
                 else
                 {
-                    return false;
+                    return 6;
                 }
             }
             else
             {
-                return false;
+                return 7;
             }
         }
 
@@ -289,7 +336,7 @@ namespace WebApplication5
             }
         }
 
-        protected Voluntario carregaObjVoluntario(string pFoto)
+        protected Voluntario carregaObjVoluntario()
         {
             Voluntario oVoluntario2 = null;
             if(!txtCpf.Text.Equals(null))
@@ -308,7 +355,7 @@ namespace WebApplication5
                 oVoluntario2.sTelefoneContato2 = txtTel2.Text;
                 oVoluntario2.sEmail = txtEmail.Text;
                 oVoluntario2.sDataAdesao = txtDataAdesao.Text;
-                oVoluntario2.sPathFoto = pFoto;
+                oVoluntario2.sPathFoto = "00";
                 oVoluntario2.iMaxHoras = 60 * Convert.ToInt32(txtMaxHorasTrab.Text);
                 oVoluntario2.iTipoVoluntario = Convert.ToInt32(ddwTipoVoluntario.Text);
                 oVoluntario2.sCodPostal = txtCep.Text;
@@ -363,70 +410,92 @@ namespace WebApplication5
         {
             if (operacao == 1)
             {
-                string foto = UpLoadFoto();
-                if(!foto.Equals("null"))
+                if (validaObrigatorios())
                 {
-                    if(validaObrigatorios())
+                    if (validaSeExiste() == false)
                     {
-                        if(validaSeExiste() == false)
+
+                        Voluntario oVl = new Voluntario();
+                        oVl = carregaObjVoluntario();
+                        if (oVl != null)
                         {
-                            if(validaConsisData())
+                            VoluntarioDAO oVld = new VoluntarioDAO();
+                            string varRet = oVld.inserirVoluntario(oVl);
+                            if (varRet.Equals("Cadastro efetuado com Sucesso."))
                             {
-                                Voluntario oVl = new Voluntario();
-                                oVl = carregaObjVoluntario(foto);
-                                if(oVl != null)
+                                UsuarioDAO oUsd = new UsuarioDAO();
+                                int i = oUsd.CadUsuario(oVl.sEmail, oVl.sCpf, oVl.iTipoVoluntario);
+                                string i3 = uploadtermo();
+                                if (i3.Equals("2"))
                                 {
-                                    VoluntarioDAO oVld = new VoluntarioDAO();
-                                    string varRet =oVld.inserirVoluntario(oVl);
-                                    if(varRet.Equals("Cadastro eferuado com Sucesso."))
-                                    {
-                                        UsuarioDAO oUsd = new UsuarioDAO();
-                                        int i = oUsd.CadUsuario(oVl.sEmail, oVl.sCpf, oVl.iTipoVoluntario);
-                                        Response.Write(string.Format("<script>alert('Cadastro Efetuado, voce será redirecionado para a tela de voluntários.');window.location = 'voluntarios.aspx';</script>"));
-                                    }
-                                    else
-                                    {
-                                        Mensagem("Cadastro não realizado, por gentileza, verifique os campos preechidos e tente novamente.");
-                                    }
+                                    Mensagem("Erro sistemico ao vincular o termo ao voluntário.");
                                 }
-                                else
+                                else if (i3.Equals("3"))
                                 {
-                                    Mensagem("Cadastro não realizado, por gentileza, verifique os campos preechidos e tente novamente.");
+                                    Mensagem("Termo em extensão não aceita. Extensão aceita: .pdf.");
                                 }
+                                else if (i3.Equals("4"))
+                                {
+                                    Mensagem("Não ha arquivo a ser vinculado.");
+                                }
+                                else if(!i3.Equals("2") && !i3.Equals("3") && !i3.Equals("4"))
+                                {
+                                    int i4 = oVld.CaregarTermo(oVl.sCpf, i3);
+                                }
+
+
+                                Response.Write(string.Format("<script>alert('Cadastro Efetuado, voce será redirecionado para a tela de voluntários.');window.location = 'voluntarios.aspx';</script>"));
                             }
                             else
                             {
-                                Mensagem("Cadastro não realizado devido a inconsistencias entre as data de Adesão e Nacimento ou entre a data de nascimento e a data de emissão do documento, por gentileza verifique os dados e tente novamente.");
+                                Mensagem("Cadastro não realizado, por gentileza, verifique os campos preechidos e tente novamente.");
                             }
                         }
                         else
                         {
-                            Mensagem("Cadastro não realizado devido a já existir um voluntário com o mesmo cpf cadastrado no sistema.");
+                            Mensagem("Cadastro não realizado, por gentileza, verifique os campos preechidos e tente novamente 2.");
                         }
+
                     }
                     else
                     {
-                        Mensagem("Cadastro não realizado, todos os campos obrigatorios não foram preenchidos.");
-                    }              
+                        Mensagem("Cadastro não realizado devido a já existir um voluntário com o mesmo cpf cadastrado no sistema.");
+                    }
                 }
                 else
                 {
-                    Mensagem("Cadastro não realizado, devido a ausencia da foto.");
+                    Mensagem("Cadastro não realizado, todos os campos obrigatorios não foram preenchidos.");
                 }
-               
-            } 
+            }
             else if (operacao == 2)
             {
-                if(validaObrigatorios())
+                if (validaObrigatorios())
                 {
                     Voluntario oVl = new Voluntario();
-                    oVl = carregaObjVoluntario(null);
-                    if(oVl != null)
+                    oVl = carregaObjVoluntario();
+                    if (oVl != null)
                     {
                         VoluntarioDAO oVld = new VoluntarioDAO();
                         string vRet = oVld.alterarVoluntario(oVl);
-                        if(vRet.Equals("Alteração realizada com sucesso."))
+                        if (vRet.Equals("Alteração realizada com sucesso."))
                         {
+                            string i3 = uploadtermo();
+                            if (i3.Equals("2"))
+                            {
+                                Mensagem("Erro sistemico ao vincular o termo ao voluntário.");
+                            }
+                            else if (i3.Equals("3"))
+                            {
+                                Mensagem("Termo em extensão não aceita. Extensão aceita: .pdf.");
+                            }
+                            else if (i3.Equals("4"))
+                            {
+                                Mensagem("Não ha arquivo a ser vinculado.");
+                            }
+                            else if (!i3.Equals("2") && !i3.Equals("3") && !i3.Equals("4"))
+                            {
+                                int i4 = oVld.CaregarTermo(oVl.sCpf, i3);
+                            }
                             Response.Write(string.Format("<script>alert('Cadasro Relizado com sucesso. Redirecionando para a tela de voluntarios ');window.location = 'voluntarios.aspx';</script>"));
                         }
                         else
@@ -457,6 +526,12 @@ namespace WebApplication5
             Response.Redirect("voluntarios.aspx");
         }
 
-        
+        protected void btnDownload_Click(object sender, EventArgs e)
+        {
+            Response.ContentType = "Application/pdf";
+            Response.AppendHeader("Content-Disposition", string.Format("attachment; filename={0}.pdf",txtCpf.Text));
+            Response.TransmitFile(Server.MapPath(string.Format(@"~/Termos/{0}.pdf",txtCpf.Text)));
+            Response.End();
+        }
     }
 }
